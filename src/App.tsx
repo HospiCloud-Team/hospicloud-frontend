@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import HospicloudAPI from "./api/hospicloudAPI";
+import Routes from "./router";
+import routes from "./router/constantRoutes.json";
 
-function App() {
+HospicloudAPI.interceptors.request.use((req) => {
+  const authToken = localStorage.getItem("authToken");
+  req.headers.common.authorization = authToken;
+});
+
+HospicloudAPI.interceptors.response.use(
+  (res) => {
+    return res;
+  },
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem("authToken");
+
+      window.location.href = routes.LOGIN;
+    }
+
+    return Promise.reject(error);
+  }
+);
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes />
+    </Router>
   );
-}
+};
 
 export default App;
