@@ -9,7 +9,7 @@ const LandingLayout = ({ children }: LandingLayoutProps) => {
   return (
     <>
       <LandingHeader />
-      <div className="container-fluid container-md">{children}</div>
+      <div className="container-fluid container-md my-4">{children}</div>
     </>
   );
 };

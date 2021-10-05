@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useLocation, useParams } from "react-router";
 import { getHospital } from "../../api/users";
 import LandingLayout from "../../layout/LandingLayout";
+import { IDoctor } from "../../models/IDoctor";
 import { IHospital } from "../../models/IHospital";
+import DoctorsList from "./components/DoctorsList";
 
 const HospitalDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -14,12 +16,61 @@ const HospitalDetail = () => {
       setHospital(res);
     });
   }
+
+  const doctors: IDoctor[] = [
+    {
+      name: "Test Test",
+      email: "test@test.com",
+      image:
+        "https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg",
+      phoneNo: "(809) 000 0000",
+      schedule: "",
+      specialities: ["Ginecologo", "Obstetra"],
+    },
+    {
+      name: "Test Test",
+      email: "test@test.com",
+      image:
+        "https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg",
+      phoneNo: "(809) 000 0000",
+      schedule: "",
+      specialities: ["Ginecologo", "Obstetra"],
+    },
+    {
+      name: "Test Test",
+      email: "test@test.com",
+      image:
+        "https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg",
+      phoneNo: "(809) 000 0000",
+      schedule: "",
+      specialities: ["Ginecologo", "Obstetra"],
+    },
+    {
+      name: "Test Test",
+      email: "test@test.com",
+      image:
+        "https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg",
+      phoneNo: "(809) 000 0000",
+      schedule: "",
+      specialities: ["Ginecologo", "Obstetra"],
+    },
+    {
+      name: "Test Test",
+      email: "test@test.com",
+      image:
+        "https://profilemagazine.com/wp-content/uploads/2020/04/Ajmere-Dale-Square-thumbnail.jpg",
+      phoneNo: "(809) 000 0000",
+      schedule: "",
+      specialities: ["Ginecologo", "Obstetra"],
+    },
+  ];
+
   console.log("Hi", hospital);
 
   return (
     <LandingLayout>
-      <h1 className="fs-2 mt-3">{hospital?.name}</h1>
-      <div className="row mt-3">
+      <h1 className="fs-2">{hospital?.name}</h1>
+      <div className="row my-3">
         <div className="col-md-4 mb-3">
           <img
             src={hospital?.image}
@@ -47,6 +98,7 @@ const HospitalDetail = () => {
           ))}
         </div>
       </div>
+      <DoctorsList doctors={doctors} />
     </LandingLayout>
   );
 };
