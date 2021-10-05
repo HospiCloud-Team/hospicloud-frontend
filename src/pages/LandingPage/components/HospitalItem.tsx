@@ -14,6 +14,12 @@ const OverflowText = styled.p`
   text-overflow: ellipsis;
 `;
 
+const CroppedImage = styled.img`
+  width: 286;
+  height: 138;
+  object-fit: cover;
+`;
+
 interface HospitalItemProps {
   hospital: IHospital;
 }
@@ -23,7 +29,11 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
 
   return (
     <FixedBox className="card me-2 mb-2">
-      <img src={hospital.image} alt="hospital" className="card-img-top" />
+      <CroppedImage
+        src={hospital.image}
+        alt="hospital"
+        className="card-img-top"
+      />
       <div className="card-body">
         <h5 className="card-title">{hospital.name}</h5>
         <OverflowText className="card-text mb-2">
