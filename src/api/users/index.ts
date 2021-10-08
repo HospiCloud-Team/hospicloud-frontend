@@ -1,3 +1,4 @@
+import { IHospital } from "../../models/IHospital";
 import { UsersAPI } from "../hospicloudAPI";
 
 const login = (email: string, password: string) => {
@@ -8,4 +9,8 @@ const testRequest = () => {
   return UsersAPI.get("/");
 };
 
-export { login, testRequest };
+const getHospital = (id: string): Promise<IHospital> => {
+  return UsersAPI.get(`/hospitals/${id}`);
+};
+
+export { login, testRequest, getHospital };
