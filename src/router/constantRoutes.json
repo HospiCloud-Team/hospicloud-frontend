@@ -1,5 +1,8 @@
 {
   "HOME": "/",
   "LOGIN": "/login",
-  "HOSPITALS": "/hospitals"
+  "HOSPITALS": "/hospitales",
+  "DOCTOR": "/doctor",
+  "PATIENT": "/paciente",
+  "ADMIN": "/admin"
 }
