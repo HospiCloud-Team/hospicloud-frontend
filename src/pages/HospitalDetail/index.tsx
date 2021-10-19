@@ -64,9 +64,6 @@ const HospitalDetail = () => {
       specialities: ["Ginecologo", "Obstetra"],
     },
   ];
-
-  console.log("Hi", hospital);
-
   return (
     <LandingLayout>
       <h1 className="fs-2">{hospital?.name}</h1>

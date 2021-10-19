@@ -23,7 +23,7 @@ const LandingHeader = () => {
         </Link>
         {localStorage.getItem("authToken") ? (
           <button
-            className="btn btn-primary btn-sm me-2"
+            className="btn btn-primary btn-sm"
             onClick={() => {
               if (userRole === roles.PATIENT) history.push(routes.PATIENT);
               else if (userRole === roles.DOCTOR) history.push(routes.DOCTOR);

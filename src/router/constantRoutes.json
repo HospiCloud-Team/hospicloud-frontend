@@ -4,5 +4,6 @@
   "HOSPITALS": "/hospitales",
   "DOCTOR": "/doctor",
   "PATIENT": "/paciente",
+  "PATIENT_CHECKUPS": "/paciente/consultas",
   "ADMIN": "/admin"
 }
