@@ -7,7 +7,7 @@ const CheckupsList = () => {
 
   const checkups: ICheckup[] = [
     {
-      data: "{'hello':'bye'}",
+      data: `{"Estado fisico":"saludable", "latidos por segundo": "120/40"}`,
       date: "2021-10-18T18:41:53.024Z",
       doctor: { id: 1 },
       id: 1,
@@ -18,7 +18,7 @@ const CheckupsList = () => {
       },
     },
     {
-      data: "{'hello':'bye'}",
+      data: `{"hello":"bye"}`,
       date: "2021-10-18T18:41:53.024Z",
       doctor: { id: 1 },
       id: 1,
