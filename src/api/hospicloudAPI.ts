@@ -9,7 +9,8 @@ const CheckupsAPI = axios.create({
 });
 
 const UsersAPI = axios.create({
-  baseURL: process.env.USERS_API_URL,
+  // baseURL: process.env.USERS_API_URL,
+  baseURL: "http://localhost:8082",
 });
 
 export { TemplatesAPI, CheckupsAPI, UsersAPI };
