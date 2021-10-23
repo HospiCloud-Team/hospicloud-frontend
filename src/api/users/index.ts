@@ -9,7 +9,7 @@ const testRequest = () => {
   return UsersAPI.get("/users?user_role=patient");
 };
 
-const userRoles = [
+const userRoles: string[] = [
   'patient',
   'admin',
   'doctor'
@@ -17,8 +17,8 @@ const userRoles = [
 
 // lo importante aqui es document_type, name, last_name, email, document_number, date_of_bith, created_at, updated_at, patient
 const registerPatient = (document_type: string, name: string, last_name: string, email: string, document_number: string, date_of_birth: Date, patient: {blood_type: string, medical_background: string,}) => {
-  const userRole = 'patient'
-  return UsersAPI.post("/users", {userRole, document_type, name, last_name, email, document_number, date_of_birth, patient});
+  const user_role = userRoles[0];
+  return UsersAPI.post("/users", {user_role, document_type, name, last_name, email, document_number, date_of_birth, patient});
 }
 
 const getHospital = (id: string): Promise<IHospital> => {
