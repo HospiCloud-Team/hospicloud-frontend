@@ -10,12 +10,12 @@ import BloodyType from './blood-type.json';
 const RegisterPage = () => {
     const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      userDocumentType: '',
-      userName: '',
-      userLastName: '',
-      userEmail: '',
-      userDocumentNumber: '',
-      userDateOfBirth: new Date(),
+      document_type: '',
+      name: '',
+      last_name: '',
+      email: '',
+      document_number: '',
+      date_of_birth: new Date(),
       patient: {
         blood_type: '',
         medical_background: '',
@@ -27,7 +27,7 @@ const RegisterPage = () => {
     const fetchData = async () => {
       // This would be a GET call to an endpoint
       reset({
-        userDocumentType: 'Tipo de Documento',
+        document_type: 'Tipo de Documento',
         patient: {
           blood_type: 'Tipo de Sangre',
           medical_background: '',
@@ -40,8 +40,8 @@ const RegisterPage = () => {
 
   const onSubmit = async (data: any) => {
     try{
-      const res = await registerPatient(data.userDocumentNumber, data.userName, data.userLastName, data.userEmail, data.userDocumentNumber, data.userDateOfBirth, data.patient);
-      console.log(res.data.patient);
+      const res = await registerPatient(data.document_type, data.name, data.last_name, data.email, data.document_number, data.date_of_birth, data.patient);
+      console.log(res.data);
     } catch (err){
       console.log(err);
     }
@@ -63,17 +63,17 @@ const RegisterPage = () => {
                               <LoginTitle>Register</LoginTitle>
                               <div className="d-flex flex-row w-100">
                                 <div className="form-group d-flex justify-content-start mb-2 me-1 w-50">
-                                  <input type="text" className="form-control" placeholder="Nombre" {...register("userName")}/>
+                                  <input type="text" className="form-control" placeholder="Nombre" {...register("name")}/>
                                 </div>
                                 <div className="form-group d-flex justify-content-start mb-2 w-50">
-                                  <input type="text" className="form-control" placeholder="Apellido" {...register("userLastName")}/>
+                                  <input type="text" className="form-control" placeholder="Apellido" {...register("last_name")}/>
                                 </div>
                               </div>
                               <div className="form-group d-flex justify-content-start mb-2">
-                                <input type="text" className="form-control" placeholder="Correo Electrónico" {...register("userEmail")}/>
+                                <input type="text" className="form-control" placeholder="Correo Electrónico" {...register("email")}/>
                               </div>
                               <div className="d-flex flex-row w-100">
-                                <select className="form-select d-flex justify-content-start mb-2 me-1 w-50" {...register("userDocumentType")}>
+                                <select className="form-select d-flex justify-content-start mb-2 me-1 w-50" {...register("document_type")}>
                                     {DocumentType.map(option => (
                                       <option key={option.id} value={option.id} disabled={option.isDisabled}>
                                         {option.value}
@@ -81,11 +81,11 @@ const RegisterPage = () => {
                                     ))}
                                 </select>
                                 <div className="form-group d-flex justify-content-start mb-2 w-50">
-                                  <input type="text" className="form-control" placeholder="Número de documento" {...register("userDocumentNumber")}/>
+                                  <input type="text" className="form-control" placeholder="Número de documento" {...register("document_number")}/>
                                 </div>
                               </div>
                               <div className="form-group d-flex justify-content-start mb-2">
-                                <input type="date" className="form-control" {...register("userDateOfBirth")}/>
+                                <input type="date" className="form-control" {...register("date_of_birth")}/>
                               </div>
                               <select className="form-select mb-2" aria-label="Bloody Type" {...register("patient.blood_type")}>
                                 {BloodyType.map(option => (
