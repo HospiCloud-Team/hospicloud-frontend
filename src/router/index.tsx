@@ -4,6 +4,8 @@ import LandingPage from "../pages/LandingPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import HospitalDetail from "../pages/HospitalDetail";
+import RegisterAdmin from "../pages/RegisterHospitalAndAdmin/RegisterAdminPage";
+import RegisterHospital from "../pages/RegisterHospitalAndAdmin/RegisterHospitalPage";
 
 const Routes = () => {
   return (
@@ -16,6 +18,12 @@ const Routes = () => {
       </Route>
       <Route path={routes.REGISTER}>
         <RegisterPage />
+      </Route>
+      <Route path={routes.REGISTER_HOSPITAL}>
+        <RegisterHospital/>
+      </Route>
+      <Route path={routes.REGISTER_ADMIN}>
+        <RegisterAdmin />
       </Route>
       <Route path={`${routes.HOSPITALS}/:id`}>
         <HospitalDetail />
