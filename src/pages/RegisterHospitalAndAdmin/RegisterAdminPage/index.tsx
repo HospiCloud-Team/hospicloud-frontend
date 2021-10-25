@@ -5,6 +5,7 @@ import {registerAdmin} from '../../../api/users/index';
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from './document-type.json';
+import { IAdmin } from "../../../models/IAdmin";
 
 const RegisterAdmin = () => {
     const { register, handleSubmit, reset} = useForm({
@@ -35,8 +36,20 @@ const RegisterAdmin = () => {
   const onSubmit = async (data: any) => {
     console.log(data);
     try{
-      const res = await registerAdmin(data.document_type, data.name, data.last_name, data.email, data.document_number, data.date_of_birth, data.admin);
-      console.log(res.data);
+      const adminData : IAdmin = {
+        user_role: 'admin',
+        document_type: data.document_type, 
+        name: data.name, 
+        last_name: data.last_name,
+        email: data.email, 
+        document_number: data.document_number, 
+        date_of_birth: data.date_of_birth, 
+        admin: {
+          hospital_id: data.admin?.hospital_id,
+        }
+      }
+
+      registerAdmin(adminData);
     } catch (err){
       console.log(err);
     }

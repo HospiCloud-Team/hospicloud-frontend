@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from './document-type.json';
 import BloodyType from './blood-type.json';
+import { IPatient } from "../../models/IPatient";
 
 const RegisterPage = () => {
     const { register, handleSubmit, reset} = useForm({
@@ -40,8 +41,20 @@ const RegisterPage = () => {
 
   const onSubmit = async (data: any) => {
     try{
-      const res = await registerPatient(data.document_type, data.name, data.last_name, data.email, data.document_number, data.date_of_birth, data.patient);
-      console.log(res.data);
+      const patientData : IPatient = {
+        user_role: 'patient',
+        document_type: data.document_type, 
+        name: data.name, 
+        last_name: data.last_name,
+        email: data.email, 
+        document_number: data.document_number, 
+        date_of_birth: data.date_of_birth, 
+        patient: {
+            blood_type: data.patient?.blood_type, 
+            medical_background: data.patient?.medical_background,
+        }
+      }
+      registerPatient(patientData);
     } catch (err){
       console.log(err);
     }

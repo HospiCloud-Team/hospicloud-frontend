@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import routes from "../../../router/constantRoutes.json";
+import { IAdmin } from "../../../models/IAdmin";
 
 const RegisterHospital = () => {
     const history = useHistory();
@@ -36,10 +37,7 @@ const RegisterHospital = () => {
   }, [reset]);
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try{
-      const res = await registerAdmin(data.document_type, data.name, data.last_name, data.email, data.document_number, data.date_of_birth, data.admin);
-      console.log(res.data);
     } catch (err){
       console.log(err);
     }
