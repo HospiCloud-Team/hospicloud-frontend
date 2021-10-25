@@ -36,7 +36,6 @@ export const Icon = styled.img`
 export const Card = styled.div`
     right: 0;
     top: 0;
-    // height: 100%;
     border-style: solid;
     border-color: gray;
     border-width: 1px;
