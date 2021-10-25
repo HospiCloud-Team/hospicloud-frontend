@@ -1,16 +1,22 @@
+import { IAdmin } from "../../models/IAdmin";
 import { IHospital } from "../../models/IHospital";
+import { IPatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 
 const login = (email: string, password: string) => {
   return UsersAPI.post("/login", { email, password });
 };
 
-const testRequest = () => {
-  return UsersAPI.get("/");
-};
+const registerPatient = (patientData: IPatient) => {
+  return UsersAPI.post("/users", patientData);
+}
+
+const registerAdmin = (adminData: IAdmin) => {
+  return UsersAPI.post("/users", adminData);
+}
 
 const getHospital = (id: string): Promise<IHospital> => {
   return UsersAPI.get(`/hospitals/${id}`);
 };
 
-export { login, testRequest, getHospital };
+export { login, getHospital, registerPatient, registerAdmin };

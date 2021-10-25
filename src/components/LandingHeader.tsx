@@ -22,6 +22,12 @@ const LandingHeader = () => {
           <LongLogo />
         </Link>
         {localStorage.getItem("authToken") ? (
+        <div>
+          <button 
+            className="btn btn-outline-primary btn-sm me-2"
+            onClick={() => history.push(routes.REGISTER_HOSPITAL)}>
+            Registra tu hospital
+          </button>
           <button
             className="btn btn-primary btn-sm"
             onClick={() => {
