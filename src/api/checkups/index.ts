@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { ICheckup } from "../../models/ICheckup";
+import { ICheckup, INewCheckup } from "../../models/ICheckup";
 import { CheckupsAPI } from "../hospicloudAPI";
 
 const getCheckupsPatient = (id: number): Promise<AxiosResponse<ICheckup[]>> => {
@@ -10,4 +10,8 @@ const getCheckupsDoctor = (id: number): Promise<AxiosResponse<ICheckup[]>> => {
   return CheckupsAPI.get(`/checkups/doctor/${id}`);
 };
 
-export { getCheckupsPatient, getCheckupsDoctor };
+const addCheckup = (newCheckup: INewCheckup) => {
+  return CheckupsAPI.post("/checkups", newCheckup);
+};
+
+export { getCheckupsPatient, getCheckupsDoctor, addCheckup };

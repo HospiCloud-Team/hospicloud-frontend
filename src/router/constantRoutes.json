@@ -6,5 +6,6 @@
   "PATIENT": "/paciente",
   "PATIENT_CHECKUPS": "/paciente/consultas",
   "DOCTOR_CHECKUPS": "/doctor/consultas",
+  "DOCTOR_NEW_CHECKUP": "/doctor/nueva-consulta",
   "ADMIN": "/admin"
 }
