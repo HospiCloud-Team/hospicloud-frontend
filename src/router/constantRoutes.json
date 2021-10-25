@@ -3,6 +3,6 @@
   "LOGIN": "/login",
   "REGISTER": "/register",
   "REGISTER_HOSPITAL": "/register-hospital",
-  "REGISTER_ADMIN": "/admin",
+  "REGISTER_ADMIN": "/register-hospital/admin",
   "HOSPITALS": "/hospitals"
 }

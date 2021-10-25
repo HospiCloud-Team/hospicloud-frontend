@@ -51,7 +51,7 @@ const RegisterHospital = () => {
         <FixedBox>
                 <div className="w-100 h-100">
                   <ContainerDiv>
-                      <button onClick={() => {history.push(routes.REGISTER_ADMIN)}}>Ir a Register Admin Page</button>
+                      <button onClick={() => {history.push(`${routes.REGISTER_HOSPITAL}/admin`)}}>Ir a Register Admin Page</button>
                 </ContainerDiv>
               </div>
         </FixedBox>

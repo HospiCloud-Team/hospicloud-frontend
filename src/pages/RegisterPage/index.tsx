@@ -51,7 +51,6 @@ const RegisterPage = () => {
     <LandingLayout>
       <MultiBg>
         <FixedBox>
-                <div className="w-100 h-100">
                   <ContainerDiv>
                       <div className="row d-flex h-100" onSubmit={handleSubmit(onSubmit)}>
                         <div className="col-5">
@@ -105,7 +104,6 @@ const RegisterPage = () => {
                         </div>
                       </div>
                 </ContainerDiv>
-              </div>
         </FixedBox>
       </MultiBg>
     </LandingLayout>
