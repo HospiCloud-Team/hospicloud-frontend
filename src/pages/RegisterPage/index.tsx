@@ -1,5 +1,5 @@
 import LandingLayout from "../../layout/LandingLayout";
-import { MultiBg, FixedBox, Icon, ContainerDiv, LoginTitle} from "./style/index.style";
+import { MultiBg, FixedBox, Icon, RegisterTitle} from "./style/index.style";
 import HospiCloudLogo from '../../resources/HospiCloudLogo.svg'
 import {registerPatient} from '../../api/users/index';
 import { useEffect } from "react";
@@ -71,7 +71,7 @@ const RegisterPage = () => {
             <div className="col-7 h-100">
               <div className="row d-flex h-100 align-items-center m-2 pt-5">
                 <form className="d-flex flex-column w-100 pe-3">
-                  <LoginTitle>Register</LoginTitle>
+                  <RegisterTitle>Register</RegisterTitle>
                   <div className="d-flex flex-row w-100">
                     <div className="form-group d-flex justify-content-start mb-2 me-1 w-50">
                       <input type="text" className="form-control" placeholder="Nombre" {...register("name", {required: true})}/>

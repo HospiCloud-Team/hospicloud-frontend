@@ -24,26 +24,12 @@ export const FixedBox = styled.div`
   border-radius: 20px;
 `;
 
-export const ContainerDiv = styled.div`
-  height:100%;
-`;
-
 export const Icon = styled.img`
   width: 230px;
   height: 230px;
 `;
 
-export const Card = styled.div`
-    right: 0;
-    top: 0;
-    // height: 100%;
-    border-style: solid;
-    border-color: gray;
-    border-width: 1px;
-    border-radius: 20px;
-`;
-
-export const LoginTitle = styled.h3`
+export const RegisterTitle = styled.h3`
   color: #067BC2;
   display: flex;
   justify-content: center;
