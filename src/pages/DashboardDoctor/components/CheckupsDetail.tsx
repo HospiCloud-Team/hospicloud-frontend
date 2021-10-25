@@ -25,7 +25,7 @@ const CheckupsDetail = () => {
       <div className="row bg-white mx-0 my-3 p-3 rounded-2">
         <div className="col border-end">
           <p className="fw-bold m-0">Doctor:</p>
-          <p className="m-0">{checkup?.doctor.id}</p>
+          <p className="m-0">{checkup?.patient.id}</p>
         </div>
         <div className="col">
           <p className="fw-bold m-0">Dia de la consulta:</p>
