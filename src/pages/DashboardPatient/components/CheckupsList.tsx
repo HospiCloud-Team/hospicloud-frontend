@@ -19,7 +19,7 @@ const CheckupsList = () => {
         <CheckupItem
           key={checkup.id}
           checkup={checkup}
-          name={checkup.doctor.id.toString()}
+          name={`${checkup.doctor.user.name} ${checkup.doctor.user.last_name}`}
           route={`${routes.PATIENT_CHECKUPS}/${checkup.id}`}
         />
       ))}
