@@ -33,7 +33,7 @@ const Routes = () => {
         <DashboardDoctor content="CheckupDetail" />
       </PrivateRoute>
       <PrivateRoute path={routes.ADMIN}>
-        <DashboardAdmin />
+        <DashboardAdmin content="AddTemplate" />
       </PrivateRoute>
     </Switch>
   );
