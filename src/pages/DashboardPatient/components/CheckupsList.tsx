@@ -7,10 +7,9 @@ const CheckupsList = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
 
   useEffect(() => {
-    getCheckupsPatient(1).then((retrievedCheckups) => {
-      console.log("HI");
-      setCheckups(retrievedCheckups);
-    });
+    getCheckupsPatient(1).then((retrievedCheckups) =>
+      setCheckups(retrievedCheckups.data)
+    );
   }, []);
 
   return (

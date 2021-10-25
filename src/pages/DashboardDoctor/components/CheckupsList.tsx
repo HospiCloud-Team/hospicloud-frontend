@@ -1,9 +1,18 @@
+import { useEffect, useState } from "react";
+import { getCheckupsDoctor } from "../../../api/checkups";
 import CheckupItem from "../../../components/CheckupItem";
 import { ICheckup } from "../../../models/ICheckup";
 import routes from "../../../router/constantRoutes.json";
 
 const CheckupsList = () => {
-  const checkups: ICheckup[] = [];
+  const [checkups, setCheckups] = useState<ICheckup[]>([]);
+
+  useEffect(() => {
+    getCheckupsDoctor(1).then((retrievedCheckups) => {
+      console.log(retrievedCheckups);
+      setCheckups(retrievedCheckups.data);
+    });
+  }, []);
 
   return (
     <div>
@@ -20,7 +29,7 @@ const CheckupsList = () => {
         <CheckupItem
           key={checkup.id}
           checkup={checkup}
-          name={checkup.patient.id.toString()}
+          name={`${checkup.patient.user.name} ${checkup.patient.user.last_name}`}
           route={`${routes.DOCTOR_CHECKUPS}/${checkup.id}`}
         />
       ))}
