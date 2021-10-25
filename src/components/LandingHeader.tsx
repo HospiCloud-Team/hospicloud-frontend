@@ -22,22 +22,18 @@ const LandingHeader = () => {
           <LongLogo />
         </Link>
         {localStorage.getItem("authToken") ? (
-        <div>
-          <button 
-            className="btn btn-outline-primary btn-sm me-2"
-            onClick={() => history.push(routes.REGISTER_HOSPITAL)}>
-            Registra tu hospital
-          </button>
-          <button
-            className="btn btn-primary btn-sm"
-            onClick={() => {
-              if (userRole === roles.PATIENT) history.push(routes.PATIENT);
-              else if (userRole === roles.DOCTOR) history.push(routes.DOCTOR);
-              else if (userRole === roles.ADMIN) history.push(routes.ADMIN);
-            }}
-          >
-            Ir a perfil de {userRole}
-          </button>
+          <div>
+            <button
+              className="btn btn-primary btn-sm"
+              onClick={() => {
+                if (userRole === roles.PATIENT) history.push(routes.PATIENT);
+                else if (userRole === roles.DOCTOR) history.push(routes.DOCTOR);
+                else if (userRole === roles.ADMIN) history.push(routes.ADMIN);
+              }}
+            >
+              Ir a perfil de {userRole}
+            </button>
+          </div>
         ) : (
           <div>
             <button className="btn btn-outline-primary btn-sm me-2">
