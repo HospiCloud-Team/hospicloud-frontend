@@ -14,8 +14,8 @@ const DoctorsList = ({ doctors }: DoctorsListProps) => {
 
           <div className="row g-2">
             {doctors.map((doctor) => (
-              <div className="col-md-6 col-12">
-                <DoctorItem key={doctor.name} doctor={doctor} />
+              <div key={doctor.id} className="col-md-6 col-12">
+                <DoctorItem doctor={doctor} />
               </div>
             ))}
           </div>

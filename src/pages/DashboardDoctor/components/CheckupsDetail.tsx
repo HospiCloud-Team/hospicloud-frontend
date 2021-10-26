@@ -44,7 +44,7 @@ const CheckupsDetail = () => {
           {checkup?.data &&
             Object.entries(JSON.parse(checkup.data)).map(
               ([question, answer]) => (
-                <tr>
+                <tr key={question}>
                   <th scope="row">{question}</th>
                   <td>{answer as string}</td>
                 </tr>

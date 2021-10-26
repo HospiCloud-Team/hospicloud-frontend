@@ -36,7 +36,10 @@ const LandingHeader = () => {
           </div>
         ) : (
           <div>
-            <button className="btn btn-outline-primary btn-sm me-2">
+            <button
+              className="btn btn-outline-primary btn-sm me-2"
+              onClick={() => history.push(routes.REGISTER_HOSPITAL)}
+            >
               Registra tu hospital
             </button>
             <button

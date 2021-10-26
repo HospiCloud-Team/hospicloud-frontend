@@ -18,8 +18,6 @@ const AddCheckup = () => {
       patient_id: 1,
       data: JSON.stringify(data),
     };
-    console.log(data);
-    console.log(newCheckup);
     addCheckup(newCheckup);
   });
 
@@ -43,7 +41,7 @@ const AddCheckup = () => {
           <form onSubmit={onSubmit}>
             {Object.entries(JSON.parse(template.headers)).map(
               ([key, value]) => (
-                <div>
+                <div key={key}>
                   <label>{key}</label>
                   <input {...register(key)} />
                 </div>

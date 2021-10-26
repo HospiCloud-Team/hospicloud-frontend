@@ -8,7 +8,7 @@ import routes from "../../../router/constantRoutes.json";
 const RegisterHospital = () => {
   const history = useHistory();
 
-  const { register, handleSubmit, reset } = useForm({
+  const { reset } = useForm({
     defaultValues: {
       document_type: "",
       name: "",
