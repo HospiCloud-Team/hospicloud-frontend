@@ -19,11 +19,12 @@ const AddCheckup = () => {
       data: JSON.stringify(data),
     };
     addCheckup(newCheckup);
+    history.goBack();
   });
 
   useEffect(() => {
     getTemplatesByHospital(1).then((res) => setTemplate(res.data[0]));
-  });
+  }, []);
 
   return (
     <div>
@@ -34,20 +35,38 @@ const AddCheckup = () => {
         >
           <i className="bi bi-arrow-left"></i>
         </button>
-        <h4 className="m-0">Detalle de consulta</h4>
+        <h4 className="m-0">Nueva consulta</h4>
       </div>
       <div className="my-3">
         {template && (
           <form onSubmit={onSubmit}>
-            {Object.entries(JSON.parse(template.headers)).map(
-              ([key, value]) => (
-                <div key={key}>
-                  <label>{key}</label>
-                  <input {...register(key)} />
-                </div>
-              )
-            )}
-            <input type="submit" />
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Pregunta</th>
+                  <th scope="col">Diagnostico</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(JSON.parse(template.headers)).map(
+                  ([key, value]) => (
+                    <tr key={key}>
+                      <th scope="row">{key}</th>
+                      <td>
+                        <input
+                          className="form-control"
+                          placeholder={key}
+                          {...register(key)}
+                        />
+                      </td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+            <button type="submit" className="btn btn-primary float-end">
+              Crear consulta
+            </button>
           </form>
         )}
       </div>
