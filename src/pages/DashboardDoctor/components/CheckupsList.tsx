@@ -11,7 +11,7 @@ const CheckupsList = () => {
 
   useEffect(() => {
     getCheckupsDoctor(1).then((retrievedCheckups) =>
-      setCheckups(retrievedCheckups.data)
+      setCheckups(retrievedCheckups.data.reverse())
     );
   }, []);
 

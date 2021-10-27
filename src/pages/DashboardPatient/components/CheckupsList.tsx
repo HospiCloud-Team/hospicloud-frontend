@@ -8,7 +8,7 @@ const CheckupsList = () => {
 
   useEffect(() => {
     getCheckupsPatient(1).then((retrievedCheckups) =>
-      setCheckups(retrievedCheckups.data)
+      setCheckups(retrievedCheckups.data.reverse())
     );
   }, []);
 

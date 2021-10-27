@@ -29,7 +29,9 @@ const CheckupsDetail = () => {
         </div>
         <div className="col">
           <p className="fw-bold m-0">Dia de la consulta:</p>
-          <p className="m-0">{checkup?.date}</p>
+          <p className="m-0">
+            {checkup ? new Date(checkup.date).toLocaleString("es-CO") : ""}
+          </p>
         </div>
       </div>
 
