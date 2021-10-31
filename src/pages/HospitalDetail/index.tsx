@@ -19,6 +19,7 @@ const HospitalDetail = () => {
 
   const doctors: IDoctor[] = [
     {
+      id: 1,
       name: "Test Test",
       email: "test@test.com",
       image:
@@ -28,6 +29,7 @@ const HospitalDetail = () => {
       specialities: ["Ginecologo", "Obstetra"],
     },
     {
+      id: 2,
       name: "Test Test",
       email: "test@test.com",
       image:
@@ -37,6 +39,7 @@ const HospitalDetail = () => {
       specialities: ["Ginecologo", "Obstetra"],
     },
     {
+      id: 3,
       name: "Test Test",
       email: "test@test.com",
       image:
@@ -46,6 +49,7 @@ const HospitalDetail = () => {
       specialities: ["Ginecologo", "Obstetra"],
     },
     {
+      id: 4,
       name: "Test Test",
       email: "test@test.com",
       image:
@@ -55,6 +59,7 @@ const HospitalDetail = () => {
       specialities: ["Ginecologo", "Obstetra"],
     },
     {
+      id: 5,
       name: "Test Test",
       email: "test@test.com",
       image:
@@ -64,9 +69,6 @@ const HospitalDetail = () => {
       specialities: ["Ginecologo", "Obstetra"],
     },
   ];
-
-  console.log("Hi", hospital);
-
   return (
     <LandingLayout>
       <h1 className="fs-2">{hospital?.name}</h1>
@@ -94,7 +96,9 @@ const HospitalDetail = () => {
           <h5>Descripción:</h5>
           <p className="mb-4">{hospital?.description}</p>
           {hospital?.specialities.map((speciality) => (
-            <span className="badge bg-primary me-2">{speciality}</span>
+            <span className="badge bg-primary me-2" key={speciality}>
+              {speciality}
+            </span>
           ))}
         </div>
       </div>
