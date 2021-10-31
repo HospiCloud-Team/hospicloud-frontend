@@ -12,12 +12,16 @@ const AddCheckup = () => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = handleSubmit((data) => {
+    const doctorId = Number(localStorage.getItem("doctorId") as string);
+    const { patient, ...responses } = data;
+
     const newCheckup: INewCheckup = {
-      doctor_id: 1,
+      doctor_id: doctorId,
       template_id: 1,
-      patient_id: 1,
-      data: JSON.stringify(data),
+      patient_id: Number(patient),
+      data: JSON.stringify(responses),
     };
+
     addCheckup(newCheckup);
     history.goBack();
   });
@@ -40,6 +44,11 @@ const AddCheckup = () => {
       <div className="my-3">
         {template && (
           <form onSubmit={onSubmit}>
+            <input
+              className="form-control"
+              placeholder="Numero de identificacion del paciente"
+              {...register("patient")}
+            />
             <table className="table">
               <thead>
                 <tr>
@@ -49,14 +58,14 @@ const AddCheckup = () => {
               </thead>
               <tbody>
                 {Object.entries(JSON.parse(template.headers)).map(
-                  ([key, value]) => (
-                    <tr key={key}>
-                      <th scope="row">{key}</th>
+                  ([question, type]) => (
+                    <tr key={question}>
+                      <th scope="row">{question}</th>
                       <td>
                         <input
                           className="form-control"
-                          placeholder={key}
-                          {...register(key)}
+                          placeholder={question}
+                          {...register(question)}
                         />
                       </td>
                     </tr>

@@ -47,6 +47,7 @@ const LoginPage = () => {
                         onClick={() => {
                           localStorage.setItem("authToken", "123");
                           localStorage.setItem("userRole", "doctor");
+                          localStorage.setItem("doctorId", "1");
                           history.push(routes.HOME);
                         }}
                         type="submit"

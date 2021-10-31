@@ -10,7 +10,8 @@ const CheckupsList = () => {
   const history = useHistory();
 
   useEffect(() => {
-    getCheckupsDoctor(1).then((retrievedCheckups) =>
+    const doctorId = Number(localStorage.getItem("doctorId") as string);
+    getCheckupsDoctor(doctorId).then((retrievedCheckups) =>
       setCheckups(retrievedCheckups.data.reverse())
     );
   }, []);

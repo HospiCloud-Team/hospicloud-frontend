@@ -7,7 +7,8 @@ const CheckupsList = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
 
   useEffect(() => {
-    getCheckupsPatient(1).then((retrievedCheckups) =>
+    const patientId = Number(localStorage.getItem("patientId") as string);
+    getCheckupsPatient(patientId).then((retrievedCheckups) =>
       setCheckups(retrievedCheckups.data.reverse())
     );
   }, []);
