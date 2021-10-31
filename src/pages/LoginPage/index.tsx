@@ -53,7 +53,7 @@ const LoginPage = () => {
                         type="submit"
                         className="btn btn-primary"
                       >
-                        Iniciar Sesion
+                        Iniciar Sesión
                       </button>
                     </div>
                     <div className="form-group d-flex justify-content-end">

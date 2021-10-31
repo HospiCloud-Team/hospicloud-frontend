@@ -22,7 +22,7 @@ const CheckupItem = ({ name, route, checkup }: CheckupItemProps) => {
       </div>
       <div className="col-11 d-flex justify-content-between">
         <p className="m-0">{name}</p>
-        <p className="m-0">{new Date(checkup.date).toLocaleString("es-CO")}</p>
+        <p className="m-0">{new Date(checkup.date).toLocaleString("es-DO")}</p>
       </div>
     </div>
   );

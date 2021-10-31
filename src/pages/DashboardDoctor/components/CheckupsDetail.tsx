@@ -28,9 +28,9 @@ const CheckupsDetail = () => {
           <p className="m-0">{`${checkup?.patient.user.name} ${checkup?.patient.user.last_name}`}</p>
         </div>
         <div className="col">
-          <p className="fw-bold m-0">Dia de la consulta:</p>
+          <p className="fw-bold m-0">Día de la consulta:</p>
           <p className="m-0">
-            {checkup ? new Date(checkup.date).toLocaleString("es-CO") : ""}
+            {checkup ? new Date(checkup.date).toLocaleString("es-DO") : ""}
           </p>
         </div>
       </div>
@@ -39,7 +39,7 @@ const CheckupsDetail = () => {
         <thead>
           <tr>
             <th scope="col">Pregunta</th>
-            <th scope="col">Diagnostico</th>
+            <th scope="col">Diagnóstico</th>
           </tr>
         </thead>
         <tbody>

@@ -46,14 +46,14 @@ const AddCheckup = () => {
           <form onSubmit={onSubmit}>
             <input
               className="form-control"
-              placeholder="Numero de identificacion del paciente"
+              placeholder="Número de identificación del paciente"
               {...register("patient")}
             />
             <table className="table">
               <thead>
                 <tr>
                   <th scope="col">Pregunta</th>
-                  <th scope="col">Diagnostico</th>
+                  <th scope="col">Diagnóstico</th>
                 </tr>
               </thead>
               <tbody>

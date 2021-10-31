@@ -8,8 +8,6 @@ interface DashboardAdminProps {
 
 const renderContent = (content: string) => {
   switch (content) {
-    // case "TemplatesList":
-    //   return <CheckupsList />;
     case "AddTemplate":
       return <AddTemplate />;
     default:

@@ -46,7 +46,7 @@ const LandingHeader = () => {
               className="btn btn-primary btn-sm"
               onClick={() => history.push(routes.LOGIN)}
             >
-              Iniciar Sesion / Registrate
+              Iniciar Sesión / Registrate
             </button>
           </div>
         )}
