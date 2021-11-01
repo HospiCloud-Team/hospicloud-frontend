@@ -19,59 +19,26 @@ const LandingPage = () => {
     {
       id: 1,
       name: "Hospiten1",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est facilis esse expedita, quibusdam architecto dolorem officia ex ipsum similique dolorum dolores voluptatum totam rerum quod facere ullam alias nam repellendus cumque explicabo iusto consequuntur itaque? Temporibus omnis cum neque et doloremque praesentium eum consequatur commodi? Facere consequatur fugiat porro quae.",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
       location: {
         address: "Av. Alma Mater s/n",
-        city: "Distrito Nacional",
         province: "Santo Domingo",
+        id: 1,
       },
       schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
+      created_at: "",
+      updated_at: null,
     },
     {
       id: 2,
-      name: "Hospiten2",
-      description: "Test, test, test, test",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
+      name: "Hospiten1",
       location: {
-        address: "Calle Gustavo Mejia Ricart 244",
-        city: "Distrito Nacional",
+        address: "Av. Alma Mater s/n",
         province: "Santo Domingo",
+        id: 1,
       },
       schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
-    },
-    {
-      id: 3,
-      name: "Hospiten3",
-      description: "Test, test, test, test",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
-      location: {
-        address: "Calle Gustavo Mejia Ricart 244",
-        city: "Distrito Nacional",
-        province: "Santo Domingo",
-      },
-      schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
-    },
-    {
-      id: 4,
-      name: "Hospiten4",
-      description: "Test, test, test, test",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
-      location: {
-        address: "Calle Gustavo Mejia Ricart 244",
-        city: "Distrito Nacional",
-        province: "Santo Domingo",
-      },
-      schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
+      created_at: "",
+      updated_at: null,
     },
   ];
 

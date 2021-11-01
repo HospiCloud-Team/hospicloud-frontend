@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const TemplatesAPI = axios.create({
+const UtilitiesAPI = axios.create({
   baseURL: process.env.REACT_APP_TEMPLATES_API_URL,
 });
 
@@ -12,8 +12,8 @@ const UsersAPI = axios.create({
   baseURL: process.env.REACT_APP_USERS_API_URL,
 });
 
-export { TemplatesAPI, CheckupsAPI, UsersAPI };
+export { UtilitiesAPI, CheckupsAPI, UsersAPI };
 
-const hospicloudAPIs = [TemplatesAPI, CheckupsAPI, UsersAPI];
+const hospicloudAPIs = [UtilitiesAPI, CheckupsAPI, UsersAPI];
 
 export default hospicloudAPIs;

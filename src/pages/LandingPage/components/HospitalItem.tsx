@@ -29,16 +29,16 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
 
   return (
     <FixedBox className="card me-2 mb-2">
-      <CroppedImage
+      {/* <CroppedImage
         src={hospital.image}
         alt="hospital"
         className="card-img-top"
-      />
+      /> */}
       <div className="card-body">
         <h5 className="card-title">{hospital.name}</h5>
-        <OverflowText className="card-text mb-2">
+        {/* <OverflowText className="card-text mb-2">
           {hospital.description}
-        </OverflowText>
+        </OverflowText> */}
         <div className="d-flex justify-content-end">
           <button
             className="btn btn-primary btn-sm stretched-link"

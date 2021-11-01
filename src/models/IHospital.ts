@@ -1,13 +1,22 @@
-export interface IHospital {
-  id: number;
+export interface INewHospital {
   name: string;
-  description: string;
-  image: string;
-  schedule: any;
-  specialities: string[];
+  schedule: string;
   location: {
     address: string;
-    city: string;
     province: string;
+  };
+  // description: string;
+  // image: string;
+}
+
+export interface IHospital extends INewHospital {
+  id: number;
+  created_at: string;
+  updated_at: string | null;
+  // specialities: string[];
+  location: {
+    address: string;
+    province: string;
+    id: number;
   };
 }

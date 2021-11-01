@@ -9,14 +9,10 @@ const login = (email: string, password: string) => {
 
 const registerPatient = (patientData: IPatient) => {
   return UsersAPI.post("/users", patientData);
-}
+};
 
 const registerAdmin = (adminData: IAdmin) => {
   return UsersAPI.post("/users", adminData);
-}
-
-const getHospital = (id: string): Promise<IHospital> => {
-  return UsersAPI.get(`/hospitals/${id}`);
 };
 
-export { login, getHospital, registerPatient, registerAdmin };
+export { login, registerPatient, registerAdmin };

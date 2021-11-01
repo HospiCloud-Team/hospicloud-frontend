@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router";
 import { addCheckup } from "../../../api/checkups";
-import { getTemplatesByHospital } from "../../../api/templates";
+import { getTemplatesByHospital } from "../../../api/utilities";
 import { INewCheckup } from "../../../models/ICheckup";
 import { ITemplate } from "../../../models/ITemplate";
 
