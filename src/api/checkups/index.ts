@@ -1,6 +1,5 @@
 import { AxiosResponse } from "axios";
 import { ICheckup, INewCheckup } from "../../models/ICheckup";
-import { IHospital } from "../../models/IHospital";
 import { UtilitiesAPI } from "../hospicloudAPI";
 
 const getCheckupsPatient = (id: number): Promise<AxiosResponse<ICheckup[]>> => {

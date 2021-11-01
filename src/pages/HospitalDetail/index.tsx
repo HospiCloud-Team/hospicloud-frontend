@@ -1,21 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
-import { getHospital } from "../../api/utilities";
+import { getHospital, getSpecialtyByHospital } from "../../api/utilities";
 import LandingLayout from "../../layout/LandingLayout";
 import { IDoctor } from "../../models/IDoctor";
 import { IHospital } from "../../models/IHospital";
+import { ISpecialty } from "../../models/ISpecialty";
 import DoctorsList from "./components/DoctorsList";
 
 const HospitalDetail = () => {
   const { id } = useParams<{ id: string }>();
   const { state } = useLocation<IHospital>();
   const [hospital, setHospital] = useState<IHospital | undefined>(state);
+  const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
 
   if (!hospital) {
     getHospital(id).then((res) => {
-      setHospital(res);
+      setHospital(res.data);
     });
   }
+
+  useEffect(() => {
+    getSpecialtyByHospital(Number(id)).then((res) => setSpecialties(res.data));
+  }, []);
 
   const doctors: IDoctor[] = [
     {
@@ -99,11 +105,11 @@ const HospitalDetail = () => {
             Temporibus omnis cum neque et doloremque praesentium eum consequatur
             commodi? Facere consequatur fugiat porro quae.
           </p>
-          {/* {hospital?.specialities.map((speciality) => (
-            <span className="badge bg-primary me-2" key={speciality}>
-              {speciality}
+          {specialties.map((specialty) => (
+            <span className="badge bg-primary me-2" key={specialty.id}>
+              {specialty.name}
             </span>
-          ))} */}
+          ))}
         </div>
       </div>
       <DoctorsList doctors={doctors} />

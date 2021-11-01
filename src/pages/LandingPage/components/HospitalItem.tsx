@@ -3,11 +3,6 @@ import { useHistory } from "react-router";
 import { IHospital } from "../../../models/IHospital";
 import routes from "../../../router/constantRoutes.json";
 
-const FixedBox = styled.div`
-  // width: 18rem;
-  height: 13rem;
-`;
-
 const OverflowText = styled.p`
   height: 6rem;
   overflow: hidden;
@@ -28,7 +23,7 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
   const history = useHistory();
 
   return (
-    <FixedBox className="col-12 col-lg-3 col-md-4 col-sm-6 card">
+    <div className="col-12 col-lg-3 col-md-4 col-sm-6 card">
       {/* <CroppedImage
         src={hospital.image}
         alt="hospital"
@@ -56,7 +51,7 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
           </button>
         </div>
       </div>
-    </FixedBox>
+    </div>
   );
 };
 
