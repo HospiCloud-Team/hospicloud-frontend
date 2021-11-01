@@ -10,7 +10,7 @@ const LandingPage = () => {
     const delayDebounceFn = setTimeout(() => {
       console.log(searchName);
       // Send Axios request here
-    }, 3000);
+    }, 1500);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchName]);
@@ -40,6 +40,54 @@ const LandingPage = () => {
       created_at: "",
       updated_at: null,
     },
+    {
+      id: 3,
+      name: "Hospiten1",
+      location: {
+        address: "Av. Alma Mater s/n",
+        province: "Santo Domingo",
+        id: 1,
+      },
+      schedule: "",
+      created_at: "",
+      updated_at: null,
+    },
+    {
+      id: 4,
+      name: "Hospiten1",
+      location: {
+        address: "Av. Alma Mater s/n",
+        province: "Santo Domingo",
+        id: 1,
+      },
+      schedule: "",
+      created_at: "",
+      updated_at: null,
+    },
+    {
+      id: 5,
+      name: "Hospiten1",
+      location: {
+        address: "Av. Alma Mater s/n",
+        province: "Santo Domingo",
+        id: 1,
+      },
+      schedule: "",
+      created_at: "",
+      updated_at: null,
+    },
+    {
+      id: 6,
+      name: "Hospiten1",
+      location: {
+        address: "Av. Alma Mater s/n",
+        province: "Santo Domingo",
+        id: 1,
+      },
+      schedule: "",
+      created_at: "",
+      updated_at: null,
+    },
   ];
 
   return (
@@ -51,7 +99,7 @@ const LandingPage = () => {
         placeholder="Buscar Centro Medico"
         onChange={(e) => setSearchName(e.target.value)}
       />
-      <div className="d-flex flex-wrap">
+      <div className="row m-0">
         {topHospitals.map((hospital) => (
           <HospitalItem key={hospital.id} hospital={hospital} />
         ))}

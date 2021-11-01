@@ -1,5 +1,4 @@
 import { IAdmin } from "../../models/IAdmin";
-import { IHospital } from "../../models/IHospital";
 import { IPatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 
