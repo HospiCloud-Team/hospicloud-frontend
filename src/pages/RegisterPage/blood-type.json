@@ -15,33 +15,33 @@
       "isDisabled": false
     },
     {
-        "id": "b_plus",
-        "value": "B+",
-        "isDisabled": false
-      },
-      {
-        "id": "b_minus",
-        "value": "B-",
-        "isDisabled": false
-      },
-      {
-        "id": "o_plus",
-        "value": "O+",
-        "isDisabled": false
-      },
-      {
-        "id": "o_minus",
-        "value": "O-",
-        "isDisabled": false
-      },
-      {
-        "id": "ab_plus",
-        "value": "AB+",
-        "isDisabled": false
-      },
-      {
-        "id": "ab_minus ",
-        "value": "AB-",
-        "isDisabled": false
-      }
+      "id": "b_plus",
+      "value": "B+",
+      "isDisabled": false
+    },
+    {
+      "id": "b_minus",
+      "value": "B-",
+      "isDisabled": false
+    },
+    {
+      "id": "o_plus",
+      "value": "O+",
+      "isDisabled": false
+    },
+    {
+      "id": "o_minus",
+      "value": "O-",
+      "isDisabled": false
+    },
+    {
+      "id": "ab_plus",
+      "value": "AB+",
+      "isDisabled": false
+    },
+    {
+      "id": "ab_minus ",
+      "value": "AB-",
+      "isDisabled": false
+    }
 ]

@@ -1,0 +1,167 @@
+[
+  {
+    "id": "Provincia",
+    "value": "Provincia",
+    "isDisabled": true
+  },
+  {
+    "id": "azua",
+    "value": "Azua",
+    "isDisabled": false
+  },
+  {
+    "id": "bahoruco",
+    "value": "Bahoruco",
+    "isDisabled": false
+  },
+  {
+    "id": "barahona",
+    "value": "Barahona",
+    "isDisabled": false
+  },
+  {
+    "id": "dajabon",
+    "value": "Dajabón",
+    "isDisabled": false
+  },
+  {
+    "id": "distrito_nacional",
+    "value": "Distrito Nacional",
+    "isDisabled": false
+  },
+  {
+    "id": "duarte",
+    "value": "Duarte",
+    "isDisabled": false
+  },
+  {
+    "id": "elias_pina",
+    "value": "Elías Piña",
+    "isDisabled": false
+  },
+  {
+    "id": "el_seibo ",
+    "value": "El Seibo",
+    "isDisabled": false
+  },
+  {
+    "id": "espaillat",
+    "value": "Espaillat",
+    "isDisabled": false
+  },
+  {
+    "id": "hato_mayor",
+    "value": "Hato Mayor",
+    "isDisabled": false
+  },
+  {
+    "id": "hermanas_mirabal",
+    "value": "Hermanas Mirabal",
+    "isDisabled": false
+  },
+  {
+    "id": "independencia",
+    "value": "Independencia",
+    "isDisabled": false
+  },
+  {
+    "id": "la_altagracia",
+    "value": "La Altagracia",
+    "isDisabled": false
+  },
+  {
+    "id": "la_romana",
+    "value": "La Romana",
+    "isDisabled": false
+  },
+  {
+    "id": "la_vega",
+    "value": "La Vega",
+    "isDisabled": false
+  },
+  {
+    "id": "maria_trinidad_sanchez ",
+    "value": "Maria Trinidad Sánchez",
+    "isDisabled": false
+  },
+  {
+    "id": "monsenor_nouel",
+    "value": "Monseñor Nouel",
+    "isDisabled": false
+  },
+  {
+    "id": "monte_cristi",
+    "value": "Monte Cristi",
+    "isDisabled": false
+  },
+  {
+    "id": "monte_plata",
+    "value": "Monte Plata",
+    "isDisabled": false
+  },
+  {
+    "id": "pedernales",
+    "value": "Pedernales",
+    "isDisabled": false
+  },
+  {
+    "id": "peravia",
+    "value": "Peravia",
+    "isDisabled": false
+  },
+  {
+    "id": "puerto_plata",
+    "value": "Puerto Plata",
+    "isDisabled": false
+  },
+  {
+    "id": "samana",
+    "value": "Samaná",
+    "isDisabled": false
+  },
+  {
+    "id": "sanchez_ramirez",
+    "value": "Sánchez Ramírez",
+    "isDisabled": false
+  },
+  {
+    "id": "san_cristobal ",
+    "value": "San Cristóbal",
+    "isDisabled": false
+  },
+  {
+    "id": "san_jose_de_ocoa",
+    "value": "San José De Ocoa",
+    "isDisabled": false
+  },
+  {
+    "id": "san_juan",
+    "value": "San Juan",
+    "isDisabled": false
+  },
+  {
+    "id": "san_pedro_de_macoris",
+    "value": "San Pedro De Macorís",
+    "isDisabled": false
+  },
+  {
+    "id": "santiago",
+    "value": "Santiago",
+    "isDisabled": false
+  },
+  {
+    "id": "santiago_rodriguez",
+    "value": "Santiago Rodriguez",
+    "isDisabled": false
+  },
+  {
+    "id": "santo_domingo",
+    "value": "Santo Domingo",
+    "isDisabled": false
+  },
+  {
+    "id": "valverde ",
+    "value": "Valverde",
+    "isDisabled": false
+  }
+]
