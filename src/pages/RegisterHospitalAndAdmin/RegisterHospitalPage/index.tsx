@@ -2,7 +2,6 @@ import LandingLayout from "../../../layout/LandingLayout";
 import { MultiBg, FixedBox, Icon, RegisterTitle } from "./style/index.style";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
 import { registerHospital } from "../../../api/utilities/index";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Province from "./province.json";
 import { IHospital2 } from "../../../models/IHospital2";
