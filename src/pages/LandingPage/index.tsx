@@ -2,7 +2,7 @@ import { IHospital } from "../../models/IHospital";
 import HospitalItem from "./components/HospitalItem";
 import LandingLayout from "../../layout/LandingLayout";
 import { useEffect, useState } from "react";
-import { getAllHospitals } from "../../api/utilities";
+import { getAllHospitals, getHospitalsByName } from "../../api/utilities";
 
 const LandingPage = () => {
   const [searchName, setSearchName] = useState<string | null>(null);
@@ -14,9 +14,12 @@ const LandingPage = () => {
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      console.log(searchName);
-      // Send Axios request here
-    }, 1500);
+      if (searchName) {
+        getHospitalsByName(searchName).then((res) => setHospitals(res.data));
+      } else {
+        getAllHospitals().then((res) => setHospitals(res.data));
+      }
+    }, 750);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchName]);

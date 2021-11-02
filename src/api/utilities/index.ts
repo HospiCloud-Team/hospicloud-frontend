@@ -23,6 +23,12 @@ const getAllHospitals = (): Promise<AxiosResponse<IHospital[]>> => {
   return UtilitiesAPI.get(`/hospitals`);
 };
 
+const getHospitalsByName = (
+  name: string
+): Promise<AxiosResponse<IHospital[]>> => {
+  return UtilitiesAPI.get(`/hospitals?name=${name}`);
+};
+
 const getHospital = (id: string): Promise<AxiosResponse<IHospital>> => {
   return UtilitiesAPI.get(`/hospitals/${id}`);
 };
@@ -30,6 +36,7 @@ const getHospital = (id: string): Promise<AxiosResponse<IHospital>> => {
 export {
   getTemplatesByHospital,
   getSpecialtyByHospital,
-  getHospital,
   getAllHospitals,
+  getHospitalsByName,
+  getHospital,
 };
