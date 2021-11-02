@@ -89,10 +89,12 @@ const HospitalDetail = () => {
             <span className="fw-bold">Dirección: </span>
             {hospital?.location.address}
           </p>
-          <p className="mb-0">
+          <p>
             <span className="fw-bold">Provincia: </span>
             {hospital?.location.province}
           </p>
+          <p className="mb-0 fw-bold">Horario:</p>
+          <p className="mb-0">{hospital?.schedule}</p>
         </div>
         <div className="col-md-8">
           <h5>Descripción:</h5>
