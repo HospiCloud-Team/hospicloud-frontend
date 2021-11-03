@@ -3,13 +3,8 @@ import { useHistory } from "react-router";
 import { IHospital } from "../../../models/IHospital";
 import routes from "../../../router/constantRoutes.json";
 
-const FixedBox = styled.div`
-  width: 18rem;
-  height: 18rem;
-`;
-
 const OverflowText = styled.p`
-  height: 3rem;
+  height: 6rem;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
@@ -28,16 +23,22 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
   const history = useHistory();
 
   return (
-    <FixedBox className="card me-2 mb-2">
-      <CroppedImage
+    <div className="col-12 col-lg-3 col-md-4 col-sm-6 card">
+      {/* <CroppedImage
         src={hospital.image}
         alt="hospital"
         className="card-img-top"
-      />
+      /> */}
       <div className="card-body">
         <h5 className="card-title">{hospital.name}</h5>
         <OverflowText className="card-text mb-2">
-          {hospital.description}
+          {/* {hospital.description} */}
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est facilis
+          esse expedita, quibusdam architecto dolorem officia ex ipsum similique
+          dolorum dolores voluptatum totam rerum quod facere ullam alias nam
+          repellendus cumque explicabo iusto consequuntur itaque? Temporibus
+          omnis cum neque et doloremque praesentium eum consequatur commodi?
+          Facere consequatur fugiat porro quae.
         </OverflowText>
         <div className="d-flex justify-content-end">
           <button
@@ -50,7 +51,7 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
           </button>
         </div>
       </div>
-    </FixedBox>
+    </div>
   );
 };
 

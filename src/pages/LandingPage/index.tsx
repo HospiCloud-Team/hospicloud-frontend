@@ -2,78 +2,27 @@ import { IHospital } from "../../models/IHospital";
 import HospitalItem from "./components/HospitalItem";
 import LandingLayout from "../../layout/LandingLayout";
 import { useEffect, useState } from "react";
+import { getAllHospitals, getHospitalsByName } from "../../api/utilities";
 
 const LandingPage = () => {
   const [searchName, setSearchName] = useState<string | null>(null);
+  const [hospitals, setHospitals] = useState<IHospital[]>([]);
+
+  useEffect(() => {
+    getAllHospitals().then((res) => setHospitals(res.data));
+  }, []);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
-      console.log(searchName);
-      // Send Axios request here
-    }, 3000);
+      if (searchName) {
+        getHospitalsByName(searchName).then((res) => setHospitals(res.data));
+      } else {
+        getAllHospitals().then((res) => setHospitals(res.data));
+      }
+    }, 750);
 
     return () => clearTimeout(delayDebounceFn);
   }, [searchName]);
-
-  const topHospitals: IHospital[] = [
-    {
-      id: 1,
-      name: "Hospiten1",
-      description:
-        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est facilis esse expedita, quibusdam architecto dolorem officia ex ipsum similique dolorum dolores voluptatum totam rerum quod facere ullam alias nam repellendus cumque explicabo iusto consequuntur itaque? Temporibus omnis cum neque et doloremque praesentium eum consequatur commodi? Facere consequatur fugiat porro quae.",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
-      location: {
-        address: "Av. Alma Mater s/n",
-        city: "Distrito Nacional",
-        province: "Santo Domingo",
-      },
-      schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
-    },
-    {
-      id: 2,
-      name: "Hospiten2",
-      description: "Test, test, test, test",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
-      location: {
-        address: "Calle Gustavo Mejia Ricart 244",
-        city: "Distrito Nacional",
-        province: "Santo Domingo",
-      },
-      schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
-    },
-    {
-      id: 3,
-      name: "Hospiten3",
-      description: "Test, test, test, test",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
-      location: {
-        address: "Calle Gustavo Mejia Ricart 244",
-        city: "Distrito Nacional",
-        province: "Santo Domingo",
-      },
-      schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
-    },
-    {
-      id: 4,
-      name: "Hospiten4",
-      description: "Test, test, test, test",
-      image:
-        "https://www.plantadoce.com/files/2017/hospiten/hospiten-hospital-1-728.jpg",
-      location: {
-        address: "Calle Gustavo Mejia Ricart 244",
-        city: "Distrito Nacional",
-        province: "Santo Domingo",
-      },
-      schedule: "",
-      specialities: ["Cardiologia", "Neurologia", "Imagenes", "Ginecologia"],
-    },
-  ];
 
   return (
     <LandingLayout>
@@ -84,8 +33,8 @@ const LandingPage = () => {
         placeholder="Buscar Centro Medico"
         onChange={(e) => setSearchName(e.target.value)}
       />
-      <div className="d-flex flex-wrap">
-        {topHospitals.map((hospital) => (
+      <div className="row m-0">
+        {hospitals.map((hospital) => (
           <HospitalItem key={hospital.id} hospital={hospital} />
         ))}
       </div>
