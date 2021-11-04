@@ -6,6 +6,7 @@ import RegisterPage from "../pages/RegisterPage";
 import HospitalDetail from "../pages/HospitalDetail";
 import RegisterAdmin from "../pages/RegisterHospitalAndAdmin/RegisterAdminPage";
 import RegisterHospital from "../pages/RegisterHospitalAndAdmin/RegisterHospitalPage";
+import HospitalProvider from "../pages/RegisterHospitalAndAdmin/context/context";
 
 const Routes = () => {
   return (
@@ -20,14 +21,16 @@ const Routes = () => {
         <RegisterPage />
       </Route>
       <Route path={routes.REGISTER_HOSPITAL} exact>
-        <RegisterHospital/>
+        <RegisterHospital />
       </Route>
-      <Route path={routes.REGISTER_ADMIN} exact>
-        <RegisterAdmin />
-      </Route>
-      <Route path={`${routes.HOSPITALS}/:id`}>
-        <HospitalDetail />
-      </Route>
+      <HospitalProvider>
+        <Route path={routes.REGISTER_ADMIN} exact>
+          <RegisterAdmin />
+        </Route>
+        <Route path={`${routes.HOSPITALS}/:id`}>
+          <HospitalDetail />
+        </Route>
+      </HospitalProvider>
     </Switch>
   );
 };
