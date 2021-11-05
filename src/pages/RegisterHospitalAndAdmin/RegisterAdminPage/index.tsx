@@ -13,9 +13,12 @@ import { useForm } from "react-hook-form";
 import DocumentType from "./document-type.json";
 import { IAdmin } from "../../../models/IAdmin";
 import { HospitalContext } from "../context/context";
+import { registerHospital } from "../../../api/utilities";
+import { IHospital2 } from "../../../models/IHospital2";
+import { AxiosError } from "axios";
 
 const RegisterAdmin = () => {
-  const { hospitalData } = useContext(HospitalContext);
+  const { hospitalData, saveHospitalData } = useContext(HospitalContext);
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
@@ -43,20 +46,43 @@ const RegisterAdmin = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      const adminData: IAdmin = {
-        user_role: "admin",
-        document_type: data.document_type,
-        name: data.name,
-        last_name: data.last_name,
-        email: data.email,
-        document_number: data.document_number,
-        date_of_birth: data.date_of_birth,
-        admin: {
-          hospital_id: hospitalData.id as number,
-        },
-      };
-      console.log(hospitalData.id);
-      registerAdmin(adminData);
+      let newHospitalData: IHospital2;
+      registerHospital(hospitalData)
+        .then((res) => {
+          console.log(res.data);
+          newHospitalData = {
+            id: res.data.id,
+            name: res.data.name,
+            schedule: res.data.schedule,
+            location: {
+              address: res.data.location?.address,
+              province: res.data.location?.province,
+            },
+          };
+        })
+        .catch((error: AxiosError) => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        })
+        .then(() => {
+          const adminData: IAdmin = {
+            user_role: "admin",
+            document_type: data.document_type,
+            name: data.name,
+            last_name: data.last_name,
+            email: data.email,
+            document_number: data.document_number,
+            date_of_birth: data.date_of_birth,
+            admin: {
+              hospital_id: newHospitalData.id as number,
+            },
+          };
+          console.log(newHospitalData.id);
+          registerAdmin(adminData);
+        });
     } catch (err) {
       console.log(err);
     }

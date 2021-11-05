@@ -20,17 +20,17 @@ const Routes = () => {
       <Route path={routes.REGISTER}>
         <RegisterPage />
       </Route>
-      <Route path={routes.REGISTER_HOSPITAL} exact>
-        <RegisterHospital />
-      </Route>
       <HospitalProvider>
+        <Route path={routes.REGISTER_HOSPITAL} exact>
+          <RegisterHospital />
+        </Route>
         <Route path={routes.REGISTER_ADMIN} exact>
           <RegisterAdmin />
         </Route>
-        <Route path={`${routes.HOSPITALS}/:id`}>
-          <HospitalDetail />
-        </Route>
       </HospitalProvider>
+      <Route path={`${routes.HOSPITALS}/:id`}>
+        <HospitalDetail />
+      </Route>
     </Switch>
   );
 };

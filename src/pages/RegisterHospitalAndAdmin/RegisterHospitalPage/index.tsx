@@ -1,19 +1,16 @@
 import LandingLayout from "../../../layout/LandingLayout";
 import { MultiBg, FixedBox, Icon, RegisterTitle } from "./style/index.style";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
-import { registerHospital } from "../../../api/utilities/index";
 import { useForm } from "react-hook-form";
 import Province from "./province.json";
 import { IHospital2 } from "../../../models/IHospital2";
 import { useHistory } from "react-router";
 import routes from "../../../router/constantRoutes.json";
-import { AxiosError } from "axios";
 import { useContext } from "react";
 import { HospitalContext } from "../context/context";
 
 const RegisterHospital = () => {
   const history = useHistory();
-  let hasNoError = true;
   const { saveHospitalData } = useContext(HospitalContext);
   const { register, handleSubmit } = useForm({
     defaultValues: {
@@ -37,34 +34,8 @@ const RegisterHospital = () => {
         },
       };
 
-      registerHospital(hospitalData)
-        .then((res) => {
-          console.log(res.data);
-          const newHospitalData: IHospital2 = {
-            id: res.data.id,
-            name: res.data.name,
-            schedule: res.data.schedule,
-            location: {
-              address: res.data.location?.address,
-              province: res.data.location?.province,
-            },
-          };
-          saveHospitalData(newHospitalData);
-        })
-        .catch((error: AxiosError) => {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-            hasNoError = false;
-          }
-        })
-        .then(() => {
-          if (hasNoError) {
-            history.push(`${routes.REGISTER_HOSPITAL}/admin`);
-          }
-          hasNoError = true;
-        });
+      saveHospitalData(hospitalData);
+      history.push(`${routes.REGISTER_HOSPITAL}/admin`);
     } catch (err) {
       console.log(err);
     }
