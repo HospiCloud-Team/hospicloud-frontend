@@ -29,7 +29,7 @@ const getHospitalsByName = (
   return UtilitiesAPI.get(`/hospitals?name=${name}`);
 };
 
-const getHospital = (id: string): Promise<AxiosResponse<IHospital>> => {
+const getHospital = (id: number): Promise<AxiosResponse<IHospital>> => {
   return UtilitiesAPI.get(`/hospitals/${id}`);
 };
 
