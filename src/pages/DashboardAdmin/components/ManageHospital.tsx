@@ -61,6 +61,10 @@ const ManageHospital = () => {
             {specialties.map((specialty) => (
               <span className="badge bg-primary me-2" key={specialty.id}>
                 {specialty.name}
+                <i
+                  className="bi bi-x ms-2 pointer"
+                  onClick={() => console.log("Hi")}
+                ></i>
               </span>
             ))}
             <button
@@ -71,8 +75,14 @@ const ManageHospital = () => {
             </button>
           </div>
         </div>
-        <button className="btn btn-primary">Manejar Personal</button>
-        <button className="btn btn-primary">Manejar Plantillas</button>
+        <div className="row my-4">
+          <div className="col-6 d-grid">
+            <button className="btn btn-secondary">Manejar Personal</button>
+          </div>
+          <div className="col-6 d-grid">
+            <button className="btn btn-secondary">Manejar Plantillas</button>
+          </div>
+        </div>
       </div>
       <AddSpecialtyModal
         show={showAddSpecialtyModal}
