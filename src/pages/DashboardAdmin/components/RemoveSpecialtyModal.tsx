@@ -32,8 +32,9 @@ const RemoveSpecialtyModal = ({
         <button
           className="btn btn-danger btn-sm"
           onClick={() => {
-            if (specialty) removeSpecialtyFromHospital(specialty.id);
-            close();
+            if (specialty) {
+              removeSpecialtyFromHospital(specialty.id).then(() => close());
+            }
           }}
         >
           Remover Especialidad

@@ -18,9 +18,10 @@ const AddSpecialtyModal = ({ show, close }: AddSpecialtyModalProps) => {
   });
 
   const onSubmit = handleSubmit((data) => {
-    addSpecialtyToHospital(data);
-    reset();
-    close();
+    addSpecialtyToHospital(data).then(() => {
+      reset();
+      close();
+    });
   });
 
   return (
