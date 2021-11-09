@@ -24,6 +24,12 @@ const addSpecialtyToHospital = (
   return UtilitiesAPI.post("/specialties", newSpecialty);
 };
 
+const removeSpecialtyFromHospital = (
+  id: number
+): Promise<AxiosResponse<ISpecialty>> => {
+  return UtilitiesAPI.delete(`/specialties/${id}`);
+};
+
 // Hospitals
 const getAllHospitals = (): Promise<AxiosResponse<IHospital[]>> => {
   return UtilitiesAPI.get(`/hospitals`);
@@ -43,6 +49,7 @@ export {
   getTemplatesByHospital,
   getSpecialtyByHospital,
   addSpecialtyToHospital,
+  removeSpecialtyFromHospital,
   getAllHospitals,
   getHospitalsByName,
   getHospital,

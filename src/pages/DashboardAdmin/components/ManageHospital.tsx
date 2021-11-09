@@ -3,17 +3,21 @@ import { getHospital, getSpecialtyByHospital } from "../../../api/utilities";
 import { IHospital } from "../../../models/IHospital";
 import { ISpecialty } from "../../../models/ISpecialty";
 import AddSpecialtyModal from "./AddSpecialtyModal";
+import RemoveSpecialtyModal from "./RemoveSpecialtyModal";
 
 const ManageHospital = () => {
   const [hospital, setHospital] = useState<IHospital>();
   const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
   const [showAddSpecialtyModal, setShowAddSpecialtyModal] = useState(false);
+  const [showRemoveSpecialtyModal, setShowRemoveSpecialtyModal] =
+    useState(false);
+  const [selectedSpecialty, setSelectedSpecialty] = useState<ISpecialty>();
 
   useEffect(() => {
     const hospitalId = Number(localStorage.getItem("hospitalId"));
     getHospital(hospitalId).then((res) => setHospital(res.data));
     getSpecialtyByHospital(hospitalId).then((res) => setSpecialties(res.data));
-  }, [showAddSpecialtyModal]);
+  }, [showRemoveSpecialtyModal, showAddSpecialtyModal]);
 
   return (
     <>
@@ -63,7 +67,10 @@ const ManageHospital = () => {
                 {specialty.name}
                 <i
                   className="bi bi-x ms-2 pointer"
-                  onClick={() => console.log("Hi")}
+                  onClick={() => {
+                    setSelectedSpecialty(specialty);
+                    setShowRemoveSpecialtyModal(true);
+                  }}
                 ></i>
               </span>
             ))}
@@ -87,6 +94,11 @@ const ManageHospital = () => {
       <AddSpecialtyModal
         show={showAddSpecialtyModal}
         close={() => setShowAddSpecialtyModal(false)}
+      />
+      <RemoveSpecialtyModal
+        show={showRemoveSpecialtyModal}
+        close={() => setShowRemoveSpecialtyModal(false)}
+        specialty={selectedSpecialty}
       />
     </>
   );

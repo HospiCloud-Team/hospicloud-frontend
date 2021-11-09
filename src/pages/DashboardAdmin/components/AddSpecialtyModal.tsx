@@ -1,4 +1,3 @@
-import React from "react";
 import Modal from "react-bootstrap/esm/Modal";
 import { useForm } from "react-hook-form";
 import { addSpecialtyToHospital } from "../../../api/utilities";
