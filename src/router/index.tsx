@@ -24,7 +24,7 @@ const Routes = () => {
         <RegisterPage />
       </Route>
       <Route path={routes.REGISTER_HOSPITAL} exact>
-        <RegisterHospital/>
+        <RegisterHospital />
       </Route>
       <Route path={routes.REGISTER_ADMIN} exact>
         <RegisterAdmin />
@@ -49,7 +49,7 @@ const Routes = () => {
         <DashboardDoctor content="CheckupDetail" />
       </PrivateRoute>
       <PrivateRoute path={routes.ADMIN}>
-        <DashboardAdmin content="AddTemplate" />
+        <DashboardAdmin content="ManageHospital" />
       </PrivateRoute>
     </Switch>
   );

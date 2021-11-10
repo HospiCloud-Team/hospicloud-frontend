@@ -14,14 +14,14 @@ const HospitalDetail = () => {
   const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
 
   if (!hospital) {
-    getHospital(id).then((res) => {
+    getHospital(Number(id)).then((res) => {
       setHospital(res.data);
     });
   }
 
   useEffect(() => {
     getSpecialtyByHospital(Number(id)).then((res) => setSpecialties(res.data));
-  }, []);
+  }, [id]);
 
   const doctors: IDoctor[] = [
     {
