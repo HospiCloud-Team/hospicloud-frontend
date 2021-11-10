@@ -9,7 +9,7 @@ const PrivateRoute = ({ children, ...rest }: RouteProps<string>) => {
         return localStorage.getItem("authToken") ? (
           children
         ) : (
-          <Redirect to={routes.LOGIN} />
+          <Redirect to={routes.HOME} />
         );
       }}
     />

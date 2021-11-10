@@ -1,8 +1,14 @@
 {
   "HOME": "/",
   "LOGIN": "/login",
+  "HOSPITALS": "/hospitales",
+  "DOCTOR": "/doctor",
+  "PATIENT": "/paciente",
+  "PATIENT_CHECKUPS": "/paciente/consultas",
+  "DOCTOR_CHECKUPS": "/doctor/consultas",
+  "DOCTOR_NEW_CHECKUP": "/doctor/nueva-consulta",
+  "ADMIN": "/admin",
   "REGISTER": "/register",
   "REGISTER_HOSPITAL": "/register-hospital",
-  "REGISTER_ADMIN": "/register-hospital/admin",
-  "HOSPITALS": "/hospitals"
+  "REGISTER_ADMIN": "/register-hospital/admin"
 }

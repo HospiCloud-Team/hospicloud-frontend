@@ -22,7 +22,7 @@ const RegisterHospital = () => {
       },
     },
   });
-
+  
   const onSubmit = async (data: any) => {
     try {
       const hospitalData: IHospital2 = {
