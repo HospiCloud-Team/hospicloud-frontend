@@ -54,7 +54,13 @@ const RegisterPage = () => {
           medical_background: data.patient?.medical_background,
         },
       };
-      registerPatient(patientData);
+      registerPatient(patientData).catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        }
+      });
     } catch (err) {
       console.log(err);
     }
@@ -96,7 +102,7 @@ const RegisterPage = () => {
                   </div>
                   <div className="form-group d-flex justify-content-start mb-2">
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       placeholder="Correo Electrónico"
                       {...register("email", { required: true })}

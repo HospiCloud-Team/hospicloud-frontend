@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const UtilitiesAPI = axios.create({
-  baseURL: process.env.REACT_APP_TEMPLATES_API_URL,
+  baseURL: process.env.REACT_APP_UTILITIES_API_URL,
 });
 
 const CheckupsAPI = axios.create({

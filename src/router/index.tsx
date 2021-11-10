@@ -10,6 +10,7 @@ import DashboardDoctor from "../pages/DashboardDoctor";
 import DashboardAdmin from "../pages/DashboardAdmin";
 import RegisterAdmin from "../pages/RegisterHospitalAndAdmin/RegisterAdminPage";
 import RegisterHospital from "../pages/RegisterHospitalAndAdmin/RegisterHospitalPage";
+import HospitalProvider from "../pages/RegisterHospitalAndAdmin/context/context";
 
 const Routes = () => {
   return (
@@ -23,12 +24,14 @@ const Routes = () => {
       <Route path={routes.REGISTER}>
         <RegisterPage />
       </Route>
-      <Route path={routes.REGISTER_HOSPITAL} exact>
-        <RegisterHospital />
-      </Route>
-      <Route path={routes.REGISTER_ADMIN} exact>
-        <RegisterAdmin />
-      </Route>
+      <HospitalProvider>
+        <Route path={routes.REGISTER_HOSPITAL} exact>
+          <RegisterHospital />
+        </Route>
+        <Route path={routes.REGISTER_ADMIN} exact>
+          <RegisterAdmin />
+        </Route>
+      </HospitalProvider>
       <Route path={`${routes.HOSPITALS}/:id`}>
         <HospitalDetail />
       </Route>

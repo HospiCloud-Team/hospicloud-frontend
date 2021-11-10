@@ -1,3 +1,4 @@
+import { IHospital2 } from "../../models/IHospital2";
 import { UtilitiesAPI } from "../hospicloudAPI";
 import { AxiosResponse } from "axios";
 import { ITemplate } from "../../models/ITemplate";
@@ -35,6 +36,10 @@ const getAllHospitals = (): Promise<AxiosResponse<IHospital[]>> => {
   return UtilitiesAPI.get(`/hospitals`);
 };
 
+const registerHospital = (hospitalData: IHospital2) => {
+  return UtilitiesAPI.post("/hospitals", hospitalData);
+}
+
 const getHospitalsByName = (
   name: string
 ): Promise<AxiosResponse<IHospital[]>> => {
@@ -53,4 +58,5 @@ export {
   getAllHospitals,
   getHospitalsByName,
   getHospital,
+  registerHospital,
 };
