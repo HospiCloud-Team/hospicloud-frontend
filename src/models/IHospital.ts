@@ -5,15 +5,13 @@ export interface INewHospital {
     address: string;
     province: string;
   };
-  // description: string;
-  // image: string;
+  description: string;
 }
 
 export interface IHospital extends INewHospital {
   id: number;
   created_at: string;
   updated_at: string | null;
-  // specialities: string[];
   location: {
     address: string;
     province: string;

@@ -1,4 +1,6 @@
+import { AxiosResponse } from "axios";
 import { IAdmin } from "../../models/IAdmin";
+import { IDoctor } from "../../models/IDoctor";
 import { IPatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 
@@ -14,4 +16,10 @@ const registerAdmin = (adminData: IAdmin) => {
   return UsersAPI.post("/users", adminData);
 };
 
-export { login, registerPatient, registerAdmin };
+const getDoctorsByHospitalId = (
+  id: number
+): Promise<AxiosResponse<IDoctor[]>> => {
+  return UsersAPI.get(`/users/doctors?hospital_id=${id}`);
+};
+
+export { login, registerPatient, registerAdmin, getDoctorsByHospitalId };

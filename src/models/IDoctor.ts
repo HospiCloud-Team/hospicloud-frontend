@@ -1,9 +1,15 @@
 export interface IDoctor {
-  id: number;
+  user_role: "doctor";
+  document_type: string;
   name: string;
+  last_name: string;
   email: string;
-  image: string;
-  phoneNo: string;
-  specialities: string[];
-  schedule: any;
+  document_number: string;
+  date_of_birth: Date;
+  id: number;
+  doctor: {
+    hospital_id: number;
+    schedule: string;
+    id: number;
+  };
 }
