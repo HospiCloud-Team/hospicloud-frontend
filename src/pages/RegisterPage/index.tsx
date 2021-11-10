@@ -102,7 +102,7 @@ const RegisterPage = () => {
                   </div>
                   <div className="form-group d-flex justify-content-start mb-2">
                     <input
-                      type="text"
+                      type="email"
                       className="form-control"
                       placeholder="Correo Electrónico"
                       {...register("email", { required: true })}

@@ -8,7 +8,7 @@ import {
 } from "./style/index.style";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
 import { registerAdmin } from "../../../api/users/index";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "./document-type.json";
 import { IAdmin } from "../../../models/IAdmin";
@@ -16,9 +16,12 @@ import { HospitalContext } from "../context/context";
 import { registerHospital } from "../../../api/utilities";
 import { IHospital2 } from "../../../models/IHospital2";
 import { AxiosError } from "axios";
+import { Button } from "react-bootstrap";
+import { ConfirmationModal } from "../components/confirmationModal/index";
 
 const RegisterAdmin = () => {
-  const { hospitalData, saveHospitalData } = useContext(HospitalContext);
+  const { hospitalData } = useContext(HospitalContext);
+  const [isShowModal, setIsShowModal] = useState(false);
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
@@ -32,6 +35,14 @@ const RegisterAdmin = () => {
       },
     },
   });
+
+  const showModal = () => {
+    setIsShowModal(true);
+  };
+
+  const updateModal = (state: boolean) => {
+    setIsShowModal(state);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -49,7 +60,6 @@ const RegisterAdmin = () => {
       let newHospitalData: IHospital2;
       registerHospital(hospitalData)
         .then((res) => {
-          console.log(res.data);
           newHospitalData = {
             id: res.data.id,
             name: res.data.name,
@@ -80,8 +90,9 @@ const RegisterAdmin = () => {
               hospital_id: newHospitalData.id as number,
             },
           };
-          console.log(newHospitalData.id);
-          registerAdmin(adminData);
+          registerAdmin(adminData).then(() => {
+            setIsShowModal(false);
+          });
         });
     } catch (err) {
       console.log(err);
@@ -94,7 +105,8 @@ const RegisterAdmin = () => {
         <FixedBox>
           <div className="w-100 h-100">
             <ContainerDiv>
-              <div
+              <form
+                id="hook-form"
                 className="row d-flex h-100"
                 onSubmit={handleSubmit(onSubmit)}
               >
@@ -129,7 +141,7 @@ const RegisterAdmin = () => {
                       </div>
                       <div className="form-group d-flex justify-content-start mb-2">
                         <input
-                          type="text"
+                          type="email"
                           className="form-control"
                           placeholder="Correo Electrónico"
                           {...register("email", { required: true })}
@@ -166,15 +178,26 @@ const RegisterAdmin = () => {
                           {...register("date_of_birth", { required: true })}
                         />
                       </div>
+
                       <div className="form-group d-flex justify-content-end mb-3">
-                        <button type="submit" className="btn btn-primary ">
+                        <Button variant="primary" onClick={showModal}>
                           Registrar
-                        </button>
+                        </Button>
                       </div>
                     </form>
                   </div>
                 </div>
-              </div>
+                {isShowModal && (
+                  <ConfirmationModal
+                    state={isShowModal}
+                    title="Confirmación"
+                    content="Estas seguro de registrar su Hospital y el respectivo administrador?"
+                    button1Text="Cancelar"
+                    button2Text="Confirmar"
+                    handleShow={updateModal}
+                  />
+                )}
+              </form>
             </ContainerDiv>
           </div>
         </FixedBox>

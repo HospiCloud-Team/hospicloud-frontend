@@ -96,7 +96,7 @@ const RegisterHospital = () => {
                     ))}
                   </select>
                   <div className="form-group d-flex justify-content-end mb-3">
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary ">
                       Registrar
                     </button>
                   </div>
