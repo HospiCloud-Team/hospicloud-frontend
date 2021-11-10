@@ -52,7 +52,7 @@ const Routes = () => {
         <DashboardDoctor content="CheckupDetail" />
       </PrivateRoute>
       <PrivateRoute path={routes.ADMIN}>
-        <DashboardAdmin content="AddTemplate" />
+        <DashboardAdmin content="ManageHospital" />
       </PrivateRoute>
     </Switch>
   );
