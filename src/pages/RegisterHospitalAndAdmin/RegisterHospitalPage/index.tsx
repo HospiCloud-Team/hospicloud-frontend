@@ -3,11 +3,11 @@ import { MultiBg, FixedBox, Icon, RegisterTitle } from "./style/index.style";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
 import { useForm } from "react-hook-form";
 import Province from "./province.json";
-import { IHospital2 } from "../../../models/IHospital2";
 import { useHistory } from "react-router";
 import routes from "../../../router/constantRoutes.json";
 import { useContext } from "react";
 import { HospitalContext } from "../context/context";
+import { INewHospital } from "../../../models/IHospital";
 
 const RegisterHospital = () => {
   const history = useHistory();
@@ -16,24 +16,16 @@ const RegisterHospital = () => {
     defaultValues: {
       name: "",
       schedule: "",
+      description: "",
       location: {
         address: "",
         province: "Provincia",
       },
     },
   });
-  
-  const onSubmit = async (data: any) => {
-    try {
-      const hospitalData: IHospital2 = {
-        name: data.name,
-        schedule: data.schedule,
-        location: {
-          address: data.location?.address,
-          province: data.location?.province,
-        },
-      };
 
+  const onSubmit = async (hospitalData: INewHospital) => {
+    try {
       saveHospitalData(hospitalData);
       history.push(`${routes.REGISTER_HOSPITAL}/admin`);
     } catch (err) {

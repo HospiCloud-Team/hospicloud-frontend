@@ -1,8 +1,7 @@
-import { IHospital2 } from "../../models/IHospital2";
 import { UtilitiesAPI } from "../hospicloudAPI";
 import { AxiosResponse } from "axios";
 import { ITemplate } from "../../models/ITemplate";
-import { IHospital } from "../../models/IHospital";
+import { IHospital, INewHospital } from "../../models/IHospital";
 import { INewSpecialty, ISpecialty } from "../../models/ISpecialty";
 
 // Templates
@@ -36,9 +35,11 @@ const getAllHospitals = (): Promise<AxiosResponse<IHospital[]>> => {
   return UtilitiesAPI.get(`/hospitals`);
 };
 
-const registerHospital = (hospitalData: IHospital2) => {
+const registerHospital = (
+  hospitalData: INewHospital
+): Promise<AxiosResponse<IHospital>> => {
   return UtilitiesAPI.post("/hospitals", hospitalData);
-}
+};
 
 const getHospitalsByName = (
   name: string

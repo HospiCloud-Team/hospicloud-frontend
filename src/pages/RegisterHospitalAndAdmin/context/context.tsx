@@ -1,31 +1,18 @@
 import React from "react";
-import { IHospital2, ILocation, ContextType } from "../../../models/IHospital2";
+import { INewHospital } from "../../../models/IHospital";
+import { HospitalContextType } from "./types";
 
-export const HospitalContext = React.createContext<ContextType>(
-  {} as ContextType
+export const HospitalContext = React.createContext<HospitalContextType>(
+  {} as HospitalContextType
 );
 
 const HospitalProvider = ({ children }: any) => {
-  const [locationData] = React.useState<ILocation>({
-    address: "",
-    province: "",
-  });
+  const [hospitalData, setHospitalData] = React.useState<
+    INewHospital | undefined
+  >();
 
-  const [hospitalData, setHospitalData] = React.useState<IHospital2>({
-    id: 0,
-    name: "",
-    schedule: "",
-    location: locationData,
-  });
-
-  const saveHospitalData = (hospitalData: IHospital2) => {
-    const newHospitalData: IHospital2 = {
-      id: hospitalData.id,
-      name: hospitalData.name,
-      schedule: hospitalData.schedule,
-      location: hospitalData.location,
-    };
-    setHospitalData(newHospitalData);
+  const saveHospitalData = (hospitalData: INewHospital) => {
+    setHospitalData(hospitalData);
   };
 
   return (
