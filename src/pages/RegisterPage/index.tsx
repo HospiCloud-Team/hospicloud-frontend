@@ -12,8 +12,11 @@ import { useForm } from "react-hook-form";
 import DocumentType from "./document-type.json";
 import BloodyType from "./blood-type.json";
 import { IPatient } from "../../models/IPatient";
+import { useHistory } from "react-router";
+import routes from "../../router/constantRoutes.json";
 
 const RegisterPage = () => {
+  const history = useHistory();
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
@@ -59,13 +62,15 @@ const RegisterPage = () => {
           medical_background: data.patient?.medical_background,
         },
       };
-      registerPatient(patientData).catch((error) => {
-        if (error.response) {
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        }
-      });
+      registerPatient(patientData)
+        .then(() => history.push(routes.LOGIN))
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+          }
+        });
     } catch (err) {
       console.log(err);
     }

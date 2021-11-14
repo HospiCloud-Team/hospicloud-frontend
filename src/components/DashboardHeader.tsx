@@ -26,7 +26,10 @@ const DashboardHeader = ({ userRole }: DashboardHeaderProps) => {
         </div>
         <button
           className="btn btn-outline-primary btn-sm"
-          onClick={() => history.push(routes.HOME)}
+          onClick={() => {
+            localStorage.clear();
+            history.push(routes.HOME);
+          }}
         >
           Cerrar sesión
         </button>

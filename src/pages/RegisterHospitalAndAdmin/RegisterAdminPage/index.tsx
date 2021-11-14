@@ -13,14 +13,17 @@ import DocumentType from "./document-type.json";
 import { IAdmin } from "../../../models/IAdmin";
 import { HospitalContext } from "../context/context";
 import { registerHospital } from "../../../api/utilities";
-import { IHospital2 } from "../../../models/IHospital2";
 import { AxiosError } from "axios";
 import { Button } from "react-bootstrap";
 import { ConfirmationModal } from "../components/confirmationModal/index";
+import { useHistory } from "react-router";
+import routes from "../../../router/constantRoutes.json";
+import { IHospital } from "../../../models/IHospital";
 
 const RegisterAdmin = () => {
   const { hospitalData } = useContext(HospitalContext);
   const [isShowModal, setIsShowModal] = useState(false);
+  const history = useHistory();
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
@@ -56,43 +59,33 @@ const RegisterAdmin = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      let newHospitalData: IHospital2;
-      registerHospital(hospitalData)
-        .then((res) => {
-          newHospitalData = {
-            id: res.data.id,
-            name: res.data.name,
-            schedule: res.data.schedule,
-            location: {
-              address: res.data.location?.address,
-              province: res.data.location?.province,
-            },
-          };
-        })
-        .catch((error: AxiosError) => {
-          if (error.response) {
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
-          }
-        })
-        .then(() => {
-          const adminData: IAdmin = {
-            user_role: "admin",
-            document_type: data.document_type,
-            name: data.name,
-            last_name: data.last_name,
-            email: data.email,
-            document_number: data.document_number,
-            date_of_birth: data.date_of_birth,
-            admin: {
-              hospital_id: newHospitalData.id as number,
-            },
-          };
-          registerAdmin(adminData).then(() => {
-            setIsShowModal(false);
+      let newHospitalData: IHospital;
+      if (hospitalData) {
+        registerHospital(hospitalData)
+          .then((res) => {
+            newHospitalData = res.data;
+          })
+          .catch((error: AxiosError) => {
+            if (error.response) {
+              console.log(error.response.data);
+              console.log(error.response.status);
+              console.log(error.response.headers);
+            }
+          })
+          .then(() => {
+            const adminData: IAdmin = {
+              user_role: "admin",
+              ...data,
+              admin: {
+                hospital_id: newHospitalData.id as number,
+              },
+            };
+            registerAdmin(adminData).then(() => {
+              setIsShowModal(false);
+              history.push(routes.LOGIN);
+            });
           });
-        });
+      }
     } catch (err) {
       console.log(err);
     }

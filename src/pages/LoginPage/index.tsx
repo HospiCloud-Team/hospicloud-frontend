@@ -8,6 +8,7 @@ import {
 import HospiCloudLogo from "../../resources/HospiCloudLogo.svg";
 import { useHistory } from "react-router";
 import routes from "../../router/constantRoutes.json";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -39,12 +40,14 @@ const LoginPage = () => {
                   />
                 </div>
                 <div className="form-group d-flex justify-content-between mb-3">
-                  <a href="/ForgetPassword">Olvidaste tu contraseña</a>
+                  <Link to="/ForgetPassword">Olvidaste tu contraseña</Link>
                   <button
                     onClick={() => {
                       localStorage.setItem("authToken", "123");
                       localStorage.setItem("userRole", "doctor");
                       localStorage.setItem("doctorId", "1");
+                      localStorage.setItem("patientId", "1");
+                      localStorage.setItem("hospitalId", "1");
                       history.push(routes.HOME);
                     }}
                     type="submit"
@@ -54,7 +57,7 @@ const LoginPage = () => {
                   </button>
                 </div>
                 <div className="form-group d-flex justify-content-end">
-                  <a href="/Register">Register</a>
+                  <Link to="/Register">Register</Link>
                 </div>
               </form>
             </div>

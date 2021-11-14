@@ -14,47 +14,47 @@ import HospitalProvider from "../pages/RegisterHospitalAndAdmin/context/context"
 
 const Routes = () => {
   return (
-    <Switch>
-      <Route exact path="/">
-        <LandingPage />
-      </Route>
-      <Route path={routes.LOGIN}>
-        <LoginPage />
-      </Route>
-      <Route path={routes.REGISTER}>
-        <RegisterPage />
-      </Route>
-      <HospitalProvider>
+    <HospitalProvider>
+      <Switch>
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        <Route path={routes.LOGIN}>
+          <LoginPage />
+        </Route>
+        <Route path={routes.REGISTER}>
+          <RegisterPage />
+        </Route>
         <Route path={routes.REGISTER_HOSPITAL} exact>
           <RegisterHospital />
         </Route>
         <Route path={routes.REGISTER_ADMIN} exact>
           <RegisterAdmin />
         </Route>
-      </HospitalProvider>
-      <Route path={`${routes.HOSPITALS}/:id`}>
-        <HospitalDetail />
-      </Route>
-      <PrivateRoute path={routes.PATIENT} exact>
-        <DashboardPatient content="CheckupsList" />
-      </PrivateRoute>
-      <PrivateRoute path={`${routes.PATIENT_CHECKUPS}/:id`}>
-        <DashboardPatient content="CheckupDetail" />
-      </PrivateRoute>
-      <PrivateRoute path={routes.DOCTOR} exact>
-        <DashboardDoctor content="CheckupsList" />
-      </PrivateRoute>
-      <PrivateRoute path={routes.DOCTOR_NEW_CHECKUP}>
-        <DashboardDoctor content="AddCheckup" />
-      </PrivateRoute>
+        <Route path={`${routes.HOSPITALS}/:id`}>
+          <HospitalDetail />
+        </Route>
+        <PrivateRoute path={routes.PATIENT} exact>
+          <DashboardPatient content="CheckupsList" />
+        </PrivateRoute>
+        <PrivateRoute path={`${routes.PATIENT_CHECKUPS}/:id`}>
+          <DashboardPatient content="CheckupDetail" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.DOCTOR} exact>
+          <DashboardDoctor content="CheckupsList" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.DOCTOR_NEW_CHECKUP}>
+          <DashboardDoctor content="AddCheckup" />
+        </PrivateRoute>
 
-      <PrivateRoute path={`${routes.DOCTOR_CHECKUPS}/:id`}>
-        <DashboardDoctor content="CheckupDetail" />
-      </PrivateRoute>
-      <PrivateRoute path={routes.ADMIN}>
-        <DashboardAdmin content="ManageHospital" />
-      </PrivateRoute>
-    </Switch>
+        <PrivateRoute path={`${routes.DOCTOR_CHECKUPS}/:id`}>
+          <DashboardDoctor content="CheckupDetail" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.ADMIN}>
+          <DashboardAdmin content="ManageHospital" />
+        </PrivateRoute>
+      </Switch>
+    </HospitalProvider>
   );
 };
 
