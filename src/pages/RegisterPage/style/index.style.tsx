@@ -1,8 +1,14 @@
 import styled from "@emotion/styled";
 
 export const MultiBg = styled.div`
-  height:50rem;
-  background: repeating-linear-gradient(90deg, #99DAFF, #99DAFF 45.9%, white 46.1%, white 100%);
+  height: 50rem;
+  background: repeating-linear-gradient(
+    90deg,
+    #99daff,
+    #99daff 45.9%,
+    white 46.1%,
+    white 100%
+  );
   display: flex;
 `;
 
@@ -14,9 +20,9 @@ export const FixedBox = styled.div`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  top: 50%; 
+  top: 50%;
   left: 50%;
-  transform: translate(-70%,-50%);
+  transform: translate(-70%, -50%);
   background-color: white;
   border-style: solid;
   border-color: gray;
@@ -30,7 +36,7 @@ export const Icon = styled.img`
 `;
 
 export const RegisterTitle = styled.h3`
-  color: #067BC2;
+  color: #067bc2;
   display: flex;
   justify-content: center;
   margin-bottom: 25px;
