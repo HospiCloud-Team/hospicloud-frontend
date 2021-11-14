@@ -70,6 +70,13 @@ const RegisterHospital = () => {
                     />
                   </div>
                   <div className="form-group d-flex justify-content-start mb-2">
+                    <textarea
+                      className="form-control"
+                      placeholder="Descripción"
+                      {...register("description", { required: true })}
+                    />
+                  </div>
+                  <div className="form-group d-flex justify-content-start mb-2">
                     <input
                       type="text"
                       className="form-control"

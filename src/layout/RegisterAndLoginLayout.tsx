@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 type FixedBoxProps = {
-  width: string;
-  height: string;
+  width?: string;
+  height?: string;
 };
 
 export const MultiBg = styled.div`
@@ -23,12 +23,12 @@ export const FixedBox = styled.div<FixedBoxProps>`
   display: flex;
   ${({ width }) => {
     if (width) {
-      return `width: ${width}rem`;
+      return `width: ${width}rem;`;
     }
   }}
   ${({ height }) => {
     if (height) {
-      return `height: ${height}rem`;
+      return `height: ${height}rem;`;
     }
   }}
   background-color: white;
