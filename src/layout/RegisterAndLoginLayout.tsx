@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+type FixedBoxProps = {
+  width: string;
+  height: string;
+};
+
 export const MultiBg = styled.div`
   height: 50rem;
   background: repeating-linear-gradient(
@@ -14,21 +19,18 @@ export const MultiBg = styled.div`
   align-items: center; //center vertically
 `;
 
-export const FixedBoxLogin = styled.div`
+export const FixedBox = styled.div<FixedBoxProps>`
   display: flex;
-  width: 50rem;
-  height: 30rem;
-  background-color: white;
-  border-style: solid;
-  border-color: gray;
-  border-width: 1px;
-  border-radius: 20px;
-`;
-
-export const FixedBoxRegister = styled.div`
-  display: flex;
-  width: 55rem;
-  height: 35rem;
+  ${({ width }) => {
+    if (width) {
+      return `width: ${width}rem`;
+    }
+  }}
+  ${({ height }) => {
+    if (height) {
+      return `height: ${height}rem`;
+    }
+  }}
   background-color: white;
   border-style: solid;
   border-color: gray;

@@ -2,7 +2,7 @@ import LandingLayout from "../../../layout/LandingLayout";
 import {
   MultiBg,
   LoginTitle,
-  FixedBoxRegister,
+  FixedBox,
   Icon,
 } from "../../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
@@ -94,7 +94,7 @@ const RegisterAdmin = () => {
   return (
     <LandingLayout>
       <MultiBg>
-        <FixedBoxRegister>
+        <FixedBox width="55" height="35">
           <form
             id="hook-form"
             className="d-flex flex-row my-auto w-100 justify-content-between"
@@ -184,7 +184,7 @@ const RegisterAdmin = () => {
               />
             )}
           </form>
-        </FixedBoxRegister>
+        </FixedBox>
       </MultiBg>
     </LandingLayout>
   );

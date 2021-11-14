@@ -1,7 +1,7 @@
 import LandingLayout from "../../layout/LandingLayout";
 import {
   MultiBg,
-  FixedBoxLogin,
+  FixedBox,
   Icon,
   LoginTitle,
 } from "../../layout/RegisterAndLoginLayout";
@@ -15,7 +15,7 @@ const LoginPage = () => {
   return (
     <LandingLayout>
       <MultiBg>
-        <FixedBoxLogin>
+        <FixedBox width="50" height="30">
           <div className="row my-auto w-100">
             <div className="col d-flex">
               <Icon className="mx-auto" src={HospiCloudLogo} alt="Logo" />
@@ -62,7 +62,7 @@ const LoginPage = () => {
               </form>
             </div>
           </div>
-        </FixedBoxLogin>
+        </FixedBox>
       </MultiBg>
     </LandingLayout>
   );

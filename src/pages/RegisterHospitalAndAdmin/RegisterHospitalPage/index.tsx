@@ -1,7 +1,7 @@
 import LandingLayout from "../../../layout/LandingLayout";
 import {
   MultiBg,
-  FixedBoxRegister,
+  FixedBox,
   Icon,
   RegisterTitle,
 } from "../../../layout/RegisterAndLoginLayout";
@@ -41,7 +41,7 @@ const RegisterHospital = () => {
   return (
     <LandingLayout>
       <MultiBg>
-        <FixedBoxRegister>
+        <FixedBox width="55" height="35">
           <div
             className="d-flex flex-row my-auto w-100 justify-content-between"
             onSubmit={handleSubmit(onSubmit)}
@@ -100,7 +100,7 @@ const RegisterHospital = () => {
               </div>
             </div>
           </div>
-        </FixedBoxRegister>
+        </FixedBox>
       </MultiBg>
     </LandingLayout>
   );
