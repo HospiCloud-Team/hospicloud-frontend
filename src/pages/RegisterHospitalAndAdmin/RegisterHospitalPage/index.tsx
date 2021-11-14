@@ -1,5 +1,10 @@
 import LandingLayout from "../../../layout/LandingLayout";
-import { MultiBg, FixedBox, Icon, RegisterTitle } from "./style/index.style";
+import {
+  MultiBg,
+  FixedBoxRegister,
+  Icon,
+  RegisterTitle,
+} from "../../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
 import { useForm } from "react-hook-form";
 import Province from "./province.json";
@@ -22,7 +27,7 @@ const RegisterHospital = () => {
       },
     },
   });
-  
+
   const onSubmit = async (data: any) => {
     try {
       const hospitalData: IHospital2 = {
@@ -44,17 +49,16 @@ const RegisterHospital = () => {
   return (
     <LandingLayout>
       <MultiBg>
-        <FixedBox>
-          <div className="row d-flex h-100" onSubmit={handleSubmit(onSubmit)}>
-            <div className="col-5">
-              <Icon
-                className="mx-auto align-middle h-100"
-                src={HospiCloudLogo}
-                alt="Logo"
-              />
+        <FixedBoxRegister>
+          <div
+            className="d-flex flex-row my-auto w-100 justify-content-between"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="d-flex flex-column justify-content-center w-75">
+              <Icon className="mx-auto" src={HospiCloudLogo} alt="Logo" />
             </div>
-            <div className="col-7 h-100">
-              <div className="row d-flex h-100 align-items-center m-2 pt-5">
+            <div className="d-flex flex-column w-100">
+              <div className="d-flex flex-row h-100 align-items-center m-2 pt-5">
                 <form className="d-flex flex-column w-100 pe-3">
                   <RegisterTitle>Registra tu Centro Médico</RegisterTitle>
                   <div className="form-group d-flex justify-content-start mb-2">
@@ -104,7 +108,7 @@ const RegisterHospital = () => {
               </div>
             </div>
           </div>
-        </FixedBox>
+        </FixedBoxRegister>
       </MultiBg>
     </LandingLayout>
   );
