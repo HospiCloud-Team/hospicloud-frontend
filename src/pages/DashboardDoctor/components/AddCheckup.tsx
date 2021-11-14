@@ -22,8 +22,7 @@ const AddCheckup = () => {
       data: JSON.stringify(responses),
     };
 
-    addCheckup(newCheckup);
-    history.goBack();
+    addCheckup(newCheckup).then(() => history.goBack());
   });
 
   useEffect(() => {
