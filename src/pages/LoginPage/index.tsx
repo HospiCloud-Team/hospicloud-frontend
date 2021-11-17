@@ -11,9 +11,27 @@ import routes from "../../router/constantRoutes.json";
 import { Link } from "react-router-dom";
 import { signInWithEmailAndPassword, getIdTokenResult } from "firebase/auth";
 import auth from "../../firebase";
+import { useForm } from "react-hook-form";
+import { IAuthUser } from "../../models/IUser";
 
 const LoginPage = () => {
   const history = useHistory();
+  const { register, handleSubmit } = useForm<IAuthUser>();
+
+  const onSubmit = handleSubmit(({ email, password }) => {
+    signInWithEmailAndPassword(auth, email, password).then(({ user }) =>
+      getIdTokenResult(user).then((tokenRes) => {
+        const role = tokenRes.claims.role as string | undefined;
+        localStorage.setItem("authToken", tokenRes.token);
+        localStorage.setItem("userRole", role ?? "");
+        localStorage.setItem("doctorId", "1");
+        localStorage.setItem("patientId", "1");
+        localStorage.setItem("hospitalId", "1");
+        history.push(routes.HOME);
+      })
+    );
+  });
+
   return (
     <LandingLayout>
       <MultiBg>
@@ -26,12 +44,13 @@ const LoginPage = () => {
               <LoginTitle className="d-flex justify-content-center mb-3">
                 Login
               </LoginTitle>
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className="form-group mb-2">
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Username"
+                    placeholder="Email"
+                    {...register("email")}
                   />
                 </div>
                 <div className="form-group mb-4">
@@ -39,33 +58,12 @@ const LoginPage = () => {
                     type="password"
                     className="form-control"
                     placeholder="Password"
+                    {...register("password")}
                   />
                 </div>
                 <div className="form-group d-flex justify-content-between mb-3">
                   <Link to="/ForgetPassword">Olvidaste tu contraseña</Link>
-                  <button
-                    onClick={() => {
-                      signInWithEmailAndPassword(
-                        auth,
-                        "robertofrank2000@hotmail.com",
-                        "20012000"
-                      ).then(({ user }) =>
-                        getIdTokenResult(user).then((tokenRes) => {
-                          const role = tokenRes.claims.role as
-                            | string
-                            | undefined;
-                          localStorage.setItem("authToken", tokenRes.token);
-                          localStorage.setItem("userRole", role ?? "");
-                          localStorage.setItem("doctorId", "1");
-                          localStorage.setItem("patientId", "1");
-                          localStorage.setItem("hospitalId", "1");
-                          history.push(routes.HOME);
-                        })
-                      );
-                    }}
-                    type="button"
-                    className="btn btn-primary"
-                  >
+                  <button type="submit" className="btn btn-primary">
                     Iniciar Sesión
                   </button>
                 </div>
