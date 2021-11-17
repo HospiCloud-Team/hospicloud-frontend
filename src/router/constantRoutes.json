@@ -8,6 +8,7 @@
   "DOCTOR_CHECKUPS": "/doctor/consultas",
   "DOCTOR_NEW_CHECKUP": "/doctor/nueva-consulta",
   "ADMIN": "/admin",
+  "PERSONNEL_LIST": "/admin/personnel-list",
   "REGISTER": "/register",
   "REGISTER_HOSPITAL": "/register-hospital",
   "REGISTER_ADMIN": "/register-hospital/admin"

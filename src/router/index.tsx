@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardPatient from "../pages/DashboardPatient";
 import DashboardDoctor from "../pages/DashboardDoctor";
 import DashboardAdmin from "../pages/DashboardAdmin";
+import PersonnelList from "../pages/DashboardAdmin/components/PersonnelList";
 import RegisterAdmin from "../pages/RegisterHospitalAndAdmin/RegisterAdminPage";
 import RegisterHospital from "../pages/RegisterHospitalAndAdmin/RegisterHospitalPage";
 import HospitalProvider from "../pages/RegisterHospitalAndAdmin/context/context";
@@ -50,8 +51,11 @@ const Routes = () => {
         <PrivateRoute path={`${routes.DOCTOR_CHECKUPS}/:id`}>
           <DashboardDoctor content="CheckupDetail" />
         </PrivateRoute>
-        <PrivateRoute path={routes.ADMIN}>
+        <PrivateRoute path={routes.ADMIN} exact>
           <DashboardAdmin content="ManageHospital" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.PERSONNEL_LIST} exact>
+          <DashboardAdmin content="PersonnelList" />
         </PrivateRoute>
       </Switch>
     </HospitalProvider>
