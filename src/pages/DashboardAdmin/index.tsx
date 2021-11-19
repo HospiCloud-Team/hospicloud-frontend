@@ -3,6 +3,7 @@ import roles from "../../constants/constantsRoles.json";
 import AddTemplate from "./components/AddTemplate";
 import ManageHospital from "./components/ManageHospital";
 import PersonnelList from "./components/PersonnelList";
+import AddAdminPersonnel from "./components/AddAdminPersonnel";
 
 interface DashboardAdminProps {
   content: "ManageHospital" | "AddTemplate" | "PersonnelList";
@@ -16,6 +17,8 @@ const renderContent = (content: string) => {
       return <AddTemplate />;
     case "PersonnelList":
       return <PersonnelList />;
+    case "AddAdminPersonnel":
+      return <AddAdminPersonnel />;
     default:
       break;
   }
