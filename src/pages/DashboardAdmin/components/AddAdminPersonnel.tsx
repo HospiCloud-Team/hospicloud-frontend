@@ -4,7 +4,7 @@ import {
   Icon,
   ContainerDiv,
   LoginTitle,
-} from "../styles/AddAdminPersonnel";
+} from "../styles/AddAdminPersonnel.style";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
 import { registerAdmin } from "../../../api/users/index";
 import { useEffect, useState } from "react";

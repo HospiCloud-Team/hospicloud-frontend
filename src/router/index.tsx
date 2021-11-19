@@ -8,7 +8,6 @@ import PrivateRoute from "./PrivateRoute";
 import DashboardPatient from "../pages/DashboardPatient";
 import DashboardDoctor from "../pages/DashboardDoctor";
 import DashboardAdmin from "../pages/DashboardAdmin";
-import PersonnelList from "../pages/DashboardAdmin/components/PersonnelList";
 import RegisterAdmin from "../pages/RegisterHospitalAndAdmin/RegisterAdminPage";
 import RegisterHospital from "../pages/RegisterHospitalAndAdmin/RegisterHospitalPage";
 import HospitalProvider from "../pages/RegisterHospitalAndAdmin/context/context";

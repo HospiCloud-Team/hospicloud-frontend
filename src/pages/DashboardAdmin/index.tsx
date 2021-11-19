@@ -6,7 +6,11 @@ import PersonnelList from "./components/PersonnelList";
 import AddAdminPersonnel from "./components/AddAdminPersonnel";
 
 interface DashboardAdminProps {
-  content: "ManageHospital" | "AddTemplate" | "PersonnelList";
+  content:
+    | "ManageHospital"
+    | "AddTemplate"
+    | "PersonnelList"
+    | "AddAdminPersonnel";
 }
 
 const renderContent = (content: string) => {
