@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 
+type FixedBoxProps = {
+  width?: string;
+  height?: string;
+};
+
 export const MultiBg = styled.div`
   height: 50rem;
   background: repeating-linear-gradient(
@@ -10,19 +15,22 @@ export const MultiBg = styled.div`
     white 100%
   );
   display: flex;
+  justify-content: center; //center horizontally
+  align-items: center; //center vertically
 `;
 
-export const FixedBox = styled.div`
-  display: block;
-  width: 55rem;
-  height: 35rem;
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  transform: translate(-70%, -50%);
+export const FixedBox = styled.div<FixedBoxProps>`
+  display: flex;
+  ${({ width }) => {
+    if (width) {
+      return `width: ${width}rem;`;
+    }
+  }}
+  ${({ height }) => {
+    if (height) {
+      return `height: ${height}rem;`;
+    }
+  }}
   background-color: white;
   border-style: solid;
   border-color: gray;
@@ -31,6 +39,8 @@ export const FixedBox = styled.div`
 `;
 
 export const ContainerDiv = styled.div`
+  margin-top: 7%;
+  margin-bottom: 5%;
   height: 100%;
 `;
 
@@ -39,13 +49,8 @@ export const Icon = styled.img`
   height: 230px;
 `;
 
-export const Card = styled.div`
-  right: 0;
-  top: 0;
-  border-style: solid;
-  border-color: gray;
-  border-width: 1px;
-  border-radius: 20px;
+export const LoginTitle = styled.h3`
+  color: #067bc2;
 `;
 
 export const RegisterTitle = styled.h3`

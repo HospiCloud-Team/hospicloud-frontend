@@ -1,5 +1,10 @@
 import LandingLayout from "../../layout/LandingLayout";
-import { MultiBg, FixedBox, Icon, RegisterTitle } from "./style/index.style";
+import {
+  MultiBg,
+  FixedBox,
+  Icon,
+  RegisterTitle,
+} from "../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../resources/HospiCloudLogo.svg";
 import { registerPatient } from "../../api/users/index";
 import { useEffect } from "react";
@@ -74,17 +79,16 @@ const RegisterPage = () => {
   return (
     <LandingLayout>
       <MultiBg>
-        <FixedBox>
-          <div className="row d-flex h-100" onSubmit={handleSubmit(onSubmit)}>
-            <div className="col-5">
-              <Icon
-                className="mx-auto align-middle h-100"
-                src={HospiCloudLogo}
-                alt="Logo"
-              />
+        <FixedBox width="55" height="35">
+          <div
+            className="d-flex flex-row my-auto w-100 justify-content-between"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="d-flex flex-column justify-content-center w-75">
+              <Icon className="mx-auto" src={HospiCloudLogo} alt="Logo" />
             </div>
-            <div className="col-7 h-100">
-              <div className="row d-flex h-100 align-items-center m-2 pt-5">
+            <div className="d-flex flex-column w-100">
+              <div className="d-flex flex-row h-100 align-items-center m-2 pt-5">
                 <form className="d-flex flex-column w-100 pe-3">
                   <RegisterTitle>Register</RegisterTitle>
                   <div className="d-flex flex-row w-100">
