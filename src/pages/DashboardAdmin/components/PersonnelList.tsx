@@ -10,6 +10,7 @@ import {
   AddButton,
   PersonnelContainer,
   Title,
+  Border,
 } from "../styles/PersonnelList.style";
 import routes from "../../../router/constantRoutes.json";
 
@@ -33,20 +34,23 @@ const PersonnelList = () => {
   return (
     <div>
       <PersonnelContainer>
-        <div className="d-flex flex-row">
-          <Title>Admins</Title>
-          <div className="w-100 d-flex justify-content-end">
-            <AddButton
-              type="button"
-              className="btn btn-primary btn-lg"
-              onClick={() => {
-                history.push(routes.REGISTER_ADMIN_PERSONNEL);
-              }}
-            >
-              <div className="buttonText">+</div>
-              <div className="TextAfterHover">+ Add Admin</div>
-            </AddButton>
+        <div className="d-flex flex-column w-100">
+          <div className="d-flex flex-row align-items-center">
+            <Title>Admins</Title>
+            <div className="w-100 d-flex justify-content-end">
+              <AddButton
+                type="button"
+                className="btn btn-primary btn-lg"
+                onClick={() => {
+                  history.push(routes.REGISTER_ADMIN_PERSONNEL);
+                }}
+              >
+                <div className="buttonText">+</div>
+                <div className="TextAfterHover">+ Add Admin</div>
+              </AddButton>
+            </div>
           </div>
+          <Border />
         </div>
         {admins.map((admin) => {
           return (
@@ -65,14 +69,17 @@ const PersonnelList = () => {
         })}
       </PersonnelContainer>
       <PersonnelContainer>
-        <div className="d-flex flex-row">
-          <Title>Doctors</Title>
-          <div className="w-100 d-flex justify-content-end">
-            <AddButton type="button" className="btn btn-primary btn-lg">
-              <div className="buttonText">+</div>
-              <div className="TextAfterHover">+ Add Doctor</div>
-            </AddButton>
+        <div className="d-flex flex-column w-100">
+          <div className="d-flex flex-row align-items-center">
+            <Title>Doctors</Title>
+            <div className="w-100 d-flex justify-content-end">
+              <AddButton type="button" className="btn btn-primary btn-lg">
+                <div className="buttonText">+</div>
+                <div className="TextAfterHover">+ Add Doctor</div>
+              </AddButton>
+            </div>
           </div>
+          <Border />
         </div>
         {doctors.map((doctor) => {
           return (

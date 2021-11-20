@@ -43,3 +43,9 @@ export const AddButton = styled.button`
     font-size: 20px;
   }
 `;
+
+export const Border = styled.div`
+  margin-top: 5px;
+  border: 1px solid #d3d3d3;
+  width: 100%;
+`;
