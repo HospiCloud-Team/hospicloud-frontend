@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { IAdmin } from "../../models/IAdmin";
+import { IDoctorRegister } from "../../models/IDoctor";
 import { IPatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 
@@ -15,4 +16,8 @@ const registerAdmin = (adminData: IAdmin) => {
   return UsersAPI.post("/users", adminData);
 };
 
-export { login, registerPatient, registerAdmin };
+const registerDoctor = (doctorData: IDoctorRegister) => {
+  return UsersAPI.post("/users", doctorData);
+};
+
+export { login, registerPatient, registerAdmin, registerDoctor };
