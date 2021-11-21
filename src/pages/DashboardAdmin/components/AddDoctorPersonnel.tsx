@@ -54,7 +54,6 @@ const AddDoctorPersonnel = () => {
     const hospitalSpecialties = await getSpecialtyByHospital(
       Number(localStorage.getItem("hospitalId"))
     );
-    console.log(hospitalSpecialties.data);
     let specialties = hospitalSpecialties.data.map((item) => {
       return {
         label: item.name,
@@ -82,7 +81,6 @@ const AddDoctorPersonnel = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log("this is data", data);
       const doctorData: IDoctorRegister = {
         user_role: "doctor",
         ...data,
@@ -92,13 +90,9 @@ const AddDoctorPersonnel = () => {
           specialty_ids: data.doctor.special_ids,
         },
       };
-      console.log("this is doctorData", doctorData);
 
       if (doctorData) {
         registerDoctor(doctorData)
-          .then((res) => {
-            console.log(res);
-          })
           .catch((err) => {
             console.log(err);
           })
