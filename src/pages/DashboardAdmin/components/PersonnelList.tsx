@@ -73,7 +73,13 @@ const PersonnelList = () => {
           <div className="d-flex flex-row align-items-center">
             <Title>Doctors</Title>
             <div className="w-100 d-flex justify-content-end">
-              <AddButton type="button" className="btn btn-primary btn-lg">
+              <AddButton
+                type="button"
+                className="btn btn-primary btn-lg"
+                onClick={() => {
+                  history.push(routes.REGISTER_DOCTOR_PERSONNEL);
+                }}
+              >
                 <div className="buttonText">+</div>
                 <div className="TextAfterHover">+ Add Doctor</div>
               </AddButton>
