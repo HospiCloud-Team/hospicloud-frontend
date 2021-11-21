@@ -10,6 +10,7 @@
   "ADMIN": "/admin",
   "PERSONNEL_LIST": "/admin/personnel-list",
   "REGISTER_ADMIN_PERSONNEL": "/admin/register-admin",
+  "REGISTER_DOCTOR_PERSONNEL": "/admin/register-doctor",
   "REGISTER": "/register",
   "REGISTER_HOSPITAL": "/register-hospital",
   "REGISTER_ADMIN": "/register-hospital/admin"

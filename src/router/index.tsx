@@ -59,6 +59,9 @@ const Routes = () => {
         <PrivateRoute path={routes.REGISTER_ADMIN_PERSONNEL} exact>
           <DashboardAdmin content="AddAdminPersonnel" />
         </PrivateRoute>
+        <PrivateRoute path={routes.REGISTER_DOCTOR_PERSONNEL} exact>
+          <DashboardAdmin content="AddDoctorPersonnel" />
+        </PrivateRoute>
       </Switch>
     </HospitalProvider>
   );
