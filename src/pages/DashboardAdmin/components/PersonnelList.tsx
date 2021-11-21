@@ -46,7 +46,7 @@ const PersonnelList = () => {
                 }}
               >
                 <div className="buttonText">+</div>
-                <div className="TextAfterHover">+ Add Admin</div>
+                <div className="TextAfterHover">+ Agregar Admin</div>
               </AddButton>
             </div>
           </div>
@@ -81,7 +81,7 @@ const PersonnelList = () => {
                 }}
               >
                 <div className="buttonText">+</div>
-                <div className="TextAfterHover">+ Add Doctor</div>
+                <div className="TextAfterHover">+ Agregar Doctor</div>
               </AddButton>
             </div>
           </div>

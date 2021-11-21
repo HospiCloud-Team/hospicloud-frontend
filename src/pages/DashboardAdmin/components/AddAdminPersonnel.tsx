@@ -92,7 +92,7 @@ const AddAdminPersonnel = () => {
             <div className="col-7 h-100 w-100">
               <div className="row d-flex h-100 align-items-center m-2 pt-5">
                 <form className="d-flex flex-column w-100 pe-3">
-                  <LoginTitle>Register Admin</LoginTitle>
+                  <LoginTitle>Registrar Admin</LoginTitle>
                   <div className="form-group d-flex justify-content-start mb-2 me-1 w-100">
                     <input
                       type="text"
