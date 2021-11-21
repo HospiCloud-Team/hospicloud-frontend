@@ -55,6 +55,9 @@ const Routes = () => {
         <PrivateRoute path={routes.ADMIN_TEMPLATES}>
           <DashboardAdmin content="TemplatesList" />
         </PrivateRoute>
+        <PrivateRoute path={routes.ADMIN_NEW_TEMPLATE}>
+          <DashboardAdmin content="AddTemplate" />
+        </PrivateRoute>
       </Switch>
     </HospitalProvider>
   );

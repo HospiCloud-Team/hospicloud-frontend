@@ -1,7 +1,7 @@
 import Modal from "react-bootstrap/esm/Modal";
 import { useForm } from "react-hook-form";
-import { addSpecialtyToHospital } from "../../../api/utilities";
-import { INewSpecialty } from "../../../models/ISpecialty";
+import { addSpecialtyToHospital } from "../../../../../api/utilities";
+import { INewSpecialty } from "../../../../../models/ISpecialty";
 
 interface AddSpecialtyModalProps {
   show: boolean;

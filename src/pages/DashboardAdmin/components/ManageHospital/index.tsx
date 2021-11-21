@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getHospital, getSpecialtyByHospital } from "../../../api/utilities";
-import { IHospital } from "../../../models/IHospital";
-import { ISpecialty } from "../../../models/ISpecialty";
-import AddSpecialtyModal from "./AddSpecialtyModal";
-import RemoveSpecialtyModal from "./RemoveSpecialtyModal";
-import routes from "../../../router/constantRoutes.json";
+import { getHospital, getSpecialtyByHospital } from "../../../../api/utilities";
+import { IHospital } from "../../../../models/IHospital";
+import { ISpecialty } from "../../../../models/ISpecialty";
+import AddSpecialtyModal from "./components/AddSpecialtyModal";
+import RemoveSpecialtyModal from "./components/RemoveSpecialtyModal";
+import routes from "../../../../router/constantRoutes.json";
 
 const ManageHospital = () => {
   const history = useHistory();

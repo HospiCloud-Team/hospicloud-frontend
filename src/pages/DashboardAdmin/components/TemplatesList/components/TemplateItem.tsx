@@ -1,6 +1,6 @@
 import { useHistory } from "react-router";
-import { ITemplate } from "../../../models/ITemplate";
-import routes from "../../../router/constantRoutes.json";
+import { ITemplate } from "../../../../../models/ITemplate";
+import routes from "../../../../../router/constantRoutes.json";
 
 interface TemplateItemProps {
   template: ITemplate;

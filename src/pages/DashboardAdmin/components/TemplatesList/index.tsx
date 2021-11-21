@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { ITemplate } from "../../../models/ITemplate";
-import { getTemplatesByHospital } from "../../../api/utilities";
-import TemplateItem from "./TemplateItem";
-import routes from "../../../router/constantRoutes.json";
+import { ITemplate } from "../../../../models/ITemplate";
+import { getTemplatesByHospital } from "../../../../api/utilities";
+import TemplateItem from "./components/TemplateItem";
+import routes from "../../../../router/constantRoutes.json";
 
 const TemplatesList = () => {
   const history = useHistory();
