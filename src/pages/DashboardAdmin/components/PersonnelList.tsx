@@ -44,7 +44,7 @@ const PersonnelList = () => {
 
   return (
     <div>
-      <div className="d-flex flex-row w-100 justify-space-between">
+      <div className="d-flex flex-row w-100 justify-content-around">
         <button className="btn btn-secondary" onClick={handleAdminListClick}>
           Administradores
         </button>

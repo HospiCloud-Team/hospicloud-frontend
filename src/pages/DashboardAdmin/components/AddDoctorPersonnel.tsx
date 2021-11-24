@@ -1,15 +1,14 @@
 import { FixedBox, LoginTitle, BackIcon } from "../styles/AddPersonnel.style";
 import { registerDoctor } from "../../../api/users/index";
 import { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import DocumentType from "./constants/document-type.json";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
-import { ConfirmationModal } from "../../RegisterHospitalAndAdmin/components/confirmationModal";
+import { ConfirmationModal } from "../../../components/ConfirmationModal";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { getSpecialtyByHospital } from "../../../api/utilities";
-import { IDoctorRegister } from "../../../models/IDoctor";
-import Select from "react-select";
+import { INewDoctor } from "../../../models/IDoctor";
 
 type SelectSpecialty = {
   label: string;
@@ -63,10 +62,6 @@ const AddDoctorPersonnel = () => {
     setSpecialties(specialties);
   };
 
-  // const getSelectedSpecialties = () => {
-  //   return selectedItems.current.get();
-  // };
-
   useEffect(() => {
     const fetchData = async () => {
       // This would be a GET call to an endpoint
@@ -81,7 +76,7 @@ const AddDoctorPersonnel = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      const doctorData: IDoctorRegister = {
+      const doctorData: INewDoctor = {
         user_role: "doctor",
         ...data,
         doctor: {
@@ -199,26 +194,6 @@ const AddDoctorPersonnel = () => {
                       );
                     })}
                   </select>
-                  {/* <Controller
-                    control={control}
-                    name="doctor.special_ids"
-                    render={({ field }) => (
-                      <Select
-                        {...field}
-                        placeholder="Especialidad/es"
-                        value={specialties.filter((c) =>
-                          field.value.includes(c.value)
-                        )}
-                        onChange={(val: MultiValue<SelectSpecialty>) =>
-                          field.onChange(
-                            setSelectedSpecialties(val.map((c) => c.value))
-                          )
-                        }
-                        options={specialties}
-                        isMulti
-                      />
-                    )}
-                  /> */}
                   <div className="form-group d-flex justify-content-end mb-3 mt-4">
                     <Button variant="primary" onClick={showModal}>
                       Registrar

@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import { IAdmin } from "../../models/IAdmin";
-import { IDoctorRegister } from "../../models/IDoctor";
+import { INewDoctor } from "../../models/IDoctor";
 import { IPatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 
@@ -16,7 +16,7 @@ const registerAdmin = (adminData: IAdmin) => {
   return UsersAPI.post("/users", adminData);
 };
 
-const registerDoctor = (doctorData: IDoctorRegister) => {
+const registerDoctor = (doctorData: INewDoctor) => {
   return UsersAPI.post("/users", doctorData);
 };
 

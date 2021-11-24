@@ -15,7 +15,7 @@ import { HospitalContext } from "../context/context";
 import { registerHospital } from "../../../api/utilities";
 import { AxiosError } from "axios";
 import { Button } from "react-bootstrap";
-import { ConfirmationModal } from "../components/confirmationModal/index";
+import { ConfirmationModal } from "../../../components/ConfirmationModal";
 import { useHistory } from "react-router";
 import routes from "../../../router/constantRoutes.json";
 import { IHospital } from "../../../models/IHospital";

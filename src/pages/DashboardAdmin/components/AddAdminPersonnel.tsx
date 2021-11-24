@@ -6,7 +6,7 @@ import DocumentType from "./constants/document-type.json";
 import { IAdmin } from "../../../models/IAdmin";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
-import { ConfirmationModal } from "../../RegisterHospitalAndAdmin/components/confirmationModal";
+import { ConfirmationModal } from "../../../components/ConfirmationModal";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 
 const AddAdminPersonnel = () => {
