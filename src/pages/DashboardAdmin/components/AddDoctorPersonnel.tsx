@@ -53,13 +53,13 @@ const AddDoctorPersonnel = () => {
     const hospitalSpecialties = await getSpecialtyByHospital(
       Number(localStorage.getItem("hospitalId"))
     );
-    let specialties = hospitalSpecialties.data.map((item) => {
+    const allSpecialties = hospitalSpecialties.data.map((item) => {
       return {
         label: item.name,
         value: item.id,
       };
     });
-    setSpecialties(specialties);
+    setSpecialties(allSpecialties);
   };
 
   useEffect(() => {
