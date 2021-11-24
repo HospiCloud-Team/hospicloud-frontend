@@ -13,6 +13,8 @@ import {
   Border,
 } from "../styles/PersonnelList.style";
 import routes from "../../../router/constantRoutes.json";
+import { Link } from "react-router-dom";
+import { DoctorPersonnelDetail } from "./DoctorPersonnelDetail";
 const PersonnelList = () => {
   const [admins, setAdmins] = useState<IAdmin[]>([]);
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
@@ -28,6 +30,12 @@ const PersonnelList = () => {
   const handleDoctorListClick = () => {
     setIsAdminList(false);
     setIsDoctorList(true);
+  };
+
+  const handleDetailClick = (personnelType: string, personnelId: string) => {
+    if (personnelType === "Doctor") {
+      <Link to={routes.DOCTOR_PERSONNEL_DETAIL}></Link>;
+    }
   };
 
   useEffect(() => {
