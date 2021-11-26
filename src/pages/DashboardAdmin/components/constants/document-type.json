@@ -1,0 +1,17 @@
+[
+    {
+      "id": "Tipo de Documento",
+      "value": "Tipo de Documento",
+      "isDisabled": true
+    },
+    {
+      "id": "national_id",
+      "value": "Cédula",
+      "isDisabled": false
+    },
+    {
+      "id": "passport",
+      "value": "Pasaporte",
+      "isDisabled": false
+    }
+]

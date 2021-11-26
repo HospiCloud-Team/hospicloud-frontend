@@ -4,8 +4,11 @@ import { IHospital } from "../../../models/IHospital";
 import { ISpecialty } from "../../../models/ISpecialty";
 import AddSpecialtyModal from "./AddSpecialtyModal";
 import RemoveSpecialtyModal from "./RemoveSpecialtyModal";
+import routes from "../../../router/constantRoutes.json";
+import { useHistory } from "react-router";
 
 const ManageHospital = () => {
+  let history = useHistory();
   const [hospital, setHospital] = useState<IHospital>();
   const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
   const [showAddSpecialtyModal, setShowAddSpecialtyModal] = useState(false);
@@ -84,7 +87,14 @@ const ManageHospital = () => {
         </div>
         <div className="row my-4">
           <div className="col-6 d-grid">
-            <button className="btn btn-secondary">Manejar Personal</button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                history.push(routes.PERSONNEL_LIST);
+              }}
+            >
+              Manejar Personal
+            </button>
           </div>
           <div className="col-6 d-grid">
             <button className="btn btn-secondary">Manejar Plantillas</button>

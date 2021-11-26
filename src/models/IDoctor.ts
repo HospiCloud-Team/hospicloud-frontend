@@ -1,4 +1,4 @@
-export interface IDoctor {
+export interface INewDoctor {
   user_role: "doctor";
   document_type: string;
   name: string;
@@ -6,10 +6,19 @@ export interface IDoctor {
   email: string;
   document_number: string;
   date_of_birth: Date;
+  doctor: {
+    hospital_id: number;
+    schedule: string;
+    specialties: number[];
+  };
+}
+
+export interface IDoctor extends INewDoctor {
   id: number;
   doctor: {
     hospital_id: number;
     schedule: string;
+    specialties: number[];
     id: number;
   };
 }

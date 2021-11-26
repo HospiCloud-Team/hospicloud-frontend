@@ -50,8 +50,17 @@ const Routes = () => {
         <PrivateRoute path={`${routes.DOCTOR_CHECKUPS}/:id`}>
           <DashboardDoctor content="CheckupDetail" />
         </PrivateRoute>
-        <PrivateRoute path={routes.ADMIN}>
+        <PrivateRoute path={routes.ADMIN} exact>
           <DashboardAdmin content="ManageHospital" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.PERSONNEL_LIST} exact>
+          <DashboardAdmin content="PersonnelList" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.REGISTER_ADMIN_PERSONNEL} exact>
+          <DashboardAdmin content="AddAdminPersonnel" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.REGISTER_DOCTOR_PERSONNEL} exact>
+          <DashboardAdmin content="AddDoctorPersonnel" />
         </PrivateRoute>
       </Switch>
     </HospitalProvider>
