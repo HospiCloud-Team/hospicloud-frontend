@@ -32,7 +32,7 @@ const AddDoctorPersonnel = () => {
       doctor: {
         hospital_id: 0,
         schedule: "",
-        special_ids: [0],
+        specialties: [0],
       },
     },
   });
@@ -82,7 +82,7 @@ const AddDoctorPersonnel = () => {
         doctor: {
           hospital_id: Number(localStorage.getItem("hospitalId")),
           schedule: data.doctor.schedule,
-          specialty_ids: data.doctor.special_ids,
+          specialties: data.doctor.specialties,
         },
       };
 
@@ -186,7 +186,7 @@ const AddDoctorPersonnel = () => {
                   <select
                     className="form-select"
                     multiple
-                    {...register("doctor.special_ids", { required: true })}
+                    {...register("doctor.specialties", { required: true })}
                   >
                     {specialties.map((option) => {
                       return (
