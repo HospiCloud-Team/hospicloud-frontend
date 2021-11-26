@@ -40,7 +40,6 @@ const AddAdminPersonnel = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // This would be a GET call to an endpoint
       reset({
         document_type: "Tipo de Documento",
       });

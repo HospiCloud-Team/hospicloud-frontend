@@ -21,7 +21,7 @@ const AddDoctorPersonnel = () => {
     { label: "", value: 0 },
   ]);
   const history = useHistory();
-  const { register, handleSubmit, reset, control } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
       name: "",
