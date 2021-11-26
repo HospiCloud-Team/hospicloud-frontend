@@ -9,7 +9,7 @@ export interface INewDoctor {
   doctor: {
     hospital_id: number;
     schedule: string;
-    specialty_ids: number[];
+    specialties: number[];
   };
 }
 
@@ -18,7 +18,7 @@ export interface IDoctor extends INewDoctor {
   doctor: {
     hospital_id: number;
     schedule: string;
-    specialty_ids: number[];
+    specialties: number[];
     id: number;
   };
 }

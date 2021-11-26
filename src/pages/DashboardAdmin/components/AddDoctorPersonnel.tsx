@@ -21,7 +21,7 @@ const AddDoctorPersonnel = () => {
     { label: "", value: 0 },
   ]);
   const history = useHistory();
-  const { register, handleSubmit, reset, control } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
       name: "",
@@ -32,7 +32,7 @@ const AddDoctorPersonnel = () => {
       doctor: {
         hospital_id: 0,
         schedule: "",
-        special_ids: [0],
+        specialties: [0],
       },
     },
   });
@@ -53,13 +53,13 @@ const AddDoctorPersonnel = () => {
     const hospitalSpecialties = await getSpecialtyByHospital(
       Number(localStorage.getItem("hospitalId"))
     );
-    let specialties = hospitalSpecialties.data.map((item) => {
+    const allSpecialties = hospitalSpecialties.data.map((item) => {
       return {
         label: item.name,
         value: item.id,
       };
     });
-    setSpecialties(specialties);
+    setSpecialties(allSpecialties);
   };
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const AddDoctorPersonnel = () => {
         doctor: {
           hospital_id: Number(localStorage.getItem("hospitalId")),
           schedule: data.doctor.schedule,
-          specialty_ids: data.doctor.special_ids,
+          specialties: data.doctor.specialties,
         },
       };
 
@@ -186,7 +186,7 @@ const AddDoctorPersonnel = () => {
                   <select
                     className="form-select"
                     multiple
-                    {...register("doctor.special_ids", { required: true })}
+                    {...register("doctor.specialties", { required: true })}
                   >
                     {specialties.map((option) => {
                       return (
