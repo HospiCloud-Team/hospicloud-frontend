@@ -8,15 +8,15 @@ const login = (email: string, password: string) => {
   return UsersAPI.post("/login", { email, password });
 };
 
-const getParticularUser = (userId: number) => {
+const getParticularUser = (userId: string) => {
   return UsersAPI.get(`/users/${userId}`);
 };
 
-const updateParticularDoctor = (userId: number, doctorData: IUpdateDoctor) => {
+const updateParticularDoctor = (userId: string, doctorData: IUpdateDoctor) => {
   return UsersAPI.put(`/users/${userId}`, doctorData);
 };
 
-const updateParticularAdmin = (userId: number, adminData: IUpdateAdmin) => {
+const updateParticularAdmin = (userId: string, adminData: IUpdateAdmin) => {
   return UsersAPI.put(`/users/${userId}`, adminData);
 };
 

@@ -1,21 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getParticularUser, updateParticularAdmin } from "../../../api/users";
 import { BackIcon } from "../styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { IAdmin } from "../../../models/IAdmin";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
+type adminProps = {
+  id: string;
+};
+
 export const PersonnelAdminDetail = () => {
+  const { id } = useParams<adminProps>();
   let history = useHistory();
   const [adminData, setAdminData] = useState<IAdmin>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
-  const cancelButtonRef = useRef<any>();
 
   const getParticularAdmin = async () => {
-    const admin = await getParticularUser(6);
+    const admin = await getParticularUser(id);
     setAdminData(admin.data);
   };
 
@@ -46,7 +50,7 @@ export const PersonnelAdminDetail = () => {
     setIsShowModal(state);
   };
 
-  const { register, handleSubmit, reset, formState } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       name: adminData?.name,
       last_name: adminData?.last_name,
@@ -68,7 +72,7 @@ export const PersonnelAdminDetail = () => {
 
       if (updatedAdminData) {
         await updateParticularAdmin(
-          adminData?.id as number,
+          adminData?.id.toString() as string,
           updatedAdminData
         ).then((res) => {
           console.log(res);

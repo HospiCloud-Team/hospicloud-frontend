@@ -5,7 +5,7 @@ import { getSpecialtyByHospital } from "../../../api/utilities";
 import { IDoctor } from "../../../models/IDoctor";
 import { BackIcon } from "../styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
 type SelectSpecialty = {
@@ -13,7 +13,12 @@ type SelectSpecialty = {
   value: number;
 };
 
+type doctorProps = {
+  id: string;
+};
+
 export const PersonnelDoctorDetail = () => {
+  const { id } = useParams<doctorProps>();
   let history = useHistory();
   const [doctorData, setDoctorData] = useState<IDoctor>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
@@ -23,7 +28,7 @@ export const PersonnelDoctorDetail = () => {
   const [isShowModal, setIsShowModal] = useState(false);
 
   const getParticularDoctor = async () => {
-    const doctor = await getParticularUser(12);
+    const doctor = await getParticularUser(id);
     setDoctorData(doctor.data);
   };
 
@@ -85,7 +90,7 @@ export const PersonnelDoctorDetail = () => {
       };
       if (updatedDoctorData) {
         await updateParticularDoctor(
-          doctorData?.id as number,
+          doctorData?.id.toString() as string,
           updatedDoctorData
         );
       }

@@ -78,7 +78,9 @@ const PersonnelList = () => {
               <div
                 className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
                 onClick={() => {
-                  history.push(routes.PERSONNEL_ADMIN_DETAIL);
+                  history.push({
+                    pathname: `/admin/admin-detail/${admin.id}`,
+                  });
                 }}
                 key={admin.id}
               >
@@ -121,7 +123,9 @@ const PersonnelList = () => {
               <div
                 className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
                 onClick={() => {
-                  history.push(routes.PERSONNEL_DOCTOR_DETAIL);
+                  history.push({
+                    pathname: `/admin/doctor-detail/${doctor.id}`,
+                  });
                 }}
                 key={doctor.id}
               >
