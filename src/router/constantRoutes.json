@@ -11,7 +11,8 @@
   "PERSONNEL_LIST": "/admin/personnel-list",
   "REGISTER_ADMIN_PERSONNEL": "/admin/register-admin",
   "REGISTER_DOCTOR_PERSONNEL": "/admin/register-doctor",
-  "DOCTOR_PERSONNEL_DETAIL": "/admin/doctor-detail",
+  "PERSONNEL_DOCTOR_DETAIL": "/admin/doctor-detail",
+  "PERSONNEL_ADMIN_DETAIL": "/admin/admin-detail",
   "REGISTER": "/register",
   "REGISTER_HOSPITAL": "/register-hospital",
   "REGISTER_ADMIN": "/register-hospital/admin"

@@ -4,7 +4,7 @@ import {
   getAdminsByHospitalId,
   getDoctorsByHospitalId,
 } from "../../../api/utilities";
-import { INewAdmin } from "../../../models/IAdmin";
+import { IAdmin } from "../../../models/IAdmin";
 import { IDoctor } from "../../../models/IDoctor";
 import {
   AddButton,
@@ -14,9 +14,8 @@ import {
 } from "../styles/PersonnelList.style";
 import routes from "../../../router/constantRoutes.json";
 import { Link } from "react-router-dom";
-import { DoctorPersonnelDetail } from "./DoctorPersonnelDetail";
 const PersonnelList = () => {
-  const [admins, setAdmins] = useState<INewAdmin[]>([]);
+  const [admins, setAdmins] = useState<IAdmin[]>([]);
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
   const [isAdminList, setIsAdminList] = useState<boolean>(true);
   const [isDocotrList, setIsDoctorList] = useState<boolean>(false);
@@ -30,12 +29,6 @@ const PersonnelList = () => {
   const handleDoctorListClick = () => {
     setIsAdminList(false);
     setIsDoctorList(true);
-  };
-
-  const handleDetailClick = (personnelType: string, personnelId: string) => {
-    if (personnelType === "Doctor") {
-      <Link to={routes.DOCTOR_PERSONNEL_DETAIL}></Link>;
-    }
   };
 
   useEffect(() => {
@@ -82,7 +75,13 @@ const PersonnelList = () => {
           </div>
           {admins.map((admin) => {
             return (
-              <div className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative">
+              <div
+                className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
+                onClick={() => {
+                  history.push(routes.PERSONNEL_ADMIN_DETAIL);
+                }}
+                key={admin.id}
+              >
                 <div className="col-1 border-end">
                   <button className="btn btn-primary btn-sm stretched-link">
                     <i className="bi bi-person-badge"></i>
@@ -122,8 +121,9 @@ const PersonnelList = () => {
               <div
                 className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
                 onClick={() => {
-                  history.push(routes.DOCTOR_PERSONNEL_DETAIL);
+                  history.push(routes.PERSONNEL_DOCTOR_DETAIL);
                 }}
+                key={doctor.id}
               >
                 <div className="col-1 border-end">
                   <button className="btn btn-primary btn-sm stretched-link">
