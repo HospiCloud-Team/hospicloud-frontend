@@ -14,7 +14,7 @@ const AddTemplate = () => {
         </button>
         <h4 className="m-0">Nueva Plantilla</h4>
       </div>
-      <TemplateForm />
+      <TemplateForm formType="add" />
     </div>
   );
 };

@@ -19,6 +19,13 @@ const addTemplateToHospital = (
   return UtilitiesAPI.post(`/templates`, newTemplate);
 };
 
+const editTemplateOfHospital = (
+  id: number,
+  updatedTemplate: INewTemplate
+): Promise<AxiosResponse<ITemplate[]>> => {
+  return UtilitiesAPI.put(`/templates/${id}`, updatedTemplate);
+};
+
 // Specialties
 const getSpecialtyByHospital = (
   id: number
@@ -75,6 +82,7 @@ const getAdminsByHospitalId = (
 export {
   getTemplatesByHospital,
   addTemplateToHospital,
+  editTemplateOfHospital,
   getSpecialtyByHospital,
   addSpecialtyToHospital,
   removeSpecialtyFromHospital,
@@ -83,5 +91,5 @@ export {
   getHospital,
   registerHospital,
   getDoctorsByHospitalId,
-  getAdminsByHospitalId
+  getAdminsByHospitalId,
 };

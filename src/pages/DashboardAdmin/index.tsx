@@ -6,16 +6,17 @@ import PersonnelList from "./components/PersonnelList";
 import AddAdminPersonnel from "./components/AddAdminPersonnel";
 import AddDoctorPersonnel from "./components/AddDoctorPersonnel";
 import TemplatesList from "./components/TemplatesList";
+import EditTemplate from "./components/EditTemplate";
 
 interface DashboardAdminProps {
   content:
     | "ManageHospital"
-    | "AddTemplate"
     | "PersonnelList"
     | "AddAdminPersonnel"
     | "AddDoctorPersonnel"
     | "TemplatesList"
-    | "AddTemplate";
+    | "AddTemplate"
+    | "EditTemplate";
 }
 
 const renderContent = (content: string) => {
@@ -26,6 +27,8 @@ const renderContent = (content: string) => {
       return <TemplatesList />;
     case "AddTemplate":
       return <AddTemplate />;
+    case "EditTemplate":
+      return <EditTemplate />;
     case "PersonnelList":
       return <PersonnelList />;
     case "AddAdminPersonnel":

@@ -55,12 +55,16 @@ const Routes = () => {
         <PrivateRoute path={routes.ADMIN} exact>
           <DashboardAdmin content="ManageHospital" />
         </PrivateRoute>
-        <PrivateRoute path={routes.ADMIN_TEMPLATES}>
+        <PrivateRoute path={routes.ADMIN_TEMPLATES} exact>
           <DashboardAdmin content="TemplatesList" />
         </PrivateRoute>
         <PrivateRoute path={routes.ADMIN_NEW_TEMPLATE}>
           <DashboardAdmin content="AddTemplate" />
         </PrivateRoute>
+        <PrivateRoute path={`${routes.ADMIN_TEMPLATES}/:id/editar`}>
+          <DashboardAdmin content="EditTemplate" />
+        </PrivateRoute>
+
         <PrivateRoute path={routes.PERSONNEL_LIST} exact>
           <DashboardAdmin content="PersonnelList" />
         </PrivateRoute>

@@ -4,16 +4,25 @@ import { ISpecialty } from "../../../../../models/ISpecialty";
 import {
   getSpecialtyByHospital,
   addTemplateToHospital,
+  editTemplateOfHospital,
 } from "../../../../../api/utilities";
-import { parseTemplateArray } from "../../../../../utils/parseTemplateResponses";
-import { INewTemplate } from "../../../../../models/ITemplate";
+import {
+  parseTemplateArray,
+  parseStringToTemplateArray,
+} from "../../../../../utils/parseTemplateResponses";
+import { INewTemplate, ITemplate } from "../../../../../models/ITemplate";
 import { useHistory } from "react-router";
 
-const TemplateForm = () => {
+interface TemplateFormProps {
+  formType: "add" | "edit";
+  templateToEdit?: ITemplate;
+}
+
+const TemplateForm = ({ formType, templateToEdit }: TemplateFormProps) => {
   const history = useHistory();
   const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
 
-  const { control, register, handleSubmit } = useForm();
+  const { control, register, setValue, handleSubmit } = useForm();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "template",
@@ -28,46 +37,68 @@ const TemplateForm = () => {
       headers: templateString,
       hospital_id: hospitalId,
     };
-
-    console.log(template);
-    addTemplateToHospital(template).then(() => history.goBack());
+    if (formType === "add") {
+      addTemplateToHospital(template).then(() => history.goBack());
+    } else if (formType === "edit" && templateToEdit) {
+      editTemplateOfHospital(templateToEdit.id, template).then(() =>
+        history.goBack()
+      );
+    }
   });
 
   useEffect(() => {
-    append({ question: "", value: "string" });
     const hospitalId = Number(localStorage.getItem("hospitalId"));
     getSpecialtyByHospital(hospitalId).then((res) => setSpecialties(res.data));
+    if (formType === "add") {
+      append({ question: "", value: "string" });
+    } else if (formType === "edit" && templateToEdit) {
+      parseStringToTemplateArray(templateToEdit.headers).forEach(
+        ({ question, value }) => {
+          append({ question, value });
+        }
+      );
+      setValue("title", templateToEdit.title);
+      setValue("specialty_id", templateToEdit.specialty_id);
+    }
   }, []);
 
   return (
     <div>
       <div className="mb-4">
         <form onSubmit={onSubmit}>
-          <div className="row mb-3">
-            <div className="col-8">
-              <input
-                className="form-control mb-2"
-                placeholder="Titulo de la plantilla"
-                {...register("title", { required: true })}
-              />
-            </div>
-            <div className="col-4">
-              <select
-                className="form-select me-2"
-                defaultValue=""
-                {...register("specialty_id", { required: true })}
-              >
-                <option value="" disabled>
-                  Seleccione la especialidad
-                </option>
-                {specialties.map((specialty) => (
-                  <option key={specialty.id} value={specialty.id}>
-                    {specialty.name}
+          {formType === "add" ? (
+            <div className="row mb-3">
+              <div className="col-8">
+                <input
+                  className="form-control mb-2"
+                  placeholder="Titulo de la plantilla"
+                  {...register("title", { required: true })}
+                />
+              </div>
+              <div className="col-4">
+                <select
+                  className="form-select me-2"
+                  defaultValue=""
+                  {...register("specialty_id", { required: true })}
+                >
+                  <option value="" disabled>
+                    Seleccione la especialidad
                   </option>
-                ))}
-              </select>
+                  {specialties.map((specialty) => (
+                    <option key={specialty.id} value={specialty.id}>
+                      {specialty.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
-          </div>
+          ) : (
+            <input
+              className="form-control mb-2"
+              placeholder="Titulo de la plantilla"
+              {...register("title", { required: true })}
+            />
+          )}
           <div className="mb-3">
             <p className="mb-1 fs-5">Formulario de consulta:</p>
             {fields.map((field, index) => (
