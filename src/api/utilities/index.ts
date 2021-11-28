@@ -3,6 +3,8 @@ import { AxiosResponse } from "axios";
 import { INewTemplate, ITemplate } from "../../models/ITemplate";
 import { IHospital, INewHospital } from "../../models/IHospital";
 import { INewSpecialty, ISpecialty } from "../../models/ISpecialty";
+import { IDoctor } from "../../models/IDoctor";
+import { IAdmin } from "../../models/IAdmin";
 
 // Templates
 const getTemplatesByHospital = (
@@ -57,6 +59,19 @@ const getHospital = (id: number): Promise<AxiosResponse<IHospital>> => {
   return UtilitiesAPI.get(`/hospitals/${id}`);
 };
 
+//Users
+const getDoctorsByHospitalId = (
+  id: number
+): Promise<AxiosResponse<IDoctor[]>> => {
+  return UtilitiesAPI.get(`/hospitals/${id}/doctors`);
+};
+
+const getAdminsByHospitalId = (
+  id: number
+): Promise<AxiosResponse<IAdmin[]>> => {
+  return UtilitiesAPI.get(`/hospitals/${id}/admins`);
+};
+
 export {
   getTemplatesByHospital,
   addTemplateToHospital,
@@ -67,4 +82,6 @@ export {
   getHospitalsByName,
   getHospital,
   registerHospital,
+  getDoctorsByHospitalId,
+  getAdminsByHospitalId
 };

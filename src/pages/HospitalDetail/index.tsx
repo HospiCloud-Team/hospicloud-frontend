@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router";
-import { getDoctorsByHospitalId } from "../../api/users";
+import { getDoctorsByHospitalId } from "../../api/utilities";
 import { getHospital, getSpecialtyByHospital } from "../../api/utilities";
 import LandingLayout from "../../layout/LandingLayout";
 import { IDoctor } from "../../models/IDoctor";

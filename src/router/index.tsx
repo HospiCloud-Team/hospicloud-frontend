@@ -34,12 +34,14 @@ const Routes = () => {
         <Route path={`${routes.HOSPITALS}/:id`}>
           <HospitalDetail />
         </Route>
+
         <PrivateRoute path={routes.PATIENT} exact>
           <DashboardPatient content="CheckupsList" />
         </PrivateRoute>
         <PrivateRoute path={`${routes.PATIENT_CHECKUPS}/:id`}>
           <DashboardPatient content="CheckupDetail" />
         </PrivateRoute>
+
         <PrivateRoute path={routes.DOCTOR} exact>
           <DashboardDoctor content="CheckupsList" />
         </PrivateRoute>
@@ -49,6 +51,7 @@ const Routes = () => {
         <PrivateRoute path={`${routes.DOCTOR_CHECKUPS}/:id`}>
           <DashboardDoctor content="CheckupDetail" />
         </PrivateRoute>
+
         <PrivateRoute path={routes.ADMIN} exact>
           <DashboardAdmin content="ManageHospital" />
         </PrivateRoute>
@@ -57,6 +60,15 @@ const Routes = () => {
         </PrivateRoute>
         <PrivateRoute path={routes.ADMIN_NEW_TEMPLATE}>
           <DashboardAdmin content="AddTemplate" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.PERSONNEL_LIST} exact>
+          <DashboardAdmin content="PersonnelList" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.REGISTER_ADMIN_PERSONNEL} exact>
+          <DashboardAdmin content="AddAdminPersonnel" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.REGISTER_DOCTOR_PERSONNEL} exact>
+          <DashboardAdmin content="AddDoctorPersonnel" />
         </PrivateRoute>
       </Switch>
     </HospitalProvider>

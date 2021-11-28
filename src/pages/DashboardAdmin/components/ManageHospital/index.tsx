@@ -87,7 +87,14 @@ const ManageHospital = () => {
         </div>
         <div className="row my-4">
           <div className="col-6 d-grid">
-            <button className="btn btn-secondary">Manejar Personal</button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => {
+                history.push(routes.PERSONNEL_LIST);
+              }}
+            >
+              Manejar Personal
+            </button>
           </div>
           <div className="col-6 d-grid">
             <button

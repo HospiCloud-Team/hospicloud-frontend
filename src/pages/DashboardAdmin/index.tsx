@@ -2,10 +2,20 @@ import DashboardLayout from "../../layout/DashboardLayout";
 import roles from "../../constants/constantsRoles.json";
 import AddTemplate from "./components/AddTemplate";
 import ManageHospital from "./components/ManageHospital";
+import PersonnelList from "./components/PersonnelList";
+import AddAdminPersonnel from "./components/AddAdminPersonnel";
+import AddDoctorPersonnel from "./components/AddDoctorPersonnel";
 import TemplatesList from "./components/TemplatesList";
 
 interface DashboardAdminProps {
-  content: "ManageHospital" | "TemplatesList" | "AddTemplate";
+  content:
+    | "ManageHospital"
+    | "AddTemplate"
+    | "PersonnelList"
+    | "AddAdminPersonnel"
+    | "AddDoctorPersonnel"
+    | "TemplatesList"
+    | "AddTemplate";
 }
 
 const renderContent = (content: string) => {
@@ -16,6 +26,12 @@ const renderContent = (content: string) => {
       return <TemplatesList />;
     case "AddTemplate":
       return <AddTemplate />;
+    case "PersonnelList":
+      return <PersonnelList />;
+    case "AddAdminPersonnel":
+      return <AddAdminPersonnel />;
+    case "AddDoctorPersonnel":
+      return <AddDoctorPersonnel />;
     default:
       break;
   }
