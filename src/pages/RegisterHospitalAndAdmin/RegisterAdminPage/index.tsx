@@ -10,7 +10,7 @@ import { registerAdmin } from "../../../api/users/index";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "./document-type.json";
-import { IAdmin } from "../../../models/IAdmin";
+import { INewAdmin } from "../../../models/IAdmin";
 import { HospitalContext } from "../context/context";
 import { registerHospital } from "../../../api/utilities";
 import { AxiosError } from "axios";
@@ -73,7 +73,7 @@ const RegisterAdmin = () => {
             }
           })
           .then(() => {
-            const adminData: IAdmin = {
+            const adminData: INewAdmin = {
               user_role: "admin",
               ...data,
               admin: {

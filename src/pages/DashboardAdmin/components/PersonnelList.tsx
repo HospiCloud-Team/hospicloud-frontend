@@ -4,7 +4,7 @@ import {
   getAdminsByHospitalId,
   getDoctorsByHospitalId,
 } from "../../../api/utilities";
-import { IAdmin } from "../../../models/IAdmin";
+import { INewAdmin } from "../../../models/IAdmin";
 import { IDoctor } from "../../../models/IDoctor";
 import {
   AddButton,
@@ -16,7 +16,7 @@ import routes from "../../../router/constantRoutes.json";
 import { Link } from "react-router-dom";
 import { DoctorPersonnelDetail } from "./DoctorPersonnelDetail";
 const PersonnelList = () => {
-  const [admins, setAdmins] = useState<IAdmin[]>([]);
+  const [admins, setAdmins] = useState<INewAdmin[]>([]);
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
   const [isAdminList, setIsAdminList] = useState<boolean>(true);
   const [isDocotrList, setIsDoctorList] = useState<boolean>(false);
@@ -119,7 +119,12 @@ const PersonnelList = () => {
           </div>
           {doctors.map((doctor) => {
             return (
-              <div className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative">
+              <div
+                className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
+                onClick={() => {
+                  history.push(routes.DOCTOR_PERSONNEL_DETAIL);
+                }}
+              >
                 <div className="col-1 border-end">
                   <button className="btn btn-primary btn-sm stretched-link">
                     <i className="bi bi-person-badge"></i>

@@ -32,8 +32,6 @@ const renderContent = (content: string) => {
       return <AddDoctorPersonnel />;
     case "DoctorPersonnelDetail":
       return <DoctorPersonnelDetail />;
-    // case "AddDoctorPersonnel":
-    // return <AddDoctorPersonnel />;
     default:
       break;
   }
