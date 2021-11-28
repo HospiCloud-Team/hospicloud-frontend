@@ -16,19 +16,12 @@ import routes from "../../../router/constantRoutes.json";
 const PersonnelList = () => {
   const [admins, setAdmins] = useState<IAdmin[]>([]);
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
-  const [isAdminList, setIsAdminList] = useState<boolean>(true);
-  const [isDocotrList, setIsDoctorList] = useState<boolean>(false);
-  let history = useHistory();
+  const [isAdminList, setIsAdminList] = useState(true);
+  const history = useHistory();
 
-  const handleAdminListClick = () => {
-    setIsDoctorList(false);
-    setIsAdminList(true);
-  };
+  const handleAdminListClick = () => setIsAdminList(true);
 
-  const handleDoctorListClick = () => {
-    setIsAdminList(false);
-    setIsDoctorList(true);
-  };
+  const handleDoctorListClick = () => setIsAdminList(false);
 
   useEffect(() => {
     const getAll = async () => {
@@ -44,19 +37,38 @@ const PersonnelList = () => {
 
   return (
     <div>
-      <div className="d-flex flex-row w-100 justify-content-around">
-        <button className="btn btn-secondary" onClick={handleAdminListClick}>
-          Administradores
+      <div className="d-flex align-items-center mb-4">
+        <button
+          className="btn btn-secondary btn-sm me-2"
+          onClick={history.goBack}
+        >
+          <i className="bi bi-arrow-left"></i>
         </button>
-        <button className="btn btn-secondary" onClick={handleDoctorListClick}>
-          Doctores
-        </button>
+        <h4 className="m-0">Manejar Personal</h4>
+      </div>
+      <div className="row">
+        <div className="col-6 d-grid">
+          <button
+            className={`btn btn-${isAdminList ? "primary" : "secondary"}`}
+            onClick={handleAdminListClick}
+          >
+            Administradores
+          </button>
+        </div>
+        <div className="col-6 d-grid">
+          <button
+            className={`btn btn-${!isAdminList ? "primary" : "secondary"}`}
+            onClick={handleDoctorListClick}
+          >
+            Doctores
+          </button>
+        </div>
       </div>
       {isAdminList && (
         <PersonnelContainer>
           <div className="d-flex flex-column w-100">
-            <div className="d-flex flex-row align-items-center">
-              <Title>Admins</Title>
+            <div className="d-flex flex-row align-items-center mt-3">
+              <Title>Administradores</Title>
               <div className="w-100 d-flex justify-content-end">
                 <AddButton
                   type="button"
@@ -65,8 +77,10 @@ const PersonnelList = () => {
                     history.push(routes.REGISTER_ADMIN_PERSONNEL);
                   }}
                 >
-                  <div className="buttonText">+</div>
-                  <div className="TextAfterHover">+ Agregar Admin</div>
+                  <div className="buttonText">
+                    <i className="bi bi-plus"></i>
+                  </div>
+                  <div className="TextAfterHover">Agregar Admininstrador</div>
                 </AddButton>
               </div>
             </div>
@@ -81,7 +95,7 @@ const PersonnelList = () => {
                   </button>
                 </div>
                 <div className="col-11 d-flex justify-content-between">
-                  <p className="m-0">{admin.name}</p>
+                  <p className="m-0">{`${admin.name} ${admin.last_name}`}</p>
                   <p className="m-0">{admin.email}</p>
                 </div>
               </div>
@@ -89,11 +103,11 @@ const PersonnelList = () => {
           })}
         </PersonnelContainer>
       )}
-      {isDocotrList && (
+      {!isAdminList && (
         <PersonnelContainer>
           <div className="d-flex flex-column w-100">
-            <div className="d-flex flex-row align-items-center">
-              <Title>Doctors</Title>
+            <div className="d-flex flex-row align-items-center mt-3">
+              <Title>Doctores</Title>
               <div className="w-100 d-flex justify-content-end">
                 <AddButton
                   type="button"
@@ -102,8 +116,10 @@ const PersonnelList = () => {
                     history.push(routes.REGISTER_DOCTOR_PERSONNEL);
                   }}
                 >
-                  <div className="buttonText">+</div>
-                  <div className="TextAfterHover">+ Agregar Doctor</div>
+                  <div className="buttonText">
+                    <i className="bi bi-plus"></i>
+                  </div>
+                  <div className="TextAfterHover">Agregar Doctor</div>
                 </AddButton>
               </div>
             </div>
@@ -118,7 +134,7 @@ const PersonnelList = () => {
                   </button>
                 </div>
                 <div className="col-11 d-flex justify-content-between">
-                  <p className="m-0">{doctor.name}</p>
+                  <p className="m-0">{`${doctor.name} ${doctor.last_name}`}</p>
                   <p className="m-0">{doctor.email}</p>
                 </div>
               </div>

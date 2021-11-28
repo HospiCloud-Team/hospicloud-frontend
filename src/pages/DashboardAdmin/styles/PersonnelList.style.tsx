@@ -4,7 +4,7 @@ export const PersonnelContainer = styled.div`
   margin-bottom: 30px;
 `;
 
-export const Title = styled.h2`
+export const Title = styled.h5`
   margin: 0;
   padding: 0;
   width: 100%;
@@ -17,7 +17,7 @@ export const AddButton = styled.button`
   &:hover {
     animation: extend linear 1 normal forwards;
     .TextAfterHover {
-      font-size: 20px;
+      font-size: 1rem;
       display: initial;
     }
 
@@ -40,7 +40,7 @@ export const AddButton = styled.button`
   }
 
   .buttonText {
-    font-size: 20px;
+    font-size: 1rem;
   }
 `;
 
