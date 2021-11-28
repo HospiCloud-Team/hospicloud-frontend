@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { INewAdmin } from "../../models/IAdmin";
+import { INewAdmin, IUpdateAdmin } from "../../models/IAdmin";
 import { INewDoctor, IUpdateDoctor } from "../../models/IDoctor";
 import { IPatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
@@ -14,6 +14,10 @@ const getParticularUser = (userId: number) => {
 
 const updateParticularDoctor = (userId: number, doctorData: IUpdateDoctor) => {
   return UsersAPI.put(`/users/${userId}`, doctorData);
+};
+
+const updateParticularAdmin = (userId: number, adminData: IUpdateAdmin) => {
+  return UsersAPI.put(`/users/${userId}`, adminData);
 };
 
 const registerPatient = (patientData: IPatient) => {
@@ -35,4 +39,5 @@ export {
   registerDoctor,
   getParticularUser,
   updateParticularDoctor,
+  updateParticularAdmin,
 };

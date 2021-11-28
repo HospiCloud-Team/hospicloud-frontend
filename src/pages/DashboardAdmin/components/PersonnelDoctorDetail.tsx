@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getParticularUser, updateParticularUser } from "../../../api/users";
+import { getParticularUser, updateParticularDoctor } from "../../../api/users";
 import { getSpecialtyByHospital } from "../../../api/utilities";
 import { IDoctor } from "../../../models/IDoctor";
 import { BackIcon } from "../styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory } from "react-router";
-import { ISpecialty } from "../../../models/ISpecialty";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
 type SelectSpecialty = {
@@ -47,6 +46,12 @@ export const PersonnelDoctorDetail = () => {
 
   const handleCancelClick = () => {
     setReadOnly(true);
+    reset({
+      doctor: {
+        schedule: doctorData?.doctor.schedule,
+        specialties: doctorData?.doctor.specialties,
+      },
+    });
   };
 
   const goToPreviousPageClick = () => {
@@ -61,7 +66,7 @@ export const PersonnelDoctorDetail = () => {
     setIsShowModal(state);
   };
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       doctor: {
         schedule: doctorData?.doctor.schedule,
@@ -71,7 +76,6 @@ export const PersonnelDoctorDetail = () => {
   });
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
       const updatedDoctorData = {
         doctor: {
@@ -80,7 +84,10 @@ export const PersonnelDoctorDetail = () => {
         },
       };
       if (updatedDoctorData) {
-        await updateParticularUser(doctorData?.id as number, updatedDoctorData);
+        await updateParticularDoctor(
+          doctorData?.id as number,
+          updatedDoctorData
+        );
       }
       updateModal(false);
       window.location.reload();

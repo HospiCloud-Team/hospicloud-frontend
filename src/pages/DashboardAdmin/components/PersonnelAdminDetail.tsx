@@ -1,20 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getParticularUser } from "../../../api/users";
+import { getParticularUser, updateParticularAdmin } from "../../../api/users";
 import { BackIcon } from "../styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory } from "react-router";
 import { IAdmin } from "../../../models/IAdmin";
+import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
 export const PersonnelAdminDetail = () => {
   let history = useHistory();
   const [adminData, setAdminData] = useState<IAdmin>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
+  const [isShowModal, setIsShowModal] = useState(false);
+  const cancelButtonRef = useRef<any>();
 
   const getParticularAdmin = async () => {
     const admin = await getParticularUser(6);
     setAdminData(admin.data);
-    console.log(admin.data);
   };
 
   const handleEditClick = () => {
@@ -23,15 +25,61 @@ export const PersonnelAdminDetail = () => {
 
   const handleCancelClick = () => {
     setReadOnly(true);
+    reset({
+      name: adminData?.name,
+      last_name: adminData?.last_name,
+      email: adminData?.email,
+      document_number: adminData?.document_number,
+      date_of_birth: adminData?.date_of_birth,
+    });
   };
 
   const goToPreviousPageClick = () => {
     history.goBack();
   };
 
-  const { register, handleSubmit, formState } = useForm();
+  const showModal = () => {
+    setIsShowModal(true);
+  };
 
-  const onSubmit = (data: any) => {};
+  const updateModal = (state: boolean) => {
+    setIsShowModal(state);
+  };
+
+  const { register, handleSubmit, reset, formState } = useForm({
+    defaultValues: {
+      name: adminData?.name,
+      last_name: adminData?.last_name,
+      email: adminData?.email,
+      document_number: adminData?.document_number,
+      date_of_birth: adminData?.date_of_birth,
+    },
+  });
+
+  const onSubmit = async (data: any) => {
+    try {
+      const updatedAdminData = {
+        name: data.name,
+        last_name: data.last_name,
+        email: data.email,
+        document_number: data.document_number,
+        date_of_birth: data.date_of_birth,
+      };
+
+      if (updatedAdminData) {
+        await updateParticularAdmin(
+          adminData?.id as number,
+          updatedAdminData
+        ).then((res) => {
+          console.log(res);
+        });
+      }
+      updateModal(false);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getParticularAdmin();
@@ -52,7 +100,7 @@ export const PersonnelAdminDetail = () => {
           Editar
         </button>
       </div>
-      <form>
+      <form id="hook-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
             <label style={{ fontSize: "24px" }} htmlFor="doctorName">
@@ -65,8 +113,9 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Nombre"
-              value={adminData?.name}
-              readOnly
+              defaultValue={adminData?.name}
+              readOnly={readOnly}
+              {...register("name")}
             />
           </div>
         </div>
@@ -82,8 +131,9 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Apellido"
-              value={adminData?.last_name}
-              readOnly
+              defaultValue={adminData?.last_name}
+              readOnly={readOnly}
+              {...register("last_name")}
             />
           </div>
         </div>
@@ -99,7 +149,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Rol"
-              value={adminData?.user_role}
+              defaultValue={adminData?.user_role}
               readOnly
             />
           </div>
@@ -114,11 +164,11 @@ export const PersonnelAdminDetail = () => {
             <input
               id="doctorBirthDate"
               className="form-control form-control-lg"
+              type="date"
               placeholder="Fecha de Nacimiento"
-              value={new Date(
-                adminData?.date_of_birth as Date
-              ).toLocaleDateString()}
-              readOnly
+              defaultValue={adminData?.date_of_birth.toLocaleString()}
+              readOnly={readOnly}
+              {...register("date_of_birth")}
             />
           </div>
         </div>
@@ -134,7 +184,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              value={adminData?.document_type}
+              defaultValue={adminData?.document_type}
               readOnly
             />
           </div>
@@ -151,24 +201,39 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Documento"
-              value={adminData?.document_number}
-              readOnly
+              defaultValue={adminData?.document_number}
+              readOnly={readOnly}
+              {...register("document_number")}
             />
           </div>
         </div>
         {!readOnly && (
           <div className="text-end">
-            <button type="button" className="btn btn-primary me-2">
+            <button
+              type="button"
+              className="btn btn-primary me-2"
+              onClick={showModal}
+            >
               Guardar
             </button>
             <button
-              type="button"
+              type="reset"
               className="btn btn-secondary"
               onClick={handleCancelClick}
             >
               Cancelar
             </button>
           </div>
+        )}
+        {isShowModal && (
+          <ConfirmationModal
+            state={isShowModal}
+            title="Confirmación"
+            content="Deseas guardar las nuevas informaciones del administrador?"
+            button1Text="Cancelar"
+            button2Text="Confirmar"
+            handleShow={updateModal}
+          />
         )}
       </form>
     </div>
