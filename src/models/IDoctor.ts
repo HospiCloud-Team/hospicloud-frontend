@@ -24,3 +24,15 @@ export interface IDoctor extends INewDoctor {
     id: number;
   };
 }
+
+export interface IUpdateDoctor {
+  name?: string;
+  last_name?: string;
+  email?: string;
+  document_number?: string;
+  date_of_birth?: Date;
+  doctor?: {
+    schedule?: string;
+    specialties?: ISpecialty[];
+  };
+}

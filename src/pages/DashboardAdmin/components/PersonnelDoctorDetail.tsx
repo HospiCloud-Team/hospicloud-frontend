@@ -1,34 +1,31 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getParticularUser } from "../../../api/users";
+import { getParticularUser, updateParticularUser } from "../../../api/users";
 import { getSpecialtyByHospital } from "../../../api/utilities";
-import { IDoctor, INewDoctor } from "../../../models/IDoctor";
+import { IDoctor } from "../../../models/IDoctor";
 import { BackIcon } from "../styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory } from "react-router";
-
-type UpdateDoctorData = {
-  schedule: string;
-  specialties: number[];
-};
+import { ISpecialty } from "../../../models/ISpecialty";
+import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
 type SelectSpecialty = {
   label: string;
   value: number;
 };
 
-export const DoctorPersonnelDetail = () => {
+export const PersonnelDoctorDetail = () => {
   let history = useHistory();
   const [doctorData, setDoctorData] = useState<IDoctor>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [specialties, setSpecialties] = useState<SelectSpecialty[]>([
     { label: "", value: 0 },
   ]);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   const getParticularDoctor = async () => {
     const doctor = await getParticularUser(12);
     setDoctorData(doctor.data);
-    console.log(doctor.data);
   };
 
   const getSpecialties = async () => {
@@ -56,9 +53,41 @@ export const DoctorPersonnelDetail = () => {
     history.goBack();
   };
 
-  const { register, handleSubmit, formState } = useForm<UpdateDoctorData>();
+  const showModal = () => {
+    setIsShowModal(true);
+  };
 
-  const onSubmit = (data: UpdateDoctorData) => {};
+  const updateModal = (state: boolean) => {
+    setIsShowModal(state);
+  };
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      doctor: {
+        schedule: doctorData?.doctor.schedule,
+        specialties: doctorData?.doctor.specialties,
+      },
+    },
+  });
+
+  const onSubmit = async (data: any) => {
+    console.log(data);
+    try {
+      const updatedDoctorData = {
+        doctor: {
+          schedule: data.doctor.schedule,
+          specialties: data.doctor.specialties,
+        },
+      };
+      if (updatedDoctorData) {
+        await updateParticularUser(doctorData?.id as number, updatedDoctorData);
+      }
+      updateModal(false);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     getParticularDoctor();
@@ -80,7 +109,7 @@ export const DoctorPersonnelDetail = () => {
           Editar
         </button>
       </div>
-      <form>
+      <form id="hook-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
             <label style={{ fontSize: "24px" }} htmlFor="doctorName">
@@ -196,9 +225,9 @@ export const DoctorPersonnelDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Horario"
-              value={doctorData?.doctor.schedule}
+              defaultValue={doctorData?.doctor.schedule}
               readOnly={readOnly}
-              {...register("schedule")}
+              {...register("doctor.schedule")}
             />
           </div>
         </div>
@@ -227,10 +256,11 @@ export const DoctorPersonnelDetail = () => {
             <div className="col-9">
               <select
                 id="doctorSpecialties"
+                form="hook-form"
                 className="form-select form-select-lg"
                 placeholder="Especialidades"
                 multiple
-                {...(register("specialties"), { required: true })}
+                {...register("doctor.specialties", { required: true })}
               >
                 {specialties.map((option) => {
                   return <option value={option.value}>{option.label}</option>;
@@ -241,7 +271,11 @@ export const DoctorPersonnelDetail = () => {
         </div>
         {!readOnly && (
           <div className="text-end">
-            <button type="button" className="btn btn-primary me-2">
+            <button
+              type="button"
+              className="btn btn-primary me-2"
+              onClick={showModal}
+            >
               Guardar
             </button>
             <button
@@ -252,6 +286,16 @@ export const DoctorPersonnelDetail = () => {
               Cancelar
             </button>
           </div>
+        )}
+        {isShowModal && (
+          <ConfirmationModal
+            state={isShowModal}
+            title="Confirmación"
+            content="Deseas guardar las nuevas informaciones del doctor?"
+            button1Text="Cancelar"
+            button2Text="Confirmar"
+            handleShow={updateModal}
+          />
         )}
       </form>
     </div>
