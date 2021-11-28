@@ -1,6 +1,6 @@
 import { UtilitiesAPI } from "../hospicloudAPI";
 import { AxiosResponse } from "axios";
-import { ITemplate } from "../../models/ITemplate";
+import { INewTemplate, ITemplate } from "../../models/ITemplate";
 import { IHospital, INewHospital } from "../../models/IHospital";
 import { INewSpecialty, ISpecialty } from "../../models/ISpecialty";
 
@@ -9,6 +9,12 @@ const getTemplatesByHospital = (
   id: number
 ): Promise<AxiosResponse<ITemplate[]>> => {
   return UtilitiesAPI.get(`/templates?hospital_id=${id}`);
+};
+
+const addTemplateToHospital = (
+  newTemplate: INewTemplate
+): Promise<AxiosResponse<ITemplate[]>> => {
+  return UtilitiesAPI.post(`/templates`, newTemplate);
 };
 
 // Specialties
@@ -53,6 +59,7 @@ const getHospital = (id: number): Promise<AxiosResponse<IHospital>> => {
 
 export {
   getTemplatesByHospital,
+  addTemplateToHospital,
   getSpecialtyByHospital,
   addSpecialtyToHospital,
   removeSpecialtyFromHospital,
