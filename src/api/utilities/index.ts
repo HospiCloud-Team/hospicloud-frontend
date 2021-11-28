@@ -4,7 +4,7 @@ import { ITemplate } from "../../models/ITemplate";
 import { IHospital, INewHospital } from "../../models/IHospital";
 import { INewSpecialty, ISpecialty } from "../../models/ISpecialty";
 import { IDoctor } from "../../models/IDoctor";
-import { IAdmin } from "../../models/IAdmin";
+import { INewAdmin } from "../../models/IAdmin";
 
 // Templates
 const getTemplatesByHospital = (
@@ -62,7 +62,7 @@ const getDoctorsByHospitalId = (
 
 const getAdminsByHospitalId = (
   id: number
-): Promise<AxiosResponse<IAdmin[]>> => {
+): Promise<AxiosResponse<INewAdmin[]>> => {
   return UtilitiesAPI.get(`/hospitals/${id}/admins`);
 };
 
@@ -76,5 +76,5 @@ export {
   getHospital,
   registerHospital,
   getDoctorsByHospitalId,
-  getAdminsByHospitalId
+  getAdminsByHospitalId,
 };
