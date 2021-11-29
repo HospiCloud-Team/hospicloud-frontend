@@ -1,26 +1,51 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getParticularUser, updateParticularAdmin } from "../../../api/users";
-import { BackIcon } from "../styles/AddPersonnel.style";
-import ArrowLeft from "../../../resources/ArrowLeft.svg";
+import {
+  getParticularUser,
+  updateParticularDoctor,
+} from "../../../../api/users";
+import { getSpecialtyByHospital } from "../../../../api/utilities";
+import { IDoctor } from "../../../../models/IDoctor";
+import { BackIcon } from "../../styles/AddPersonnel.style";
+import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
-import { IAdmin } from "../../../models/IAdmin";
-import { ConfirmationModal } from "../../../components/ConfirmationModal";
+import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 
-type adminParams = {
+type SelectSpecialty = {
+  label: string;
+  value: number;
+};
+
+type doctorParams = {
   id: string;
 };
 
-export const PersonnelAdminDetail = () => {
-  const { id } = useParams<adminParams>();
+export const PersonnelDoctorDetail = () => {
+  const { id } = useParams<doctorParams>();
   let history = useHistory();
-  const [adminData, setAdminData] = useState<IAdmin>();
+  const [doctorData, setDoctorData] = useState<IDoctor>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
+  const [specialties, setSpecialties] = useState<SelectSpecialty[]>([
+    { label: "", value: 0 },
+  ]);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const getParticularAdmin = async () => {
-    const admin = await getParticularUser(id);
-    setAdminData(admin.data);
+  const getParticularDoctor = async () => {
+    const doctor = await getParticularUser(id);
+    setDoctorData(doctor.data);
+  };
+
+  const getSpecialties = async () => {
+    const hospitalSpecialties = await getSpecialtyByHospital(
+      Number(localStorage.getItem("hospitalId"))
+    );
+    const allSpecialties = hospitalSpecialties.data.map((item) => {
+      return {
+        label: item.name,
+        value: item.id,
+      };
+    });
+    setSpecialties(allSpecialties);
   };
 
   const handleEditClick = () => {
@@ -30,11 +55,10 @@ export const PersonnelAdminDetail = () => {
   const handleCancelClick = () => {
     setReadOnly(true);
     reset({
-      name: adminData?.name,
-      last_name: adminData?.last_name,
-      email: adminData?.email,
-      document_number: adminData?.document_number,
-      date_of_birth: adminData?.date_of_birth,
+      doctor: {
+        schedule: doctorData?.doctor.schedule,
+        specialties: doctorData?.doctor.specialties,
+      },
     });
   };
 
@@ -52,31 +76,26 @@ export const PersonnelAdminDetail = () => {
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      name: adminData?.name,
-      last_name: adminData?.last_name,
-      email: adminData?.email,
-      document_number: adminData?.document_number,
-      date_of_birth: adminData?.date_of_birth,
+      doctor: {
+        schedule: doctorData?.doctor.schedule,
+        specialties: doctorData?.doctor.specialties,
+      },
     },
   });
 
   const onSubmit = async (data: any) => {
     try {
-      const updatedAdminData = {
-        name: data.name,
-        last_name: data.last_name,
-        email: data.email,
-        document_number: data.document_number,
-        date_of_birth: data.date_of_birth,
+      const updatedDoctorData = {
+        doctor: {
+          schedule: data.doctor.schedule,
+          specialties: data.doctor.specialties,
+        },
       };
-
-      if (updatedAdminData) {
-        await updateParticularAdmin(
-          adminData?.id.toString() as string,
-          updatedAdminData
-        ).then((res) => {
-          console.log(res);
-        });
+      if (updatedDoctorData) {
+        await updateParticularDoctor(
+          doctorData?.id.toString() as string,
+          updatedDoctorData
+        );
       }
       updateModal(false);
       window.location.reload();
@@ -86,7 +105,8 @@ export const PersonnelAdminDetail = () => {
   };
 
   useEffect(() => {
-    getParticularAdmin();
+    getParticularDoctor();
+    getSpecialties();
   }, []);
   return (
     <div>
@@ -104,7 +124,7 @@ export const PersonnelAdminDetail = () => {
           Editar
         </button>
       </div>
-      <form id="personnel-admin-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="personnel-doctor-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
             <label style={{ fontSize: "24px" }} htmlFor="doctorName">
@@ -117,9 +137,8 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Nombre"
-              defaultValue={adminData?.name}
-              readOnly={readOnly}
-              {...register("name")}
+              value={doctorData?.name}
+              readOnly
             />
           </div>
         </div>
@@ -135,9 +154,8 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Apellido"
-              defaultValue={adminData?.last_name}
-              readOnly={readOnly}
-              {...register("last_name")}
+              value={doctorData?.last_name}
+              readOnly
             />
           </div>
         </div>
@@ -153,7 +171,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Rol"
-              defaultValue={adminData?.user_role}
+              value={doctorData?.user_role}
               readOnly
             />
           </div>
@@ -168,11 +186,11 @@ export const PersonnelAdminDetail = () => {
             <input
               id="doctorBirthDate"
               className="form-control form-control-lg"
-              type="date"
               placeholder="Fecha de Nacimiento"
-              defaultValue={adminData?.date_of_birth.toLocaleString()}
-              readOnly={readOnly}
-              {...register("date_of_birth")}
+              value={new Date(
+                doctorData?.date_of_birth as Date
+              ).toLocaleDateString()}
+              readOnly
             />
           </div>
         </div>
@@ -188,7 +206,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              defaultValue={adminData?.document_type}
+              value={doctorData?.document_type}
               readOnly
             />
           </div>
@@ -205,11 +223,66 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Documento"
-              defaultValue={adminData?.document_number}
-              readOnly={readOnly}
-              {...register("document_number")}
+              value={doctorData?.document_number}
+              readOnly
             />
           </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-2">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorSchedule">
+              Horario
+            </label>
+          </div>
+          <div className="col-9">
+            <input
+              id="doctorSchedule"
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Horario"
+              defaultValue={doctorData?.doctor.schedule}
+              readOnly={readOnly}
+              {...register("doctor.schedule")}
+            />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-3">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorSpecialties">
+              Especialidades
+            </label>
+          </div>
+          {readOnly && (
+            <div className="col-9">
+              <select
+                id="doctorSpecialties"
+                className="form-control form-control-lg"
+                placeholder="Especialidades"
+                multiple
+                disabled={readOnly}
+              >
+                {doctorData?.doctor.specialties.map((option) => {
+                  return <option value={option.id}>{option.name}</option>;
+                })}
+              </select>
+            </div>
+          )}
+          {!readOnly && (
+            <div className="col-9">
+              <select
+                id="doctorSpecialties"
+                form="hook-form"
+                className="form-select form-select-lg"
+                placeholder="Especialidades"
+                multiple
+                {...register("doctor.specialties", { required: true })}
+              >
+                {specialties.map((option) => {
+                  return <option value={option.value}>{option.label}</option>;
+                })}
+              </select>
+            </div>
+          )}
         </div>
         {!readOnly && (
           <div className="text-end">
@@ -221,7 +294,7 @@ export const PersonnelAdminDetail = () => {
               Guardar
             </button>
             <button
-              type="reset"
+              type="button"
               className="btn btn-secondary"
               onClick={handleCancelClick}
             >
@@ -233,11 +306,11 @@ export const PersonnelAdminDetail = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar las nuevas informaciones del administrador?"
+            content="Deseas guardar las nuevas informaciones del doctor?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}
-            formId={"personnel-admin-form"}
+            formId={"personnel-doctor-form"}
           />
         )}
       </form>

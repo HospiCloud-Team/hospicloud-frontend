@@ -1,48 +1,29 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getParticularUser, updateParticularDoctor } from "../../../api/users";
-import { getSpecialtyByHospital } from "../../../api/utilities";
-import { IDoctor } from "../../../models/IDoctor";
-import { BackIcon } from "../styles/AddPersonnel.style";
-import ArrowLeft from "../../../resources/ArrowLeft.svg";
+import {
+  getParticularUser,
+  updateParticularAdmin,
+} from "../../../../api/users";
+import { BackIcon } from "../../styles/AddPersonnel.style";
+import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
-import { ConfirmationModal } from "../../../components/ConfirmationModal";
+import { IAdmin } from "../../../../models/IAdmin";
+import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 
-type SelectSpecialty = {
-  label: string;
-  value: number;
-};
-
-type doctorParams = {
+type adminParams = {
   id: string;
 };
 
-export const PersonnelDoctorDetail = () => {
-  const { id } = useParams<doctorParams>();
+export const PersonnelAdminDetail = () => {
+  const { id } = useParams<adminParams>();
   let history = useHistory();
-  const [doctorData, setDoctorData] = useState<IDoctor>();
+  const [adminData, setAdminData] = useState<IAdmin>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
-  const [specialties, setSpecialties] = useState<SelectSpecialty[]>([
-    { label: "", value: 0 },
-  ]);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const getParticularDoctor = async () => {
-    const doctor = await getParticularUser(id);
-    setDoctorData(doctor.data);
-  };
-
-  const getSpecialties = async () => {
-    const hospitalSpecialties = await getSpecialtyByHospital(
-      Number(localStorage.getItem("hospitalId"))
-    );
-    const allSpecialties = hospitalSpecialties.data.map((item) => {
-      return {
-        label: item.name,
-        value: item.id,
-      };
-    });
-    setSpecialties(allSpecialties);
+  const getParticularAdmin = async () => {
+    const admin = await getParticularUser(id);
+    setAdminData(admin.data);
   };
 
   const handleEditClick = () => {
@@ -52,10 +33,11 @@ export const PersonnelDoctorDetail = () => {
   const handleCancelClick = () => {
     setReadOnly(true);
     reset({
-      doctor: {
-        schedule: doctorData?.doctor.schedule,
-        specialties: doctorData?.doctor.specialties,
-      },
+      name: adminData?.name,
+      last_name: adminData?.last_name,
+      email: adminData?.email,
+      document_number: adminData?.document_number,
+      date_of_birth: adminData?.date_of_birth,
     });
   };
 
@@ -73,25 +55,28 @@ export const PersonnelDoctorDetail = () => {
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      doctor: {
-        schedule: doctorData?.doctor.schedule,
-        specialties: doctorData?.doctor.specialties,
-      },
+      name: adminData?.name,
+      last_name: adminData?.last_name,
+      email: adminData?.email,
+      document_number: adminData?.document_number,
+      date_of_birth: adminData?.date_of_birth,
     },
   });
 
   const onSubmit = async (data: any) => {
     try {
-      const updatedDoctorData = {
-        doctor: {
-          schedule: data.doctor.schedule,
-          specialties: data.doctor.specialties,
-        },
+      const updatedAdminData = {
+        name: data.name,
+        last_name: data.last_name,
+        email: data.email,
+        document_number: data.document_number,
+        date_of_birth: data.date_of_birth,
       };
-      if (updatedDoctorData) {
-        await updateParticularDoctor(
-          doctorData?.id.toString() as string,
-          updatedDoctorData
+
+      if (updatedAdminData) {
+        await updateParticularAdmin(
+          adminData?.id.toString() as string,
+          updatedAdminData
         );
       }
       updateModal(false);
@@ -102,8 +87,7 @@ export const PersonnelDoctorDetail = () => {
   };
 
   useEffect(() => {
-    getParticularDoctor();
-    getSpecialties();
+    getParticularAdmin();
   }, []);
   return (
     <div>
@@ -121,7 +105,7 @@ export const PersonnelDoctorDetail = () => {
           Editar
         </button>
       </div>
-      <form id="personnel-doctor-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="personnel-admin-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
             <label style={{ fontSize: "24px" }} htmlFor="doctorName">
@@ -134,8 +118,9 @@ export const PersonnelDoctorDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Nombre"
-              value={doctorData?.name}
-              readOnly
+              defaultValue={adminData?.name}
+              readOnly={readOnly}
+              {...register("name")}
             />
           </div>
         </div>
@@ -151,8 +136,9 @@ export const PersonnelDoctorDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Apellido"
-              value={doctorData?.last_name}
-              readOnly
+              defaultValue={adminData?.last_name}
+              readOnly={readOnly}
+              {...register("last_name")}
             />
           </div>
         </div>
@@ -168,7 +154,7 @@ export const PersonnelDoctorDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Rol"
-              value={doctorData?.user_role}
+              defaultValue={adminData?.user_role}
               readOnly
             />
           </div>
@@ -183,11 +169,11 @@ export const PersonnelDoctorDetail = () => {
             <input
               id="doctorBirthDate"
               className="form-control form-control-lg"
+              type="date"
               placeholder="Fecha de Nacimiento"
-              value={new Date(
-                doctorData?.date_of_birth as Date
-              ).toLocaleDateString()}
-              readOnly
+              defaultValue={adminData?.date_of_birth.toLocaleString()}
+              readOnly={readOnly}
+              {...register("date_of_birth")}
             />
           </div>
         </div>
@@ -203,7 +189,7 @@ export const PersonnelDoctorDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              value={doctorData?.document_type}
+              defaultValue={adminData?.document_type}
               readOnly
             />
           </div>
@@ -220,66 +206,11 @@ export const PersonnelDoctorDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Documento"
-              value={doctorData?.document_number}
-              readOnly
-            />
-          </div>
-        </div>
-        <div className="d-flex flex-row form-group mb-2">
-          <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorSchedule">
-              Horario
-            </label>
-          </div>
-          <div className="col-9">
-            <input
-              id="doctorSchedule"
-              className="form-control form-control-lg"
-              type="text"
-              placeholder="Horario"
-              defaultValue={doctorData?.doctor.schedule}
+              defaultValue={adminData?.document_number}
               readOnly={readOnly}
-              {...register("doctor.schedule")}
+              {...register("document_number")}
             />
           </div>
-        </div>
-        <div className="d-flex flex-row form-group mb-3">
-          <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorSpecialties">
-              Especialidades
-            </label>
-          </div>
-          {readOnly && (
-            <div className="col-9">
-              <select
-                id="doctorSpecialties"
-                className="form-control form-control-lg"
-                placeholder="Especialidades"
-                multiple
-                disabled={readOnly}
-              >
-                {doctorData?.doctor.specialties.map((option) => {
-                  return <option value={option.id}>{option.name}</option>;
-                })}
-              </select>
-            </div>
-          )}
-          {!readOnly && (
-            <div className="col-9">
-              <select
-                id="doctorSpecialties"
-                form="hook-form"
-                className="form-select form-select-lg"
-                placeholder="Especialidades"
-                multiple
-                {...register("doctor.specialties", { required: true })}
-              >
-                {specialties.map((option) => {
-                  return <option value={option.value}>{option.label}</option>;
-                })}
-              </select>
-            </div>
-          )}
         </div>
         {!readOnly && (
           <div className="text-end">
@@ -291,7 +222,7 @@ export const PersonnelDoctorDetail = () => {
               Guardar
             </button>
             <button
-              type="button"
+              type="reset"
               className="btn btn-secondary"
               onClick={handleCancelClick}
             >
@@ -303,11 +234,11 @@ export const PersonnelDoctorDetail = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar las nuevas informaciones del doctor?"
+            content="Deseas guardar las nuevas informaciones del administrador?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}
-            formId={"personnel-doctor-form"}
+            formId={"personnel-admin-form"}
           />
         )}
       </form>
