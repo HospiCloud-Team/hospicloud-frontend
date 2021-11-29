@@ -1,6 +1,6 @@
 import Modal from "react-bootstrap/esm/Modal";
-import { removeSpecialtyFromHospital } from "../../../api/utilities";
-import { ISpecialty } from "../../../models/ISpecialty";
+import { removeSpecialtyFromHospital } from "../../../../../api/utilities";
+import { ISpecialty } from "../../../../../models/ISpecialty";
 
 interface RemoveSpecialtyModalProps {
   specialty?: ISpecialty;

@@ -34,25 +34,37 @@ const Routes = () => {
         <Route path={`${routes.HOSPITALS}/:id`}>
           <HospitalDetail />
         </Route>
+
         <PrivateRoute path={routes.PATIENT} exact>
           <DashboardPatient content="CheckupsList" />
         </PrivateRoute>
         <PrivateRoute path={`${routes.PATIENT_CHECKUPS}/:id`}>
           <DashboardPatient content="CheckupDetail" />
         </PrivateRoute>
+
         <PrivateRoute path={routes.DOCTOR} exact>
           <DashboardDoctor content="CheckupsList" />
         </PrivateRoute>
         <PrivateRoute path={routes.DOCTOR_NEW_CHECKUP}>
           <DashboardDoctor content="AddCheckup" />
         </PrivateRoute>
-
         <PrivateRoute path={`${routes.DOCTOR_CHECKUPS}/:id`}>
           <DashboardDoctor content="CheckupDetail" />
         </PrivateRoute>
+
         <PrivateRoute path={routes.ADMIN} exact>
           <DashboardAdmin content="ManageHospital" />
         </PrivateRoute>
+        <PrivateRoute path={routes.ADMIN_TEMPLATES} exact>
+          <DashboardAdmin content="TemplatesList" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.ADMIN_NEW_TEMPLATE}>
+          <DashboardAdmin content="AddTemplate" />
+        </PrivateRoute>
+        <PrivateRoute path={`${routes.ADMIN_TEMPLATES}/:id/editar`}>
+          <DashboardAdmin content="EditTemplate" />
+        </PrivateRoute>
+
         <PrivateRoute path={routes.PERSONNEL_LIST} exact>
           <DashboardAdmin content="PersonnelList" />
         </PrivateRoute>

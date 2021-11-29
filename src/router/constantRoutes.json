@@ -8,6 +8,8 @@
   "DOCTOR_CHECKUPS": "/doctor/consultas",
   "DOCTOR_NEW_CHECKUP": "/doctor/nueva-consulta",
   "ADMIN": "/admin",
+  "ADMIN_TEMPLATES": "/admin/plantillas",
+  "ADMIN_NEW_TEMPLATE": "/admin/nueva-plantilla",
   "PERSONNEL_LIST": "/admin/lista-personal",
   "REGISTER_ADMIN_PERSONNEL": "/admin/registrar-admin",
   "REGISTER_DOCTOR_PERSONNEL": "/admin/registrar-doctor",

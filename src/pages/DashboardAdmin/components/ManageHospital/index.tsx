@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { getHospital, getSpecialtyByHospital } from "../../../api/utilities";
-import { IHospital } from "../../../models/IHospital";
-import { ISpecialty } from "../../../models/ISpecialty";
-import AddSpecialtyModal from "./AddSpecialtyModal";
-import RemoveSpecialtyModal from "./RemoveSpecialtyModal";
-import routes from "../../../router/constantRoutes.json";
 import { useHistory } from "react-router";
+import { getHospital, getSpecialtyByHospital } from "../../../../api/utilities";
+import { IHospital } from "../../../../models/IHospital";
+import { ISpecialty } from "../../../../models/ISpecialty";
+import AddSpecialtyModal from "./components/AddSpecialtyModal";
+import RemoveSpecialtyModal from "./components/RemoveSpecialtyModal";
+import routes from "../../../../router/constantRoutes.json";
 
 const ManageHospital = () => {
-  let history = useHistory();
+  const history = useHistory();
   const [hospital, setHospital] = useState<IHospital>();
   const [specialties, setSpecialties] = useState<ISpecialty[]>([]);
   const [showAddSpecialtyModal, setShowAddSpecialtyModal] = useState(false);
@@ -97,7 +97,12 @@ const ManageHospital = () => {
             </button>
           </div>
           <div className="col-6 d-grid">
-            <button className="btn btn-secondary">Manejar Plantillas</button>
+            <button
+              className="btn btn-secondary"
+              onClick={() => history.push(routes.ADMIN_TEMPLATES)}
+            >
+              Manejar Plantillas
+            </button>
           </div>
         </div>
       </div>
