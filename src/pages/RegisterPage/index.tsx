@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "./document-type.json";
 import BloodyType from "./blood-type.json";
-import { IPatient } from "../../models/IPatient";
+import { INewPatient } from "../../models/IPatient";
 import { useHistory } from "react-router";
 import routes from "../../router/constantRoutes.json";
 
@@ -49,7 +49,7 @@ const RegisterPage = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      const patientData: IPatient = {
+      const patientData: INewPatient = {
         user_role: "patient",
         document_type: data.document_type,
         name: data.name,

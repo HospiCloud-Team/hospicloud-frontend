@@ -1,26 +1,27 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getParticularUser, updateParticularDoctor } from "../../../api/users";
-import { IDoctor } from "../../../models/IDoctor";
 import { BackIcon } from "../../DashboardAdmin/styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
+import { IPatient } from "../../../models/IPatient";
 
-type doctorParams = {
+type patientParams = {
   id: string;
 };
 
-export const DoctorProfile = () => {
-  const { id } = useParams<doctorParams>();
+export const PatientProfile = () => {
+  const { id } = useParams<patientParams>();
   let history = useHistory();
-  const [doctorData, setDoctorData] = useState<IDoctor>();
+  const [patientData, setPatientData] = useState<IPatient>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const getParticularDoctor = async () => {
-    const doctor = await getParticularUser(id);
-    setDoctorData(doctor.data);
+  const getParticularPatient = async () => {
+    const patient = await getParticularUser(id);
+    setPatientData(patient.data);
+    console.log(patient);
   };
 
   const handleEditClick = () => {
@@ -30,10 +31,10 @@ export const DoctorProfile = () => {
   const handleCancelClick = () => {
     setReadOnly(true);
     reset({
-      name: doctorData?.name,
-      last_name: doctorData?.last_name,
-      document_number: doctorData?.document_number,
-      date_of_birth: doctorData?.date_of_birth,
+      name: patientData?.name,
+      last_name: patientData?.last_name,
+      document_number: patientData?.document_number,
+      date_of_birth: patientData?.date_of_birth,
     });
   };
 
@@ -51,10 +52,10 @@ export const DoctorProfile = () => {
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      name: doctorData?.name,
-      last_name: doctorData?.last_name,
-      document_number: doctorData?.document_number,
-      date_of_birth: doctorData?.date_of_birth,
+      name: patientData?.name,
+      last_name: patientData?.last_name,
+      document_number: patientData?.document_number,
+      date_of_birth: patientData?.date_of_birth,
     },
   });
 
@@ -68,7 +69,7 @@ export const DoctorProfile = () => {
       };
       if (updatedDoctorData) {
         await updateParticularDoctor(
-          doctorData?.id.toString() as string,
+          patientData?.id.toString() as string,
           updatedDoctorData
         );
       }
@@ -80,7 +81,7 @@ export const DoctorProfile = () => {
   };
 
   useEffect(() => {
-    getParticularDoctor();
+    getParticularPatient();
   }, []);
   return (
     <div>
@@ -98,20 +99,20 @@ export const DoctorProfile = () => {
           Editar
         </button>
       </div>
-      <form id="personnel-doctor-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="patient-profile-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorName">
+            <label style={{ fontSize: "24px" }} htmlFor="patientName">
               Nombres
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorName"
+              id="patientName"
               className="form-control form-control-lg"
               type="text"
               placeholder="Nombre"
-              defaultValue={doctorData?.name}
+              defaultValue={patientData?.name}
               readOnly={readOnly}
               {...register("name")}
             />
@@ -119,17 +120,17 @@ export const DoctorProfile = () => {
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorLastName">
+            <label style={{ fontSize: "24px" }} htmlFor="patientLastName">
               Apellidos
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorLastName"
+              id="patientLastName"
               className="form-control form-control-lg"
               type="text"
               placeholder="Apellido"
-              defaultValue={doctorData?.last_name}
+              defaultValue={patientData?.last_name}
               readOnly={readOnly}
               {...register("last_name")}
             />
@@ -137,51 +138,51 @@ export const DoctorProfile = () => {
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorRole">
+            <label style={{ fontSize: "24px" }} htmlFor="patientRole">
               Rol
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorRole"
+              id="patientRole"
               className="form-control form-control-lg"
               type="text"
               placeholder="Rol"
-              defaultValue={doctorData?.user_role}
+              defaultValue={patientData?.user_role}
               readOnly
             />
           </div>
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorRole">
+            <label style={{ fontSize: "24px" }} htmlFor="patientEmail">
               Correo
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorRole"
+              id="patientEmail"
               className="form-control form-control-lg"
               type="text"
               placeholder="Correo"
-              defaultValue={doctorData?.email}
+              defaultValue={patientData?.email}
               readOnly
             />
           </div>
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorBirthDate">
+            <label style={{ fontSize: "24px" }} htmlFor="patientBirthDate">
               Fecha de Nacimiento
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorBirthDate"
+              id="patientBirthDate"
               type="date"
               className="form-control form-control-lg"
               placeholder="Fecha de Nacimiento"
-              defaultValue={doctorData?.date_of_birth.toLocaleString()}
+              defaultValue={patientData?.date_of_birth.toLocaleString()}
               readOnly={readOnly}
               {...register("date_of_birth")}
             />
@@ -189,34 +190,34 @@ export const DoctorProfile = () => {
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorDocType">
+            <label style={{ fontSize: "24px" }} htmlFor="patientDocType">
               Tipo de Documento
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorDocType"
+              id="patientDocType"
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              defaultValue={doctorData?.document_type}
+              defaultValue={patientData?.document_type}
               readOnly
             />
           </div>
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorDocNumber">
+            <label style={{ fontSize: "24px" }} htmlFor="patientDocNumber">
               Número de Documento
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorDocNumber"
+              id="patientDocNumber"
               className="form-control form-control-lg"
               type="text"
               placeholder="Documento"
-              defaultValue={doctorData?.document_number}
+              defaultValue={patientData?.document_number}
               readOnly={readOnly}
               {...register("document_number")}
             />
@@ -224,39 +225,36 @@ export const DoctorProfile = () => {
         </div>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorSchedule">
-              Horario
+            <label style={{ fontSize: "24px" }} htmlFor="patientBloodType">
+              Tipo de Sangre
             </label>
           </div>
           <div className="col-9">
             <input
-              id="doctorSchedule"
+              id="patientBloodType"
               className="form-control form-control-lg"
               type="text"
-              placeholder="Horario"
-              defaultValue={doctorData?.doctor.schedule}
+              placeholder="Tipo de Sangre"
+              defaultValue={patientData?.patient.blood_type}
               readOnly
             />
           </div>
         </div>
-        <div className="d-flex flex-row form-group mb-3">
+        <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
-            <label style={{ fontSize: "24px" }} htmlFor="doctorSpecialties">
-              Especialidades
+            <label style={{ fontSize: "24px" }} htmlFor="patientMedBackground">
+              Antecedentes Medicos
             </label>
           </div>
           <div className="col-9">
-            <select
-              id="doctorSpecialties"
+            <input
+              id="patientMedBackground"
               className="form-control form-control-lg"
-              placeholder="Especialidades"
-              multiple
-              disabled
-            >
-              {doctorData?.doctor.specialties.map((option) => {
-                return <option value={option.id}>{option.name}</option>;
-              })}
-            </select>
+              type="text"
+              placeholder="Antecedentes Medicos"
+              defaultValue={patientData?.patient.medical_background}
+              readOnly
+            />
           </div>
         </div>
         {!readOnly && (
@@ -281,11 +279,11 @@ export const DoctorProfile = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar las nuevas informaciones del doctor?"
+            content="Deseas guardar los cambios?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}
-            formId={"personnel-doctor-form"}
+            formId={"patient-profile-form"}
           />
         )}
       </form>
