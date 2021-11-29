@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import routes from "../router/constantRoutes.json";
 import { ReactComponent as LongLogo } from "../resources/longLogo.svg";
+import { useState } from "react";
 
 const Header = styled.nav`
   background-color: #e1e6f0;
@@ -11,10 +11,17 @@ const Header = styled.nav`
 
 interface DashboardHeaderProps {
   userRole: string;
+  userId?: string;
 }
 
-const DashboardHeader = ({ userRole }: DashboardHeaderProps) => {
-  const history = useHistory();
+const DashboardHeader = ({ userRole, userId }: DashboardHeaderProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const menuClass = `dropdown-menu${isOpen ? " show" : ""}`;
+
+  const toggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <Header>
       <div className="container-fluid container-md d-block d-sm-flex justify-content-between align-items-center">
@@ -24,15 +31,39 @@ const DashboardHeader = ({ userRole }: DashboardHeaderProps) => {
           </Link>
           <h5 className="m-0">- {userRole}</h5>
         </div>
-        <button
-          className="btn btn-outline-primary btn-sm"
-          onClick={() => {
-            localStorage.clear();
-            history.push(routes.HOME);
-          }}
-        >
-          Cerrar sesión
-        </button>
+        <div className="dropdown">
+          <button
+            className="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            onClick={toggleOpen}
+          >
+            Dropdown button
+          </button>
+          <div className={menuClass} aria-labelledby="dropdownMenuButton">
+            <Link
+              className="dropdown-item"
+              to={{ pathname: `/admin/admin-detalle/${userId as string}` }}
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Perfil
+            </Link>
+            <Link
+              className="dropdown-item"
+              to={routes.HOME}
+              onClick={() => {
+                localStorage.clear();
+              }}
+            >
+              Cerrar Sesión
+            </Link>
+          </div>
+        </div>
       </div>
     </Header>
   );

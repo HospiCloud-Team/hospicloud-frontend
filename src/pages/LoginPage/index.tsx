@@ -27,6 +27,7 @@ const LoginPage = () => {
         localStorage.setItem("doctorId", "1");
         localStorage.setItem("patientId", "1");
         localStorage.setItem("hospitalId", "1");
+        localStorage.setItem("userId", "6");
         history.push(routes.HOME);
       })
     );
