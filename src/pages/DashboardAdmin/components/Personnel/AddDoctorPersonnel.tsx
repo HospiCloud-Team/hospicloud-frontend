@@ -210,7 +210,7 @@ const AddDoctorPersonnel = () => {
               <ConfirmationModal
                 state={isShowModal}
                 title="Confirmación"
-                content="Estas seguro de registrar este nuevo administrador?"
+                content="¿Está seguro que desea registrar este nuevo administrador?"
                 button1Text="Cancelar"
                 button2Text="Confirmar"
                 handleShow={updateModal}

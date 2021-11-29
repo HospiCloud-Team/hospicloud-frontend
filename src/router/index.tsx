@@ -70,7 +70,6 @@ const Routes = () => {
         <PrivateRoute path={`${routes.ADMIN_TEMPLATES}/:id/editar`}>
           <DashboardAdmin content="EditTemplate" />
         </PrivateRoute>
-
         <PrivateRoute path={routes.PERSONNEL_LIST} exact>
           <DashboardAdmin content="PersonnelList" />
         </PrivateRoute>

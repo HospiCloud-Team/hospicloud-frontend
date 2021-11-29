@@ -4,15 +4,23 @@ import { ITemplate } from "../../../../models/ITemplate";
 import { getTemplatesByHospital } from "../../../../api/utilities";
 import TemplateItem from "./components/TemplateItem";
 import routes from "../../../../router/constantRoutes.json";
+import RemoveTemplateModal from "./components/RemoveTemplateModal";
 
 const TemplatesList = () => {
   const history = useHistory();
   const [templates, setTemplates] = useState<ITemplate[]>([]);
+  const [showRemoveTemplateModal, setShowRemoveTemplateModal] = useState(false);
+  const [selectedTemplate, setSelectedTemplate] = useState<ITemplate>();
 
   useEffect(() => {
     const hospitalId = Number(localStorage.getItem("hospitalId"));
     getTemplatesByHospital(hospitalId).then((res) => setTemplates(res.data));
-  }, []);
+  }, [showRemoveTemplateModal]);
+
+  const openRemoveTemplateModal = (template: ITemplate) => {
+    setSelectedTemplate(template);
+    setShowRemoveTemplateModal(true);
+  };
 
   return (
     <div>
@@ -36,8 +44,18 @@ const TemplatesList = () => {
         </div>
       </div>
       {templates.map((template) => (
-        <TemplateItem key={template.id} template={template} />
+        <TemplateItem
+          key={template.id}
+          template={template}
+          openRemoveTemplateModal={openRemoveTemplateModal}
+        />
       ))}
+
+      <RemoveTemplateModal
+        template={selectedTemplate}
+        show={showRemoveTemplateModal}
+        close={() => setShowRemoveTemplateModal(false)}
+      />
     </div>
   );
 };
