@@ -96,7 +96,7 @@ const RegisterAdmin = () => {
       <MultiBg>
         <FixedBox width="55" height="35">
           <form
-            id="hook-form"
+            id="register-hospital-and-admin-form"
             className="d-flex flex-row my-auto w-100 justify-content-between"
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -181,6 +181,7 @@ const RegisterAdmin = () => {
                 button1Text="Cancelar"
                 button2Text="Confirmar"
                 handleShow={updateModal}
+                formId={"register-hospital-and-admin-form"}
               />
             )}
           </form>

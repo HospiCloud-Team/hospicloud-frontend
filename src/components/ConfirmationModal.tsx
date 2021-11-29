@@ -8,6 +8,7 @@ type ConfirmationModalProps = {
   button1Text: string;
   button2Text: string;
   handleShow: (state: boolean) => void;
+  formId: string;
 };
 
 export const ConfirmationModal: FC<ConfirmationModalProps> = ({
@@ -17,6 +18,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   button1Text,
   button2Text,
   handleShow,
+  formId,
 }) => {
   const handleCloseClick = () => {
     handleShow(false);
@@ -33,7 +35,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
           <Button variant="secondary" onClick={handleCloseClick}>
             {button1Text}
           </Button>
-          <button type="submit" className="btn btn-primary" form="hook-form">
+          <button type="submit" className="btn btn-primary" form={formId}>
             {button2Text}
           </button>
         </Modal.Footer>

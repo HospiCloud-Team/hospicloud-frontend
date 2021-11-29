@@ -84,7 +84,7 @@ const AddAdminPersonnel = () => {
       <div className="d-flex justify-content-center align-items-center h-100">
         <FixedBox>
           <form
-            id="hook-form"
+            id="add-admin-form"
             className="row d-flex h-100"
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -164,6 +164,7 @@ const AddAdminPersonnel = () => {
                 button1Text="Cancelar"
                 button2Text="Confirmar"
                 handleShow={updateModal}
+                formId={"add-admin-form"}
               />
             )}
           </form>

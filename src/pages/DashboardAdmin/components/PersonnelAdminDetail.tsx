@@ -104,7 +104,7 @@ export const PersonnelAdminDetail = () => {
           Editar
         </button>
       </div>
-      <form id="hook-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="personnel-admin-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
             <label style={{ fontSize: "24px" }} htmlFor="doctorName">
@@ -237,6 +237,7 @@ export const PersonnelAdminDetail = () => {
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}
+            formId={"personnel-admin-form"}
           />
         )}
       </form>
