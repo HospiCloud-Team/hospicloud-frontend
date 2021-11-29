@@ -13,6 +13,7 @@ import {
   Border,
 } from "../styles/PersonnelList.style";
 import routes from "../../../router/constantRoutes.json";
+import { Link } from "react-router-dom";
 const PersonnelList = () => {
   const [admins, setAdmins] = useState<IAdmin[]>([]);
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
@@ -74,7 +75,15 @@ const PersonnelList = () => {
           </div>
           {admins.map((admin) => {
             return (
-              <div className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative">
+              <div
+                className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
+                onClick={() => {
+                  history.push({
+                    pathname: `/admin/admin-detail/${admin.id}`,
+                  });
+                }}
+                key={admin.id}
+              >
                 <div className="col-1 border-end">
                   <button className="btn btn-primary btn-sm stretched-link">
                     <i className="bi bi-person-badge"></i>
@@ -111,7 +120,15 @@ const PersonnelList = () => {
           </div>
           {doctors.map((doctor) => {
             return (
-              <div className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative">
+              <div
+                className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
+                onClick={() => {
+                  history.push({
+                    pathname: `/admin/doctor-detail/${doctor.id}`,
+                  });
+                }}
+                key={doctor.id}
+              >
                 <div className="col-1 border-end">
                   <button className="btn btn-primary btn-sm stretched-link">
                     <i className="bi bi-person-badge"></i>

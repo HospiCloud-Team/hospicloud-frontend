@@ -5,6 +5,8 @@ import ManageHospital from "./components/ManageHospital";
 import PersonnelList from "./components/PersonnelList";
 import AddAdminPersonnel from "./components/AddAdminPersonnel";
 import AddDoctorPersonnel from "./components/AddDoctorPersonnel";
+import { PersonnelDoctorDetail } from "./components/PersonnelDoctorDetail";
+import { PersonnelAdminDetail } from "./components/PersonnelAdminDetail";
 import TemplatesList from "./components/TemplatesList";
 import EditTemplate from "./components/EditTemplate";
 
@@ -14,6 +16,8 @@ interface DashboardAdminProps {
     | "PersonnelList"
     | "AddAdminPersonnel"
     | "AddDoctorPersonnel"
+    | "PersonnelDoctorDetail"
+    | "PersonnelAdminDetail"
     | "TemplatesList"
     | "AddTemplate"
     | "EditTemplate";
@@ -35,6 +39,10 @@ const renderContent = (content: string) => {
       return <AddAdminPersonnel />;
     case "AddDoctorPersonnel":
       return <AddDoctorPersonnel />;
+    case "PersonnelDoctorDetail":
+      return <PersonnelDoctorDetail />;
+    case "PersonnelAdminDetail":
+      return <PersonnelAdminDetail />;
     default:
       break;
   }

@@ -1,3 +1,5 @@
+import { ISpecialty } from "./ISpecialty";
+
 export interface INewDoctor {
   user_role: "doctor";
   document_type: string;
@@ -9,7 +11,7 @@ export interface INewDoctor {
   doctor: {
     hospital_id: number;
     schedule: string;
-    specialties: number[];
+    specialties: ISpecialty[];
   };
 }
 
@@ -18,7 +20,19 @@ export interface IDoctor extends INewDoctor {
   doctor: {
     hospital_id: number;
     schedule: string;
-    specialties: number[];
+    specialties: ISpecialty[];
     id: number;
+  };
+}
+
+export interface IUpdateDoctor {
+  name?: string;
+  last_name?: string;
+  email?: string;
+  document_number?: string;
+  date_of_birth?: Date;
+  doctor?: {
+    schedule?: string;
+    specialties?: ISpecialty[];
   };
 }

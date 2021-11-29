@@ -3,7 +3,7 @@ import { registerAdmin } from "../../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "./constants/document-type.json";
-import { IAdmin } from "../../../models/IAdmin";
+import { INewAdmin } from "../../../models/IAdmin";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
@@ -50,7 +50,7 @@ const AddAdminPersonnel = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      const adminData: IAdmin = {
+      const adminData: INewAdmin = {
         user_role: "admin",
         ...data,
         admin: {
@@ -84,7 +84,7 @@ const AddAdminPersonnel = () => {
       <div className="d-flex justify-content-center align-items-center h-100">
         <FixedBox>
           <form
-            id="hook-form"
+            id="add-admin-form"
             className="row d-flex h-100"
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -164,6 +164,7 @@ const AddAdminPersonnel = () => {
                 button1Text="Cancelar"
                 button2Text="Confirmar"
                 handleShow={updateModal}
+                formId={"add-admin-form"}
               />
             )}
           </form>
