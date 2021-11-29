@@ -26,6 +26,12 @@ const editTemplateOfHospital = (
   return UtilitiesAPI.put(`/templates/${id}`, updatedTemplate);
 };
 
+const getTemplatesByDoctor = (
+  id: number
+): Promise<AxiosResponse<ITemplate[]>> => {
+  return UtilitiesAPI.get(`/templates/doctors/${id}`);
+};
+
 // Specialties
 const getSpecialtyByHospital = (
   id: number
@@ -83,6 +89,7 @@ export {
   getTemplatesByHospital,
   addTemplateToHospital,
   editTemplateOfHospital,
+  getTemplatesByDoctor,
   getSpecialtyByHospital,
   addSpecialtyToHospital,
   removeSpecialtyFromHospital,
