@@ -8,12 +8,12 @@
   "DOCTOR_CHECKUPS": "/doctor/consultas",
   "DOCTOR_NEW_CHECKUP": "/doctor/nueva-consulta",
   "ADMIN": "/admin",
-  "PERSONNEL_LIST": "/admin/personnel-list",
-  "REGISTER_ADMIN_PERSONNEL": "/admin/register-admin",
-  "REGISTER_DOCTOR_PERSONNEL": "/admin/register-doctor",
-  "PERSONNEL_DOCTOR_DETAIL": "/admin/doctor-detail/:id",
-  "PERSONNEL_ADMIN_DETAIL": "/admin/admin-detail/:id",
-  "REGISTER": "/register",
-  "REGISTER_HOSPITAL": "/register-hospital",
-  "REGISTER_ADMIN": "/register-hospital/admin"
+  "PERSONNEL_LIST": "/admin/lista-personal",
+  "REGISTER_ADMIN_PERSONNEL": "/admin/registrar-admin",
+  "REGISTER_DOCTOR_PERSONNEL": "/admin/registrar-doctor",
+  "PERSONNEL_DOCTOR_DETAIL": "/admin/doctor-detalle/:id",
+  "PERSONNEL_ADMIN_DETAIL": "/admin/admin-detalle/:id",
+  "REGISTER": "/registrar",
+  "REGISTER_HOSPITAL": "/registrar-hospital",
+  "REGISTER_ADMIN": "/registrar-hospital/admin"
 }
