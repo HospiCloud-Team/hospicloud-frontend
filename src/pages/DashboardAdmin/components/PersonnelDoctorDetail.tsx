@@ -13,12 +13,12 @@ type SelectSpecialty = {
   value: number;
 };
 
-type doctorProps = {
+type doctorParams = {
   id: string;
 };
 
 export const PersonnelDoctorDetail = () => {
-  const { id } = useParams<doctorProps>();
+  const { id } = useParams<doctorParams>();
   let history = useHistory();
   const [doctorData, setDoctorData] = useState<IDoctor>();
   const [readOnly, setReadOnly] = useState<boolean>(true);

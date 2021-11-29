@@ -7,12 +7,12 @@ import { useHistory, useParams } from "react-router";
 import { IAdmin } from "../../../models/IAdmin";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
-type adminProps = {
+type adminParams = {
   id: string;
 };
 
 export const PersonnelAdminDetail = () => {
-  const { id } = useParams<adminProps>();
+  const { id } = useParams<adminParams>();
   let history = useHistory();
   const [adminData, setAdminData] = useState<IAdmin>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
