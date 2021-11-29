@@ -1,13 +1,11 @@
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useHistory } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { addCheckup } from "../../../api/checkups";
-import { getTemplatesByHospital } from "../../../api/utilities";
 import { INewCheckup } from "../../../models/ICheckup";
 import { ITemplate } from "../../../models/ITemplate";
 
 const AddCheckup = () => {
-  const [template, setTemplate] = useState<ITemplate>();
+  const { state: template } = useLocation<ITemplate>();
   const history = useHistory();
   const { register, handleSubmit } = useForm();
 
@@ -17,17 +15,13 @@ const AddCheckup = () => {
 
     const newCheckup: INewCheckup = {
       doctor_id: doctorId,
-      template_id: 1,
+      template_id: template.id,
       patient_id: Number(patient),
       data: JSON.stringify(responses),
     };
 
     addCheckup(newCheckup).then(() => history.goBack());
   });
-
-  useEffect(() => {
-    getTemplatesByHospital(1).then((res) => setTemplate(res.data[0]));
-  }, []);
 
   return (
     <div>
@@ -46,7 +40,7 @@ const AddCheckup = () => {
             <input
               className="form-control"
               placeholder="Número de identificación del paciente"
-              {...register("patient")}
+              {...register("patient", { required: true })}
             />
             <table className="table">
               <thead>
@@ -64,7 +58,7 @@ const AddCheckup = () => {
                         <input
                           className="form-control"
                           placeholder={question}
-                          {...register(question)}
+                          {...register(question, { required: true })}
                         />
                       </td>
                     </tr>
