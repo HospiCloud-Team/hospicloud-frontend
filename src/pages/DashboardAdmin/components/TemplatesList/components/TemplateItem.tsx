@@ -4,9 +4,13 @@ import routes from "../../../../../router/constantRoutes.json";
 
 interface TemplateItemProps {
   template: ITemplate;
+  openRemoveTemplateModal: (template: ITemplate) => void;
 }
 
-const TemplateItem = ({ template }: TemplateItemProps) => {
+const TemplateItem = ({
+  template,
+  openRemoveTemplateModal,
+}: TemplateItemProps) => {
   const history = useHistory();
 
   return (
@@ -28,7 +32,10 @@ const TemplateItem = ({ template }: TemplateItemProps) => {
         >
           <i className="bi bi-pencil-fill"></i>
         </button>
-        <button className="btn btn-danger" onClick={() => {}}>
+        <button
+          className="btn btn-danger"
+          onClick={() => openRemoveTemplateModal(template)}
+        >
           <i className="bi bi-trash"></i>
         </button>
       </div>

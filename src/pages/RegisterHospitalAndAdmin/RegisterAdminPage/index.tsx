@@ -177,7 +177,7 @@ const RegisterAdmin = () => {
               <ConfirmationModal
                 state={isShowModal}
                 title="Confirmación"
-                content="Estas seguro de registrar su Hospital y el respectivo administrador?"
+                content="¿Está seguro que desea registrar su Hospital y el respectivo administrador?"
                 button1Text="Cancelar"
                 button2Text="Confirmar"
                 handleShow={updateModal}
