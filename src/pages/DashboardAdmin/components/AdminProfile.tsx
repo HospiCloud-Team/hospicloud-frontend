@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import {
-  getParticularUser,
-  updateParticularAdmin,
-} from "../../../../api/users";
-import { BackIcon } from "../../styles/AddPersonnel.style";
-import ArrowLeft from "../../../../resources/ArrowLeft.svg";
+import { getParticularUser, updateParticularAdmin } from "../../../api/users";
+import { BackIcon } from "../styles/AddPersonnel.style";
+import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
-import { IAdmin } from "../../../../models/IAdmin";
-import { ConfirmationModal } from "../../../../components/ConfirmationModal";
+import { IAdmin } from "../../../models/IAdmin";
+import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
 type adminParams = {
   id: string;
@@ -155,6 +152,23 @@ export const AdminProfile = () => {
               type="text"
               placeholder="Rol"
               defaultValue={adminData?.user_role}
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-2">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorRole">
+              Correo
+            </label>
+          </div>
+          <div className="col-9">
+            <input
+              id="doctorRole"
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Rol"
+              value={adminData?.email}
               readOnly
             />
           </div>

@@ -9,7 +9,7 @@ import { PersonnelDoctorDetail } from "./components/Personnel/PersonnelDoctorDet
 import { PersonnelAdminDetail } from "./components/Personnel/PersonnelAdminDetail";
 import TemplatesList from "./components/TemplatesList";
 import EditTemplate from "./components/EditTemplate";
-import { AdminProfile } from "./components/Profile/AdminProfile";
+import { AdminProfile } from "./components/AdminProfile";
 
 interface DashboardAdminProps {
   content:

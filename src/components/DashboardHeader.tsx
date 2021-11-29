@@ -47,15 +47,39 @@ const DashboardHeader = ({ userRole, userId }: DashboardHeaderProps) => {
             <MenuIcon src={MenuListIcon} alt="Menu Icon" />
           </button>
           <div className={menuClass} aria-labelledby="dropdownMenuButton">
-            <Link
-              className="dropdown-item"
-              to={{ pathname: `/admin/${userId as string}/perfil` }}
-              onClick={() => {
-                setIsOpen(false);
-              }}
-            >
-              Perfil
-            </Link>
+            {userRole === "admin" && (
+              <Link
+                className="dropdown-item"
+                to={{ pathname: `/admin/${userId as string}/perfil` }}
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                Perfil
+              </Link>
+            )}
+            {userRole === "doctor" && (
+              <Link
+                className="dropdown-item"
+                to={{ pathname: `/doctor/${userId as string}/perfil` }}
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                Perfil
+              </Link>
+            )}
+            {userRole === "paciente" && (
+              <Link
+                className="dropdown-item"
+                to={{ pathname: `/paciente/${userId as string}/perfil` }}
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                Perfil
+              </Link>
+            )}
             <Link
               className="dropdown-item"
               to={routes.HOME}
