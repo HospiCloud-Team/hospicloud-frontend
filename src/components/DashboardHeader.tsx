@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import routes from "../router/constantRoutes.json";
 import { ReactComponent as LongLogo } from "../resources/longLogo.svg";
 import { useState } from "react";
+import MenuListIcon from "../resources/List.svg";
+import { MenuIcon } from "./style/style";
 
 const Header = styled.nav`
   background-color: #e1e6f0;
@@ -33,7 +35,7 @@ const DashboardHeader = ({ userRole, userId }: DashboardHeaderProps) => {
         </div>
         <div className="dropdown">
           <button
-            className="btn btn-secondary dropdown-toggle"
+            className="btn btn-deafult"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -41,12 +43,13 @@ const DashboardHeader = ({ userRole, userId }: DashboardHeaderProps) => {
             aria-expanded="false"
             onClick={toggleOpen}
           >
-            Dropdown button
+            {/* Dropdown button */}
+            <MenuIcon src={MenuListIcon} alt="Menu Icon" />
           </button>
           <div className={menuClass} aria-labelledby="dropdownMenuButton">
             <Link
               className="dropdown-item"
-              to={{ pathname: `/admin/admin-detalle/${userId as string}` }}
+              to={{ pathname: `/admin/${userId as string}/perfil` }}
               onClick={() => {
                 setIsOpen(false);
               }}
