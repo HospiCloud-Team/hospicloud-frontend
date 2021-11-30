@@ -17,9 +17,11 @@ const ManageHospital = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState<ISpecialty>();
 
   useEffect(() => {
-    const hospitalId = Number(localStorage.getItem("hospitalId"));
-    getHospital(hospitalId).then((res) => setHospital(res.data));
-    getSpecialtyByHospital(hospitalId).then((res) => setSpecialties(res.data));
+    const hospitalId = localStorage.getItem("hospitalId");
+    getHospital(hospitalId as string).then((res) => setHospital(res.data));
+    getSpecialtyByHospital(Number(hospitalId)).then((res) =>
+      setSpecialties(res.data)
+    );
   }, [showRemoveSpecialtyModal, showAddSpecialtyModal]);
 
   return (
@@ -29,7 +31,11 @@ const ManageHospital = () => {
           <h1 className="fs-2">{hospital?.name}</h1>
           <div>
             <button
-              onClick={() => {}}
+              onClick={() => {
+                history.push({
+                  pathname: `/admin/hospital-detalle/${hospital?.id}`,
+                });
+              }}
               className="btn btn-outline-secondary btn-sm"
             >
               Editar información de hospital

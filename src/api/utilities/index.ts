@@ -72,8 +72,15 @@ const getHospitalsByName = (
   return UtilitiesAPI.get(`/hospitals?name=${name}`);
 };
 
-const getHospital = (id: number): Promise<AxiosResponse<IHospital>> => {
+const getHospital = (id: string): Promise<AxiosResponse<IHospital>> => {
   return UtilitiesAPI.get(`/hospitals/${id}`);
+};
+
+const updateHospital = (
+  id: string,
+  hospitalData: INewHospital
+): Promise<AxiosResponse<IHospital>> => {
+  return UtilitiesAPI.put(`hospitals/${id}`, hospitalData);
 };
 
 //Users
@@ -101,6 +108,7 @@ export {
   getAllHospitals,
   getHospitalsByName,
   getHospital,
+  updateHospital,
   registerHospital,
   getDoctorsByHospitalId,
   getAdminsByHospitalId,
