@@ -3,17 +3,17 @@ import { useHistory } from "react-router";
 import {
   getAdminsByHospitalId,
   getDoctorsByHospitalId,
-} from "../../../api/utilities";
-import { IAdmin } from "../../../models/IAdmin";
-import { IDoctor } from "../../../models/IDoctor";
+} from "../../../../api/utilities";
+import { IAdmin } from "../../../../models/IAdmin";
+import { IDoctor } from "../../../../models/IDoctor";
 import {
   AddButton,
   PersonnelContainer,
   Title,
   Border,
-} from "../styles/PersonnelList.style";
-import routes from "../../../router/constantRoutes.json";
-import { Link } from "react-router-dom";
+} from "../../styles/PersonnelList.style";
+import routes from "../../../../router/constantRoutes.json";
+
 const PersonnelList = () => {
   const [admins, setAdmins] = useState<IAdmin[]>([]);
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
@@ -93,7 +93,7 @@ const PersonnelList = () => {
                 className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
                 onClick={() => {
                   history.push({
-                    pathname: `/admin/admin-detail/${admin.id}`,
+                    pathname: `/admin/admin-detalle/${admin.id}`,
                   });
                 }}
                 key={admin.id}
@@ -140,7 +140,7 @@ const PersonnelList = () => {
                 className="row bg-white mx-0 my-3 p-3 rounded-2 position-relative"
                 onClick={() => {
                   history.push({
-                    pathname: `/admin/doctor-detail/${doctor.id}`,
+                    pathname: `/admin/doctor-detalle/${doctor.id}`,
                   });
                 }}
                 key={doctor.id}

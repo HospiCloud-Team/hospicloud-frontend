@@ -1,14 +1,18 @@
-import { FixedBox, LoginTitle, BackIcon } from "../styles/AddPersonnel.style";
-import { registerDoctor } from "../../../api/users/index";
+import {
+  FixedBox,
+  LoginTitle,
+  BackIcon,
+} from "../../styles/AddPersonnel.style";
+import { registerDoctor } from "../../../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import DocumentType from "./constants/document-type.json";
+import DocumentType from "../constants/document-type.json";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
-import { ConfirmationModal } from "../../../components/ConfirmationModal";
-import ArrowLeft from "../../../resources/ArrowLeft.svg";
-import { getSpecialtyByHospital } from "../../../api/utilities";
-import { INewDoctor } from "../../../models/IDoctor";
+import { ConfirmationModal } from "../../../../components/ConfirmationModal";
+import ArrowLeft from "../../../../resources/ArrowLeft.svg";
+import { getSpecialtyByHospital } from "../../../../api/utilities";
+import { INewDoctor } from "../../../../models/IDoctor";
 
 type SelectSpecialty = {
   label: string;

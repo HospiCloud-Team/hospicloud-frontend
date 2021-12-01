@@ -3,9 +3,10 @@ import roles from "../../constants/constantsRoles.json";
 import CheckupsList from "./components/CheckupsList";
 import CheckupsDetail from "./components/CheckupsDetail";
 import AddCheckup from "./components/AddCheckup";
+import { DoctorProfile } from "./components/DoctorProfile";
 
 interface DashboardDoctorProps {
-  content: "CheckupsList" | "CheckupDetail" | "AddCheckup";
+  content: "CheckupsList" | "CheckupDetail" | "AddCheckup" | "DoctorProfile";
 }
 
 const renderContent = (content: string) => {
@@ -16,6 +17,8 @@ const renderContent = (content: string) => {
       return <CheckupsDetail />;
     case "AddCheckup":
       return <AddCheckup />;
+    case "DoctorProfile":
+      return <DoctorProfile />;
     default:
       break;
   }

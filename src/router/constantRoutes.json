@@ -17,5 +17,8 @@
   "PERSONNEL_ADMIN_DETAIL": "/admin/admin-detalle/:id",
   "REGISTER": "/registrar",
   "REGISTER_HOSPITAL": "/registrar-hospital",
-  "REGISTER_ADMIN": "/registrar-hospital/admin"
+  "REGISTER_ADMIN": "/registrar-hospital/admin",
+  "ADMIN_PROFILE": "/admin/:id/perfil",
+  "DOCTOR_PROFILE": "/doctor/:id/perfil",
+  "PATIENT_PROFILE": "/paciente/:id/perfil"
 }
