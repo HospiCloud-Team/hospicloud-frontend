@@ -1,26 +1,26 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getParticularUser, updateParticularAdmin } from "../../../api/users";
-import { BackIcon } from "../styles/AddPersonnel.style";
+import { getParticularUser, updateParticularDoctor } from "../../../api/users";
+import { IDoctor } from "../../../models/IDoctor";
+import { BackIcon } from "../../DashboardAdmin/styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
-import { IAdmin } from "../../../models/IAdmin";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
 
-type adminParams = {
+type doctorParams = {
   id: string;
 };
 
-export const PersonnelAdminDetail = () => {
-  const { id } = useParams<adminParams>();
+export const DoctorProfile = () => {
+  const { id } = useParams<doctorParams>();
   let history = useHistory();
-  const [adminData, setAdminData] = useState<IAdmin>();
+  const [doctorData, setDoctorData] = useState<IDoctor>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
 
-  const getParticularAdmin = async () => {
-    const admin = await getParticularUser(id);
-    setAdminData(admin.data);
+  const getParticularDoctor = async () => {
+    const doctor = await getParticularUser(id);
+    setDoctorData(doctor.data);
   };
 
   const handleEditClick = () => {
@@ -30,11 +30,10 @@ export const PersonnelAdminDetail = () => {
   const handleCancelClick = () => {
     setReadOnly(true);
     reset({
-      name: adminData?.name,
-      last_name: adminData?.last_name,
-      email: adminData?.email,
-      document_number: adminData?.document_number,
-      date_of_birth: adminData?.date_of_birth,
+      name: doctorData?.name,
+      last_name: doctorData?.last_name,
+      document_number: doctorData?.document_number,
+      date_of_birth: doctorData?.date_of_birth,
     });
   };
 
@@ -52,31 +51,26 @@ export const PersonnelAdminDetail = () => {
 
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
-      name: adminData?.name,
-      last_name: adminData?.last_name,
-      email: adminData?.email,
-      document_number: adminData?.document_number,
-      date_of_birth: adminData?.date_of_birth,
+      name: doctorData?.name,
+      last_name: doctorData?.last_name,
+      document_number: doctorData?.document_number,
+      date_of_birth: doctorData?.date_of_birth,
     },
   });
 
   const onSubmit = async (data: any) => {
     try {
-      const updatedAdminData = {
+      const updatedDoctorData = {
         name: data.name,
         last_name: data.last_name,
-        email: data.email,
         document_number: data.document_number,
         date_of_birth: data.date_of_birth,
       };
-
-      if (updatedAdminData) {
-        await updateParticularAdmin(
-          adminData?.id.toString() as string,
-          updatedAdminData
-        ).then((res) => {
-          console.log(res);
-        });
+      if (updatedDoctorData) {
+        await updateParticularDoctor(
+          doctorData?.id.toString() as string,
+          updatedDoctorData
+        );
       }
       updateModal(false);
       window.location.reload();
@@ -86,7 +80,7 @@ export const PersonnelAdminDetail = () => {
   };
 
   useEffect(() => {
-    getParticularAdmin();
+    getParticularDoctor();
   }, []);
   return (
     <div>
@@ -104,7 +98,7 @@ export const PersonnelAdminDetail = () => {
           Editar
         </button>
       </div>
-      <form id="personnel-admin-form" onSubmit={handleSubmit(onSubmit)}>
+      <form id="personnel-doctor-form" onSubmit={handleSubmit(onSubmit)}>
         <div className="d-flex flex-row form-group mb-2">
           <div className="col-3">
             <label style={{ fontSize: "24px" }} htmlFor="doctorName">
@@ -117,7 +111,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Nombre"
-              defaultValue={adminData?.name}
+              defaultValue={doctorData?.name}
               readOnly={readOnly}
               {...register("name")}
             />
@@ -135,7 +129,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Apellido"
-              defaultValue={adminData?.last_name}
+              defaultValue={doctorData?.last_name}
               readOnly={readOnly}
               {...register("last_name")}
             />
@@ -153,7 +147,24 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Rol"
-              defaultValue={adminData?.user_role}
+              defaultValue={doctorData?.user_role}
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-2">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorRole">
+              Correo
+            </label>
+          </div>
+          <div className="col-9">
+            <input
+              id="doctorRole"
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Correo"
+              defaultValue={doctorData?.email}
               readOnly
             />
           </div>
@@ -167,10 +178,10 @@ export const PersonnelAdminDetail = () => {
           <div className="col-9">
             <input
               id="doctorBirthDate"
-              className="form-control form-control-lg"
               type="date"
+              className="form-control form-control-lg"
               placeholder="Fecha de Nacimiento"
-              defaultValue={adminData?.date_of_birth.toLocaleString()}
+              defaultValue={doctorData?.date_of_birth.toLocaleString()}
               readOnly={readOnly}
               {...register("date_of_birth")}
             />
@@ -188,7 +199,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              defaultValue={adminData?.document_type}
+              defaultValue={doctorData?.document_type}
               readOnly
             />
           </div>
@@ -205,10 +216,47 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Documento"
-              defaultValue={adminData?.document_number}
+              defaultValue={doctorData?.document_number}
               readOnly={readOnly}
               {...register("document_number")}
             />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-2">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorSchedule">
+              Horario
+            </label>
+          </div>
+          <div className="col-9">
+            <input
+              id="doctorSchedule"
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Horario"
+              defaultValue={doctorData?.doctor.schedule}
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-3">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorSpecialties">
+              Especialidades
+            </label>
+          </div>
+          <div className="col-9">
+            <select
+              id="doctorSpecialties"
+              className="form-control form-control-lg"
+              placeholder="Especialidades"
+              multiple
+              disabled
+            >
+              {doctorData?.doctor.specialties.map((option) => {
+                return <option value={option.id}>{option.name}</option>;
+              })}
+            </select>
           </div>
         </div>
         {!readOnly && (
@@ -221,7 +269,7 @@ export const PersonnelAdminDetail = () => {
               Guardar
             </button>
             <button
-              type="reset"
+              type="button"
               className="btn btn-secondary"
               onClick={handleCancelClick}
             >
@@ -233,11 +281,11 @@ export const PersonnelAdminDetail = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar las nuevas informaciones del administrador?"
+            content="Deseas guardar las nuevas informaciones del doctor?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}
-            formId={"personnel-admin-form"}
+            formId={"personnel-doctor-form"}
           />
         )}
       </form>

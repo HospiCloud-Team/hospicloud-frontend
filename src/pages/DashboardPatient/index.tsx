@@ -2,9 +2,10 @@ import DashboardLayout from "../../layout/DashboardLayout";
 import roles from "../../constants/constantsRoles.json";
 import CheckupsList from "./components/CheckupsList";
 import CheckupsDetail from "./components/CheckupsDetail";
+import { PatientProfile } from "./components/PatientProfile";
 
 interface DashboardPatientProps {
-  content: "CheckupsList" | "CheckupDetail";
+  content: "CheckupsList" | "CheckupDetail" | "PatientProfile";
 }
 
 const renderContent = (content: string) => {
@@ -13,6 +14,8 @@ const renderContent = (content: string) => {
       return <CheckupsList />;
     case "CheckupDetail":
       return <CheckupsDetail />;
+    case "PatientProfile":
+      return <PatientProfile />;
     default:
       break;
   }

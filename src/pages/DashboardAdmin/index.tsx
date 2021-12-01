@@ -2,14 +2,15 @@ import DashboardLayout from "../../layout/DashboardLayout";
 import roles from "../../constants/constantsRoles.json";
 import AddTemplate from "./components/AddTemplate";
 import ManageHospital from "./components/ManageHospital";
-import PersonnelList from "./components/PersonnelList";
-import AddAdminPersonnel from "./components/AddAdminPersonnel";
-import AddDoctorPersonnel from "./components/AddDoctorPersonnel";
-import { PersonnelDoctorDetail } from "./components/PersonnelDoctorDetail";
-import { PersonnelAdminDetail } from "./components/PersonnelAdminDetail";
+import PersonnelList from "./components/Personnel/PersonnelList";
+import AddAdminPersonnel from "./components/Personnel/AddAdminPersonnel";
+import AddDoctorPersonnel from "./components/Personnel/AddDoctorPersonnel";
+import { PersonnelDoctorDetail } from "./components/Personnel/PersonnelDoctorDetail";
+import { PersonnelAdminDetail } from "./components/Personnel/PersonnelAdminDetail";
 import TemplatesList from "./components/TemplatesList";
 import EditTemplate from "./components/EditTemplate";
 import { HospitalDetailByAdmin } from "./components/ManageHospital/components/HospitalDetailByAdmin";
+import { AdminProfile } from "./components/AdminProfile";
 
 interface DashboardAdminProps {
   content:
@@ -22,7 +23,8 @@ interface DashboardAdminProps {
     | "TemplatesList"
     | "AddTemplate"
     | "EditTemplate"
-    | "HospitalDetail";
+    | "HospitalDetail"
+    | "AdminProfile";
 }
 
 const renderContent = (content: string) => {
@@ -47,6 +49,8 @@ const renderContent = (content: string) => {
       return <PersonnelAdminDetail />;
     case "HospitalDetail":
       return <HospitalDetailByAdmin />;
+    case "AdminProfile":
+      return <AdminProfile />;
     default:
       break;
   }
