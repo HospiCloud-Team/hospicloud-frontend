@@ -67,6 +67,7 @@ export const HospitalDetailByAdmin = () => {
 
   const onSubmit = async (data: any) => {
     try {
+      console.log(data);
       const updateHospitalData = {
         name: data.name,
         schedule: data.schedule,
@@ -85,16 +86,17 @@ export const HospitalDetailByAdmin = () => {
           console.log(res);
         });
       }
-      updateModal(false);
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
+    setReadOnly(true);
+    updateModal(false);
   };
 
   useEffect(() => {
     getParticularHospital();
-  }, []);
+  }, [isShowModal]);
   return (
     <div>
       <div className="d-flex flex-row justify-content-between w-100 mb-3">
