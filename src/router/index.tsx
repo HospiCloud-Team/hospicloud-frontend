@@ -85,6 +85,9 @@ const Routes = () => {
         <PrivateRoute path={routes.PERSONNEL_ADMIN_DETAIL} exact>
           <DashboardAdmin content="PersonnelAdminDetail" />
         </PrivateRoute>
+        <PrivateRoute path={routes.HOSPITAL_DETAIL} exact>
+          <DashboardAdmin content="HospitalDetail" />
+        </PrivateRoute>
         <PrivateRoute path={routes.ADMIN_PROFILE} exact>
           <DashboardAdmin content="AdminProfile" />
         </PrivateRoute>

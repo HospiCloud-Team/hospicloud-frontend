@@ -16,7 +16,7 @@ const HospitalDetail = () => {
   const [doctors, setDoctors] = useState<IDoctor[]>([]);
 
   if (!hospital) {
-    getHospital(Number(id)).then((res) => {
+    getHospital(id).then((res) => {
       setHospital(res.data);
     });
   }

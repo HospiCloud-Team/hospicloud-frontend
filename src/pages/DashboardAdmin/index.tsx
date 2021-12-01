@@ -9,6 +9,7 @@ import { PersonnelDoctorDetail } from "./components/Personnel/PersonnelDoctorDet
 import { PersonnelAdminDetail } from "./components/Personnel/PersonnelAdminDetail";
 import TemplatesList from "./components/TemplatesList";
 import EditTemplate from "./components/EditTemplate";
+import { HospitalDetailByAdmin } from "./components/ManageHospital/components/HospitalDetailByAdmin";
 import { AdminProfile } from "./components/AdminProfile";
 
 interface DashboardAdminProps {
@@ -22,6 +23,7 @@ interface DashboardAdminProps {
     | "TemplatesList"
     | "AddTemplate"
     | "EditTemplate"
+    | "HospitalDetail"
     | "AdminProfile";
 }
 
@@ -45,6 +47,8 @@ const renderContent = (content: string) => {
       return <PersonnelDoctorDetail />;
     case "PersonnelAdminDetail":
       return <PersonnelAdminDetail />;
+    case "HospitalDetail":
+      return <HospitalDetailByAdmin />;
     case "AdminProfile":
       return <AdminProfile />;
     default:
