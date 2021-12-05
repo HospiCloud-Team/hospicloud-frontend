@@ -9,6 +9,7 @@ import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { IAdmin } from "../../../../models/IAdmin";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
+import Documents from "../constants/document-type.json";
 
 type adminParams = {
   id: string;
@@ -20,10 +21,21 @@ export const PersonnelAdminDetail = () => {
   const [adminData, setAdminData] = useState<IAdmin>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [documentType, setDocumentType] = useState<string>("");
+
+  const getDocumentType = (documentType: any) => {
+    // eslint-disable-next-line array-callback-return
+    Documents.map((document) => {
+      if (document.id === documentType) {
+        setDocumentType(document.value);
+      }
+    });
+  };
 
   const getParticularAdmin = async () => {
     const admin = await getParticularUser(id);
     setAdminData(admin.data);
+    getDocumentType(admin.data.document_type);
   };
 
   const handleEditClick = () => {
@@ -80,7 +92,6 @@ export const PersonnelAdminDetail = () => {
         );
       }
       updateModal(false);
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -189,7 +200,7 @@ export const PersonnelAdminDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              defaultValue={adminData?.document_type}
+              defaultValue={documentType}
               readOnly
             />
           </div>

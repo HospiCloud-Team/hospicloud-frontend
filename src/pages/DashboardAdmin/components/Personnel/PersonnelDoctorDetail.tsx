@@ -10,6 +10,7 @@ import { BackIcon } from "../../styles/AddPersonnel.style";
 import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
+import Documents from "../constants/document-type.json";
 
 type SelectSpecialty = {
   label: string;
@@ -29,10 +30,21 @@ export const PersonnelDoctorDetail = () => {
     { label: "", value: 0 },
   ]);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [documentType, setDocumentType] = useState<string>("");
+
+  const getDocumentType = (documentType: any) => {
+    // eslint-disable-next-line array-callback-return
+    Documents.map((document) => {
+      if (document.id === documentType) {
+        setDocumentType(document.value);
+      }
+    });
+  };
 
   const getParticularDoctor = async () => {
     const doctor = await getParticularUser(id);
     setDoctorData(doctor.data);
+    getDocumentType(doctor.data.document_type);
   };
 
   const getSpecialties = async () => {
@@ -206,7 +218,7 @@ export const PersonnelDoctorDetail = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              value={doctorData?.document_type}
+              value={documentType}
               readOnly
             />
           </div>
