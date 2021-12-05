@@ -10,7 +10,7 @@ import { BackIcon } from "../../styles/AddPersonnel.style";
 import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
-import Documents from "../constants/document-type.json";
+import Documents from "../../../../constants/document-type.json";
 
 type SelectSpecialty = {
   label: string;
@@ -110,7 +110,7 @@ export const PersonnelDoctorDetail = () => {
         );
       }
       updateModal(false);
-      window.location.reload();
+      setReadOnly(true);
     } catch (error) {
       console.log(error);
     }

@@ -6,6 +6,7 @@ import { BackIcon } from "../../DashboardAdmin/styles/AddPersonnel.style";
 import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
+import Documents from "../../../constants/document-type.json";
 
 type doctorParams = {
   id: string;
@@ -17,10 +18,21 @@ export const DoctorProfile = () => {
   const [doctorData, setDoctorData] = useState<IDoctor>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [documentType, setDocumentType] = useState<string>("");
+
+  const getDocumentType = (documentType: any) => {
+    // eslint-disable-next-line array-callback-return
+    Documents.map((document) => {
+      if (document.id === documentType) {
+        setDocumentType(document.value);
+      }
+    });
+  };
 
   const getParticularDoctor = async () => {
     const doctor = await getParticularUser(id);
     setDoctorData(doctor.data);
+    getDocumentType(doctor.data.document_type);
   };
 
   const handleEditClick = () => {
@@ -73,7 +85,7 @@ export const DoctorProfile = () => {
         );
       }
       updateModal(false);
-      window.location.reload();
+      setReadOnly(true);
     } catch (error) {
       console.log(error);
     }
@@ -199,7 +211,7 @@ export const DoctorProfile = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              defaultValue={doctorData?.document_type}
+              defaultValue={documentType}
               readOnly
             />
           </div>

@@ -9,7 +9,7 @@ import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { IAdmin } from "../../../../models/IAdmin";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
-import Documents from "../constants/document-type.json";
+import Documents from "../../../../constants/document-type.json";
 
 type adminParams = {
   id: string;

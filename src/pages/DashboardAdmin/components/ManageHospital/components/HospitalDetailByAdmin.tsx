@@ -6,7 +6,7 @@ import { useHistory, useParams } from "react-router";
 import { IHospital } from "../../../../../models/IHospital";
 import { ConfirmationModal } from "../../../../../components/ConfirmationModal";
 import { getHospital, updateHospital } from "../../../../../api/utilities";
-import Province from "../../../../RegisterHospitalAndAdmin/RegisterHospitalPage/province.json";
+import Province from "../../../../../constants/province.json";
 
 type hospitalParams = {
   id: string;

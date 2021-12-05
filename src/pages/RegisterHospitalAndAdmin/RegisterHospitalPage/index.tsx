@@ -7,7 +7,7 @@ import {
 } from "../../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
 import { useForm } from "react-hook-form";
-import Province from "./province.json";
+import Province from "../../../constants/province.json";
 import { useHistory } from "react-router";
 import routes from "../../../router/constantRoutes.json";
 import { useContext } from "react";

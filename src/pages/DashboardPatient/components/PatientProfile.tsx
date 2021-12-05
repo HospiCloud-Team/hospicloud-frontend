@@ -6,6 +6,8 @@ import ArrowLeft from "../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
 import { IPatient } from "../../../models/IPatient";
+import Documents from "../../../constants/document-type.json";
+import BloodType from "../../../constants/blood-type.json";
 
 type patientParams = {
   id: string;
@@ -17,11 +19,33 @@ export const PatientProfile = () => {
   const [patientData, setPatientData] = useState<IPatient>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [documentType, setDocumentType] = useState<string>("");
+  const [bloodType, setBloodType] = useState<string>("");
+
+  const getDocumentType = (documentType: any) => {
+    // eslint-disable-next-line array-callback-return
+    Documents.map((document) => {
+      if (document.id === documentType) {
+        setDocumentType(document.value);
+      }
+    });
+  };
+
+  const getBloodType = (bloodType: any) => {
+    // eslint-disable-next-line array-callback-return
+    BloodType.map((blood) => {
+      if (blood.id === bloodType) {
+        console.log(blood.id);
+        setBloodType(blood.value);
+      }
+    });
+  };
 
   const getParticularPatient = async () => {
     const patient = await getParticularUser(id);
     setPatientData(patient.data);
-    console.log(patient);
+    getDocumentType(patient.data.document_type);
+    getBloodType(patient.data.patient.blood_type);
   };
 
   const handleEditClick = () => {
@@ -74,7 +98,7 @@ export const PatientProfile = () => {
         );
       }
       updateModal(false);
-      window.location.reload();
+      setReadOnly(true);
     } catch (error) {
       console.log(error);
     }
@@ -200,7 +224,7 @@ export const PatientProfile = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Documento"
-              defaultValue={patientData?.document_type}
+              defaultValue={documentType}
               readOnly
             />
           </div>
@@ -235,7 +259,7 @@ export const PatientProfile = () => {
               className="form-control form-control-lg"
               type="text"
               placeholder="Tipo de Sangre"
-              defaultValue={patientData?.patient.blood_type}
+              defaultValue={bloodType}
               readOnly
             />
           </div>
