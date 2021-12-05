@@ -18,10 +18,21 @@ export const HospitalDetailByAdmin = () => {
   const [hospitalData, setHospitalData] = useState<IHospital>();
   const [readOnly, setReadOnly] = useState<boolean>(true);
   const [isShowModal, setIsShowModal] = useState(false);
+  const [particularProvince, setParticularProvince] = useState<string>("");
+
+  const getParticularProvince = (provinceData: any) => {
+    // eslint-disable-next-line array-callback-return
+    Province.map((province) => {
+      if (province.id === provinceData) {
+        setParticularProvince(province.value);
+      }
+    });
+  };
 
   const getParticularHospital = async () => {
     const hospital = await getHospital(id);
     setHospitalData(hospital.data);
+    getParticularProvince(hospital.data.location.province);
   };
 
   const handleEditClick = () => {
@@ -53,6 +64,12 @@ export const HospitalDetailByAdmin = () => {
     setIsShowModal(state);
   };
 
+  const updateHospitalInfo = async () => {
+    await getParticularHospital();
+    setReadOnly(true);
+    updateModal(false);
+  };
+
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       name: hospitalData?.name,
@@ -69,34 +86,36 @@ export const HospitalDetailByAdmin = () => {
     try {
       console.log(data);
       const updateHospitalData = {
-        name: data.name,
-        schedule: data.schedule,
+        name: data.name ? data.name : hospitalData?.name,
+        schedule: data.schedule ? data.schedule : hospitalData?.schedule,
         location: {
-          address: data.location.address,
-          province: data.location.province,
+          address: data.location.address
+            ? data.location.address
+            : hospitalData?.location.address,
+          province: data.location.province
+            ? data.location.province
+            : hospitalData?.location.province,
         },
-        description: data.description,
+        description: data.description
+          ? data.description
+          : hospitalData?.description,
       };
 
       if (updateHospitalData) {
         await updateHospital(
           hospitalData?.id.toString() as string,
           updateHospitalData
-        ).then((res) => {
-          console.log(res);
-        });
+        );
       }
-      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
-    setReadOnly(true);
-    updateModal(false);
+    updateHospitalInfo();
   };
 
   useEffect(() => {
     getParticularHospital();
-  }, [isShowModal]);
+  }, []);
   return (
     <div>
       <div className="d-flex flex-row justify-content-between w-100 mb-3">
@@ -199,7 +218,7 @@ export const HospitalDetailByAdmin = () => {
                 className="form-control form-control-lg"
                 type="text"
                 placeholder="Provincia"
-                defaultValue={hospitalData?.location.province}
+                defaultValue={particularProvince}
                 readOnly
               />
             </div>
@@ -215,17 +234,20 @@ export const HospitalDetailByAdmin = () => {
             <div className="col-9">
               <select
                 className="form-select form-select-lg d-flex justify-content-start mb-2 me-1 w-100"
+                defaultValue={hospitalData?.location.province}
                 {...register("location.province", { required: true })}
               >
-                {Province.map((option) => (
-                  <option
-                    key={option.id}
-                    value={option.id}
-                    defaultValue={hospitalData?.location.province}
-                  >
-                    {option.value}
-                  </option>
-                ))}
+                {Province.map((option) => {
+                  return (
+                    <option
+                      key={option.id}
+                      value={option.id}
+                      disabled={option.isDisabled}
+                    >
+                      {option.value}
+                    </option>
+                  );
+                })}
               </select>
             </div>
           </div>

@@ -32,7 +32,7 @@ export const AdminProfile = () => {
     reset({
       name: adminData?.name,
       last_name: adminData?.last_name,
-      email: adminData?.email,
+      // email: adminData?.email,
       document_number: adminData?.document_number,
       date_of_birth: adminData?.date_of_birth,
     });
@@ -54,20 +54,25 @@ export const AdminProfile = () => {
     defaultValues: {
       name: adminData?.name,
       last_name: adminData?.last_name,
-      email: adminData?.email,
+      // email: adminData?.email,
       document_number: adminData?.document_number,
       date_of_birth: adminData?.date_of_birth,
     },
   });
 
   const onSubmit = async (data: any) => {
+    console.log(data);
     try {
       const updatedAdminData = {
-        name: data.name,
-        last_name: data.last_name,
-        email: data.email,
-        document_number: data.document_number,
-        date_of_birth: data.date_of_birth,
+        name: data.name ? data.name : adminData?.name,
+        last_name: data.last_name ? data.last_name : adminData?.last_name,
+        // email: data.email? data.email : adminData?.email,
+        document_number: data.document_number
+          ? data.document_number
+          : adminData?.document_number,
+        date_of_birth: data.date_of_birth
+          ? data.date_of_birth
+          : adminData?.date_of_birth,
       };
 
       if (updatedAdminData) {
@@ -77,7 +82,7 @@ export const AdminProfile = () => {
         );
       }
       updateModal(false);
-      window.location.reload();
+      setReadOnly(true);
     } catch (error) {
       console.log(error);
     }
