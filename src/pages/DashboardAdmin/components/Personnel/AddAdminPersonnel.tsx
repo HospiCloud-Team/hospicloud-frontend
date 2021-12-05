@@ -6,7 +6,7 @@ import {
 import { registerAdmin } from "../../../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import DocumentType from "../constants/document-type.json";
+import DocumentType from "../../../../constants/document-type.json";
 import { INewAdmin } from "../../../../models/IAdmin";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
