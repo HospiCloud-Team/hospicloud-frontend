@@ -6,7 +6,7 @@ import {
 import { registerDoctor } from "../../../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import DocumentType from "../constants/document-type.json";
+import DocumentType from "../../../../constants/document-type.json";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
