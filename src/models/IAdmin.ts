@@ -22,7 +22,6 @@ export interface IAdmin extends INewAdmin {
 export interface IUpdateAdmin {
   name: string;
   last_name: string;
-  email?: string;
   document_number: string;
   date_of_birth: Date;
 }

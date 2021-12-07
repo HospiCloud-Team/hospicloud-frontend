@@ -95,6 +95,12 @@ export const PersonnelDoctorDetail = () => {
     },
   });
 
+  const updateDoctor = async () => {
+    await getParticularDoctor();
+    updateModal(false);
+    setReadOnly(true);
+  };
+
   const onSubmit = async (data: any) => {
     try {
       const updatedDoctorData = {
@@ -109,8 +115,7 @@ export const PersonnelDoctorDetail = () => {
           updatedDoctorData
         );
       }
-      updateModal(false);
-      setReadOnly(true);
+      updateDoctor();
     } catch (error) {
       console.log(error);
     }
@@ -184,6 +189,23 @@ export const PersonnelDoctorDetail = () => {
               type="text"
               placeholder="Rol"
               value={doctorData?.user_role}
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-2">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorRole">
+              Correo Electrónico
+            </label>
+          </div>
+          <div className="col-9">
+            <input
+              id="doctorEmail"
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Correo Electrónico"
+              defaultValue={doctorData?.email}
               readOnly
             />
           </div>

@@ -47,7 +47,6 @@ export const PersonnelAdminDetail = () => {
     reset({
       name: adminData?.name,
       last_name: adminData?.last_name,
-      email: adminData?.email,
       document_number: adminData?.document_number,
       date_of_birth: adminData?.date_of_birth,
     });
@@ -69,7 +68,6 @@ export const PersonnelAdminDetail = () => {
     defaultValues: {
       name: adminData?.name,
       last_name: adminData?.last_name,
-      email: adminData?.email,
       document_number: adminData?.document_number,
       date_of_birth: adminData?.date_of_birth,
     },
@@ -78,11 +76,14 @@ export const PersonnelAdminDetail = () => {
   const onSubmit = async (data: any) => {
     try {
       const updatedAdminData = {
-        name: data.name,
-        last_name: data.last_name,
-        email: data.email,
-        document_number: data.document_number,
-        date_of_birth: data.date_of_birth,
+        name: data.name ? data.name : adminData?.name,
+        last_name: data.last_name ? data.last_name : adminData?.last_name,
+        document_number: data.document_number
+          ? data.document_number
+          : adminData?.document_number,
+        date_of_birth: data.date_of_birth
+          ? data.date_of_birth
+          : adminData?.date_of_birth,
       };
 
       if (updatedAdminData) {
@@ -92,6 +93,7 @@ export const PersonnelAdminDetail = () => {
         );
       }
       updateModal(false);
+      setReadOnly(true);
     } catch (error) {
       console.log(error);
     }
@@ -166,6 +168,23 @@ export const PersonnelAdminDetail = () => {
               type="text"
               placeholder="Rol"
               defaultValue={adminData?.user_role}
+              readOnly
+            />
+          </div>
+        </div>
+        <div className="d-flex flex-row form-group mb-2">
+          <div className="col-3">
+            <label style={{ fontSize: "24px" }} htmlFor="doctorRole">
+              Correo Electrónico
+            </label>
+          </div>
+          <div className="col-9">
+            <input
+              id="adminEmail"
+              className="form-control form-control-lg"
+              type="text"
+              placeholder="Correo Electrónico"
+              defaultValue={adminData?.email}
               readOnly
             />
           </div>
