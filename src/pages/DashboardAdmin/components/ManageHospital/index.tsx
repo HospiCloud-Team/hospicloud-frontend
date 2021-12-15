@@ -62,15 +62,7 @@ const ManageHospital = () => {
           </div>
           <div className="col-md-8">
             <h5>Descripción:</h5>
-            <p className="mb-4">
-              {/* hospital.description */}
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est
-              facilis esse expedita, quibusdam architecto dolorem officia ex
-              ipsum similique dolorum dolores voluptatum totam rerum quod facere
-              ullam alias nam repellendus cumque explicabo iusto consequuntur
-              itaque? Temporibus omnis cum neque et doloremque praesentium eum
-              consequatur commodi? Facere consequatur fugiat porro quae.
-            </p>
+            <p className="mb-4">{hospital?.description}</p>
             {specialties.map((specialty) => (
               <span className="badge bg-primary me-2" key={specialty.id}>
                 {specialty.name}
