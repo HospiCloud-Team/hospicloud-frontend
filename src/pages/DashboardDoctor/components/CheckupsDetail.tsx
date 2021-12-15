@@ -13,18 +13,23 @@ const CheckupsDetail = () => {
 
   return (
     <div>
-      <div className="d-flex align-items-center">
-        <button
-          className="btn btn-secondary btn-sm me-2"
-          onClick={history.goBack}
-        >
-          <i className="bi bi-arrow-left"></i>
+      <div className="d-flex justify-content-between w-100">
+        <div className="d-flex align-items-center">
+          <button
+            className="btn btn-secondary btn-sm me-2"
+            onClick={history.goBack}
+          >
+            <i className="bi bi-arrow-left"></i>
+          </button>
+          <h4 className="m-0">Detalle de consulta</h4>
+        </div>
+        <button type="button" className="btn btn-primary btn-sm flex-end">
+          Historial del paciente
         </button>
-        <h4 className="m-0">Detalle de consulta</h4>
       </div>
       <div className="row bg-white mx-0 my-3 p-3 rounded-2">
         <div className="col border-end">
-          <p className="fw-bold m-0">Doctor:</p>
+          <p className="fw-bold m-0">Paciente:</p>
           <p className="m-0">{`${checkup?.patient.user.name} ${checkup?.patient.user.last_name}`}</p>
         </div>
         <div className="col">

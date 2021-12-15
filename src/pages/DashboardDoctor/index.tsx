@@ -1,6 +1,6 @@
 import DashboardLayout from "../../layout/DashboardLayout";
 import roles from "../../constants/constantsRoles.json";
-import CheckupsList from "./components/CheckupsList";
+import CheckupsList from "./components/GeneralCheckupsList";
 import CheckupsDetail from "./components/CheckupsDetail";
 import AddCheckup from "./components/AddCheckup";
 import { DoctorProfile } from "./components/DoctorProfile";

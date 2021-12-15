@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
-import { getCheckupsDoctor } from "../../../api/checkups";
-import { getTemplatesByDoctor } from "../../../api/utilities";
-import CheckupItem from "../../../components/CheckupItem";
-import { ICheckup } from "../../../models/ICheckup";
-import { ITemplate } from "../../../models/ITemplate";
-import routes from "../../../router/constantRoutes.json";
-import SelectTemplateModal from "./SelectTemplateModal";
+import { getCheckupsDoctor } from "../api/checkups";
+import { getTemplatesByDoctor } from "../api/utilities";
+import { ICheckup } from "../models/ICheckup";
+import { ITemplate } from "../models/ITemplate";
+import SelectTemplateModal from "../pages/DashboardDoctor/components/SelectTemplateModal";
+import CheckupItem from "./CheckupItem";
+import routes from "../router/constantRoutes.json";
 
 const CheckupsList = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
