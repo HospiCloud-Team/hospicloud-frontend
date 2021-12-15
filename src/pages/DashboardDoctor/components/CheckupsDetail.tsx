@@ -23,7 +23,13 @@ const CheckupsDetail = () => {
           </button>
           <h4 className="m-0">Detalle de consulta</h4>
         </div>
-        <button type="button" className="btn btn-primary btn-sm flex-end">
+        <button
+          type="button"
+          className="btn btn-primary btn-sm flex-end"
+          onClick={() => {
+            history.push(`/doctor/patient-record/${checkup?.patient_id}`);
+          }}
+        >
           Historial del paciente
         </button>
       </div>

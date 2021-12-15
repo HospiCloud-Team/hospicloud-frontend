@@ -4,9 +4,15 @@ import CheckupsList from "./components/GeneralCheckupsList";
 import CheckupsDetail from "./components/CheckupsDetail";
 import AddCheckup from "./components/AddCheckup";
 import { DoctorProfile } from "./components/DoctorProfile";
+import { PatientRecord } from "./components/PatientRecord";
 
 interface DashboardDoctorProps {
-  content: "CheckupsList" | "CheckupDetail" | "AddCheckup" | "DoctorProfile";
+  content:
+    | "CheckupsList"
+    | "CheckupDetail"
+    | "AddCheckup"
+    | "DoctorProfile"
+    | "PatientRecord";
 }
 
 const renderContent = (content: string) => {
@@ -19,6 +25,8 @@ const renderContent = (content: string) => {
       return <AddCheckup />;
     case "DoctorProfile":
       return <DoctorProfile />;
+    case "PatientRecord":
+      return <PatientRecord />;
     default:
       break;
   }
