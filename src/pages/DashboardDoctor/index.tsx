@@ -4,7 +4,7 @@ import CheckupsList from "./components/GeneralCheckupsList";
 import CheckupsDetail from "./components/CheckupsDetail";
 import AddCheckup from "./components/AddCheckup";
 import { DoctorProfile } from "./components/DoctorProfile";
-import { PatientRecord } from "./components/PatientRecord";
+import { PatientRecord } from "./components/PatientRecord/PatientRecord";
 
 interface DashboardDoctorProps {
   content:
