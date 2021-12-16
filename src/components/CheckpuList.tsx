@@ -57,8 +57,10 @@ const CheckupsList = () => {
         <CheckupItem
           key={checkup.id}
           checkup={checkup}
-          name={`${checkup.patient.user.name} ${checkup.patient.user.last_name}`}
-          route={`${routes.DOCTOR_CHECKUPS}/${checkup.id}`}
+          patientName={`${checkup.patient.user.name} ${checkup.patient.user.last_name}`}
+          onClick={() => {
+            history.push(`${routes.DOCTOR_CHECKUPS}/${checkup.id}`, checkup);
+          }}
         />
       ))}
       <SelectTemplateModal
