@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {
   getParticularUser,
   updateParticularDoctor,
@@ -11,8 +11,9 @@ import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { useHistory, useParams } from "react-router";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 import Documents from "../../../../constants/document-type.json";
+import Select from "react-select";
 
-type SelectSpecialty = {
+export type SelectSpecialty = {
   label: string;
   value: number;
 };
@@ -29,6 +30,9 @@ export const PersonnelDoctorDetail = () => {
   const [specialties, setSpecialties] = useState<SelectSpecialty[]>([
     { label: "", value: 0 },
   ]);
+  const [selectedSpecialties, setSelectedSpecialties] = useState<
+    SelectSpecialty[]
+  >([{ label: "", value: 0 }]);
   const [isShowModal, setIsShowModal] = useState(false);
   const [documentType, setDocumentType] = useState<string>("");
 
@@ -45,6 +49,11 @@ export const PersonnelDoctorDetail = () => {
     const doctor = await getParticularUser(id);
     setDoctorData(doctor.data);
     getDocumentType(doctor.data.document_type);
+    setSelectedSpecialties(
+      doctor.data.doctor.specialties.map((specialty: any) => {
+        return { label: specialty.name, value: specialty.id };
+      })
+    );
   };
 
   const getSpecialties = async () => {
@@ -86,7 +95,7 @@ export const PersonnelDoctorDetail = () => {
     setIsShowModal(state);
   };
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, control } = useForm({
     defaultValues: {
       doctor: {
         schedule: doctorData?.doctor.schedule,
@@ -102,6 +111,7 @@ export const PersonnelDoctorDetail = () => {
   };
 
   const onSubmit = async (data: any) => {
+    console.log(data);
     try {
       const updatedDoctorData = {
         doctor: {
@@ -286,6 +296,7 @@ export const PersonnelDoctorDetail = () => {
               Especialidades
             </label>
           </div>
+          {/* {console.log("specialties", specialties)} */}
           {readOnly && (
             <div className="col-9">
               <select
@@ -303,18 +314,27 @@ export const PersonnelDoctorDetail = () => {
           )}
           {!readOnly && (
             <div className="col-9">
-              <select
-                id="doctorSpecialties"
-                form="hook-form"
-                className="form-select form-select-lg"
-                placeholder="Especialidades"
-                multiple
-                {...register("doctor.specialties", { required: true })}
-              >
-                {specialties.map((option) => {
-                  return <option value={option.value}>{option.label}</option>;
-                })}
-              </select>
+              <Controller
+                control={control}
+                defaultValue={doctorData?.doctor.specialties.map((c) => c)}
+                name="doctor.specialties"
+                render={({ field: { onChange, ref } }) => (
+                  <Select
+                    ref={ref}
+                    value={selectedSpecialties}
+                    onChange={(val) => {
+                      onChange(val.map((c) => c.value));
+                      setSelectedSpecialties(
+                        val.map((c) => {
+                          return { label: c.label, value: c.value };
+                        })
+                      );
+                    }}
+                    options={specialties}
+                    isMulti
+                  />
+                )}
+              />
             </div>
           )}
         </div>
