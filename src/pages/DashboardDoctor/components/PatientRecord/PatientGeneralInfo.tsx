@@ -35,34 +35,30 @@ export const PatientGeneralInfo = ({ patientRecord }: PatientInfoProps) => {
   }, []);
 
   return (
-    <table className="table bg-white rounded-2 border border-dark">
+    <table className="table bg-white rounded-2 border">
       {patientRecord && (
         <tbody>
           <tr>
             <th scope="row">Nombre</th>
-            <td className="border-end border-dark">
-              {patientRecord.patient.user.name}
-            </td>
+            <td className="border-end">{patientRecord.patient.user.name}</td>
             <th scope="row">Apellido</th>
             <td>{patientRecord.patient.user.last_name}</td>
           </tr>
           <tr>
             <th scope="row">Correo Electrónico</th>
-            <td className="border-end border-dark">
-              {patientRecord.patient.user.email}
-            </td>
+            <td className="border-end">{patientRecord.patient.user.email}</td>
             <th scope="row">Fecha de Nacimiento</th>
             <td>{patientRecord.patient.user.date_of_birth}</td>
           </tr>
           <tr>
             <th scope="row">Tipo de Documento</th>
-            <td className="border-end border-dark">{documentType}</td>
+            <td className="border-end">{documentType}</td>
             <th scope="row">Número de Documento</th>
             <td>{patientRecord.patient.user.document_number}</td>
           </tr>
           <tr>
             <th scope="row">Tipo de Sangre</th>
-            <td className="border-end border-dark">{bloodType}</td>
+            <td className="border-end">{bloodType}</td>
             <th scope="row">Antecedentes Médicos</th>
             <td>{patientRecord.patient.medical_background}</td>
           </tr>
