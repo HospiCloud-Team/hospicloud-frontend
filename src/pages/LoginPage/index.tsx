@@ -21,7 +21,7 @@ const LoginPage = () => {
   const onSubmit = handleSubmit(({ email, password }) => {
     signInWithEmailAndPassword(auth, email, password).then(({ user }) =>
       getIdTokenResult(user).then((tokenRes) => {
-        const role = tokenRes.claims.role as string | undefined;
+        const role = tokenRes.claims.user_role as string | undefined;
         localStorage.setItem("authToken", tokenRes.token);
         localStorage.setItem("userRole", role ?? "");
         localStorage.setItem("doctorId", "1");

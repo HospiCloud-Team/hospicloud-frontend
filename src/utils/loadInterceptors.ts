@@ -5,7 +5,7 @@ const loadInterceptors = () => {
   hospicloudAPIs.forEach((api) => {
     api.interceptors.request.use((req) => {
       const authToken = localStorage.getItem("authToken");
-      req.headers.common.authorization = authToken;
+      req.headers.common["Authorization"] = `Bearer ${authToken}`;
       return req;
     });
 
