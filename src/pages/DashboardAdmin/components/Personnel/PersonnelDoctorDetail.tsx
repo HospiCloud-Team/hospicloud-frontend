@@ -111,7 +111,6 @@ export const PersonnelDoctorDetail = () => {
   };
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
       const updatedDoctorData = {
         doctor: {
@@ -296,7 +295,6 @@ export const PersonnelDoctorDetail = () => {
               Especialidades
             </label>
           </div>
-          {/* {console.log("specialties", specialties)} */}
           {readOnly && (
             <div className="col-9">
               <select

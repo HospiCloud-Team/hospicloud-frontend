@@ -84,7 +84,6 @@ export const HospitalDetailByAdmin = () => {
 
   const onSubmit = async (data: any) => {
     try {
-      console.log(data);
       const updateHospitalData = {
         name: data.name ? data.name : hospitalData?.name,
         schedule: data.schedule ? data.schedule : hospitalData?.schedule,
