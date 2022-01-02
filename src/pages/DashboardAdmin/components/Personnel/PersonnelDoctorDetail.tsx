@@ -43,7 +43,7 @@ export const PersonnelDoctorDetail = () => {
 
   const getParticularDoctor = async () => {
     const doctor = await getParticularUser(id);
-    setDoctorData(doctor.data);
+    setDoctorData(doctor.data as IDoctor);
     getDocumentType(doctor.data.document_type);
   };
 

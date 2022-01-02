@@ -34,7 +34,7 @@ export const PersonnelAdminDetail = () => {
 
   const getParticularAdmin = async () => {
     const admin = await getParticularUser(id);
-    setAdminData(admin.data);
+    setAdminData(admin.data as IAdmin);
     getDocumentType(admin.data.document_type);
   };
 
