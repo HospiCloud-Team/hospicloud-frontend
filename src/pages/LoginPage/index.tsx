@@ -56,29 +56,29 @@ const LoginPage = () => {
             </div>
             <div className="col d-block">
               <LoginTitle className="d-flex justify-content-center mb-3">
-                Login
+                Iniciar Sesión
               </LoginTitle>
               <form onSubmit={onSubmit}>
-                <div className="form-group mb-4">
+                <div className="form-group mb-3">
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Email"
+                    placeholder="Correo Electrónico"
                     {...register("email", { required: true })}
                   />
                   {errors.email && (
-                    <ErrorMessage message="Este campo es requerido" />
+                    <ErrorMessage message="Correo electrónico es requerido" />
                   )}
                 </div>
-                <div className="form-group mb-4">
+                <div className="form-group mb-3">
                   <input
                     type="password"
                     className="form-control"
-                    placeholder="Password"
+                    placeholder="Contraseña"
                     {...register("password", { required: true })}
                   />
                   {errors.password && (
-                    <ErrorMessage message="Este campo es requerido" />
+                    <ErrorMessage message="Contraseña es requerida" />
                   )}
                 </div>
                 {errors.loginError && (
@@ -95,7 +95,7 @@ const LoginPage = () => {
                   </button>
                 </div>
                 <div className="form-group d-flex justify-content-end">
-                  <Link to="/registrar">Register</Link>
+                  <Link to="/registrar">Regístrate</Link>
                 </div>
               </form>
             </div>
