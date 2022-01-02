@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import { getCheckupsPatient } from "../../../../api/checkups";
+import { getCheckupsDoctor } from "../../../../api/checkups";
 import { ICheckup } from "../../../../models/ICheckup";
 import { PatientGeneralInfo } from "./PatientGeneralInfo";
 import { PatientRecordItem } from "./PatientRecordItem";
@@ -11,11 +11,12 @@ type PatientProps = {
 
 export const PatientRecord = () => {
   const { id } = useParams<PatientProps>();
+  const doctorId = Number(localStorage.getItem("doctorId") as string);
   const [patientRecord, setPatientRecord] = useState<ICheckup[]>();
   let history = useHistory();
 
   const getAllRecord = async () => {
-    const checkups = await getCheckupsPatient(Number(id));
+    const checkups = await getCheckupsDoctor(doctorId, Number(id));
     setPatientRecord(checkups.data);
   };
 
