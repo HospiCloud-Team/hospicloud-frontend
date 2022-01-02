@@ -191,17 +191,6 @@ const AddDoctorPersonnel = () => {
                       {...register("doctor.schedule", { required: true })}
                     />
                   </div>
-                  {/* <select
-                    className="form-select"
-                    multiple
-                    {...register("doctor.specialties", { required: true })}
-                  >
-                    {specialties.map((option) => {
-                      return (
-                        <option value={option.value}>{option.label}</option>
-                      );
-                    })}
-                  </select> */}
                   <Controller
                     control={control}
                     name="doctor.specialties"
