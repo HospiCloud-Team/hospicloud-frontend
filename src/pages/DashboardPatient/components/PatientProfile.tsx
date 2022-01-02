@@ -35,7 +35,6 @@ export const PatientProfile = () => {
     // eslint-disable-next-line array-callback-return
     BloodType.map((blood) => {
       if (blood.id === bloodType) {
-        console.log(blood.id);
         setBloodType(blood.value);
       }
     });

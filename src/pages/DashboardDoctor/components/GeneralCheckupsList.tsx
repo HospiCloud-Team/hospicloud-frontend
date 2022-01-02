@@ -8,7 +8,7 @@ import { ITemplate } from "../../../models/ITemplate";
 import routes from "../../../router/constantRoutes.json";
 import SelectTemplateModal from "./SelectTemplateModal";
 
-const CheckupsList = () => {
+const GeneralCheckupList = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
   const [templates, setTemplates] = useState<ITemplate[]>([]);
   const [showSelectTemplateModal, setShowSelectTemplateModal] = useState(false);
@@ -57,8 +57,10 @@ const CheckupsList = () => {
         <CheckupItem
           key={checkup.id}
           checkup={checkup}
-          name={`${checkup.patient.user.name} ${checkup.patient.user.last_name}`}
-          route={`${routes.DOCTOR_CHECKUPS}/${checkup.id}`}
+          patientName={`${checkup.patient.user.name} ${checkup.patient.user.last_name}`}
+          onClick={() =>
+            history.push(`${routes.DOCTOR_CHECKUPS}/${checkup.id}`, checkup)
+          }
         />
       ))}
       <SelectTemplateModal
@@ -71,4 +73,4 @@ const CheckupsList = () => {
   );
 };
 
-export default CheckupsList;
+export default GeneralCheckupList;

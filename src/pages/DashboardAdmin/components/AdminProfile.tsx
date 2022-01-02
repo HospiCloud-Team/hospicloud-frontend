@@ -61,7 +61,6 @@ export const AdminProfile = () => {
   });
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
       const updatedAdminData = {
         name: data.name ? data.name : adminData?.name,

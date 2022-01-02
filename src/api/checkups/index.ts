@@ -6,8 +6,15 @@ const getCheckupsPatient = (id: number): Promise<AxiosResponse<ICheckup[]>> => {
   return CheckupsAPI.get(`/checkups/patient/${id}`);
 };
 
-const getCheckupsDoctor = (id: number): Promise<AxiosResponse<ICheckup[]>> => {
-  return CheckupsAPI.get(`/checkups/doctor/${id}`);
+const getCheckupsDoctor = (
+  id: number,
+  patientId?: number
+): Promise<AxiosResponse<ICheckup[]>> => {
+  return CheckupsAPI.get(
+    patientId
+      ? `/checkups/doctor/${id}?patient_id=${patientId}`
+      : `/checkups/doctor/${id}`
+  );
 };
 
 const addCheckup = (newCheckup: INewCheckup) => {
