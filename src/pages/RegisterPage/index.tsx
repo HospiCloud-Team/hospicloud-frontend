@@ -23,8 +23,9 @@ const RegisterPage = () => {
     register,
     handleSubmit,
     reset,
+    setError,
     formState: { errors },
-  } = useForm({
+  } = useForm<Partial<INewPatient>>({
     defaultValues: {
       document_type: "",
       name: "",
@@ -77,6 +78,12 @@ const RegisterPage = () => {
             console.log(error.response.data);
             console.log(error.response.status);
             console.log(error.response.headers);
+          }
+          if (error.response.data.message === "Email is already used") {
+            setError("email", {
+              type: "emailUsed",
+              message: "El correo electrónico ya está en uso",
+            });
           }
         });
     } catch (err) {
