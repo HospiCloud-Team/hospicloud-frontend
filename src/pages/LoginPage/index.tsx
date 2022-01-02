@@ -25,7 +25,7 @@ const LoginPage = () => {
       getIdTokenResult(user).then((tokenRes) => {
         const userId = tokenRes.claims.id as string;
         localStorage.setItem("authToken", tokenRes.token);
-        getParticularUser("1").then((userData) => {
+        getParticularUser(userId).then((userData) => {
           storeUserData(userData.data);
           history.push(routes.HOME);
         });
