@@ -69,7 +69,7 @@ const LoginPage = () => {
                   </button>
                 </div>
                 <div className="form-group d-flex justify-content-end">
-                  <Link to="/Register">Register</Link>
+                  <Link to={routes.REGISTER}>Register</Link>
                 </div>
               </form>
             </div>
