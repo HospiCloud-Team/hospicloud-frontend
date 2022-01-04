@@ -42,9 +42,10 @@ export const PatientProfile = () => {
 
   const getParticularPatient = async () => {
     const patient = await getParticularUser(id);
-    setPatientData(patient.data);
-    getDocumentType(patient.data.document_type);
-    getBloodType(patient.data.patient.blood_type);
+    const patientData = patient.data as IPatient;
+    setPatientData(patientData);
+    getDocumentType(patientData.document_type);
+    getBloodType(patientData.patient.blood_type);
   };
 
   const handleEditClick = () => {

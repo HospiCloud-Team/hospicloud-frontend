@@ -3,7 +3,7 @@ import {
   LoginTitle,
   BackIcon,
 } from "../../styles/AddPersonnel.style";
-import { registerDoctor } from "../../../../api/users/index";
+import { addPersonnel } from "../../../../api/users";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import DocumentType from "../../../../constants/document-type.json";
@@ -95,7 +95,7 @@ const AddDoctorPersonnel = () => {
       };
 
       if (doctorData) {
-        registerDoctor(doctorData)
+        addPersonnel(doctorData)
           .catch((err) => {
             console.log(err);
           })

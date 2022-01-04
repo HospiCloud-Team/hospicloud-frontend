@@ -20,7 +20,7 @@ export const AdminProfile = () => {
 
   const getParticularAdmin = async () => {
     const admin = await getParticularUser(id);
-    setAdminData(admin.data);
+    setAdminData(admin.data as IAdmin);
   };
 
   const handleEditClick = () => {

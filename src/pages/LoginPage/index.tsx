@@ -13,6 +13,8 @@ import { signInWithEmailAndPassword, getIdTokenResult } from "firebase/auth";
 import auth from "../../firebase";
 import { useForm } from "react-hook-form";
 import { IAuthUser } from "../../models/IUser";
+import { getParticularUser } from "../../api/users";
+import { storeUserData } from "../../utils/storeUserData";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -21,14 +23,12 @@ const LoginPage = () => {
   const onSubmit = handleSubmit(({ email, password }) => {
     signInWithEmailAndPassword(auth, email, password).then(({ user }) =>
       getIdTokenResult(user).then((tokenRes) => {
-        const role = tokenRes.claims.role as string | undefined;
+        const userId = tokenRes.claims.id as string;
         localStorage.setItem("authToken", tokenRes.token);
-        localStorage.setItem("userRole", role ?? "");
-        localStorage.setItem("doctorId", "1");
-        localStorage.setItem("patientId", "1");
-        localStorage.setItem("hospitalId", "1");
-        localStorage.setItem("userId", "6");
-        history.push(routes.HOME);
+        getParticularUser(userId).then((userData) => {
+          storeUserData(userData.data);
+          history.push(routes.HOME);
+        });
       })
     );
   });
