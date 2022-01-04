@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { INewAdmin, IUpdateAdmin } from "../../models/IAdmin";
 import { INewDoctor, IUpdateDoctor } from "../../models/IDoctor";
 import { INewPatient, IUpdatePatient } from "../../models/IPatient";
