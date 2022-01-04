@@ -7,7 +7,7 @@ import {
 } from "../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../resources/HospiCloudLogo.svg";
 import { registerPatient } from "../../api/users/index";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "../../constants/document-type.json";
 import BloodyType from "../../constants/blood-type.json";
@@ -15,10 +15,12 @@ import { INewPatient } from "../../models/IPatient";
 import { useHistory } from "react-router";
 import routes from "../../router/constantRoutes.json";
 import { ErrorMessage } from "../../components";
-import { validateSelectoin } from "../../utils";
+import { validateSelection, blockInvalidChar } from "../../utils";
 
 const RegisterPage = () => {
   const history = useHistory();
+  const [isNationalId, setIsNationalId] = useState<boolean>(false);
+
   const {
     register,
     handleSubmit,
@@ -39,6 +41,18 @@ const RegisterPage = () => {
       },
     },
   });
+
+  const validateDocumentLength = (documentNumber: any) => {
+    if (!isNationalId) {
+      return true;
+    }
+
+    if (isNationalId && documentNumber.length === 11) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -154,9 +168,19 @@ const RegisterPage = () => {
                         className="form-select d-flex justify-content-start me-1 w-100"
                         {...register("document_type", {
                           required: true,
-                          validate: (v) =>
-                            validateSelectoin(DocumentType, v) ||
-                            "Tipo de documento selecionado no es válido",
+                          validate: (v) => {
+                            return (
+                              validateSelection(DocumentType, v) ||
+                              "Tipo de documento selecionado no es válido"
+                            );
+                          },
+                          onChange: (event) => {
+                            if (event.target.value === "national_id") {
+                              setIsNationalId(true);
+                            } else {
+                              setIsNationalId(false);
+                            }
+                          },
                         })}
                       >
                         {DocumentType.map((option) => (
@@ -177,11 +201,15 @@ const RegisterPage = () => {
                     </div>
                     <div className="form-group d-flex flex-column justify-content-start mb-2 ms-1 w-50">
                       <input
-                        type="text"
+                        type={isNationalId ? `number` : `text`}
+                        onKeyDown={isNationalId ? blockInvalidChar : undefined}
                         className="form-control"
                         placeholder="Número de documento"
                         {...register("document_number", {
                           required: "Número de documento es requerido",
+                          validate: (v) =>
+                            validateDocumentLength(v) ||
+                            "Cédula debe de ser por lo menos o como máximo 11 números",
                         })}
                       />
                       {errors.document_number && (
@@ -212,7 +240,7 @@ const RegisterPage = () => {
                       {...register("patient.blood_type", {
                         required: true,
                         validate: (v) =>
-                          validateSelectoin(BloodyType, v) ||
+                          validateSelection(BloodyType, v) ||
                           "Tipo de sangre selecionado no es válido",
                       })}
                     >

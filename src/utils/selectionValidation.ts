@@ -1,4 +1,4 @@
-export const validateSelectoin = (
+export const validateSelection = (
   constantArray: any[],
   inputValue: any
 ): boolean => {
