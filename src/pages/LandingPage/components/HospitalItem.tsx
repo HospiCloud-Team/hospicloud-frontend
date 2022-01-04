@@ -9,12 +9,6 @@ const OverflowText = styled.p`
   text-overflow: ellipsis;
 `;
 
-const CroppedImage = styled.img`
-  width: 286;
-  height: 138;
-  object-fit: cover;
-`;
-
 interface HospitalItemProps {
   hospital: IHospital;
 }

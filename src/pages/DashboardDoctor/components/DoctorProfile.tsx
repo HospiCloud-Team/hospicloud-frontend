@@ -93,7 +93,9 @@ export const DoctorProfile = () => {
 
   useEffect(() => {
     getParticularDoctor();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div>
       <div className="d-flex flex-row justify-content-between w-100 mb-3">

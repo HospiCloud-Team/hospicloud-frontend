@@ -60,6 +60,7 @@ const TemplateForm = ({ formType, templateToEdit }: TemplateFormProps) => {
       setValue("title", templateToEdit.title);
       setValue("specialty_id", templateToEdit.specialty_id);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
