@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDuPRXjP7OYqCGjRQ5aDYj8bPrRDTvmSeU",
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "hospicloud.firebaseapp.com",
   projectId: "hospicloud",
   storageBucket: "hospicloud.appspot.com",
