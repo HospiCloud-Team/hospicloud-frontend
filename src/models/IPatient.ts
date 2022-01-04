@@ -15,6 +15,7 @@ export interface INewPatient {
 export interface IPatient extends INewPatient {
   id: number;
   patient: {
+    id: number;
     blood_type: string;
     medical_background: string;
   };

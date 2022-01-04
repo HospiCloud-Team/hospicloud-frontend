@@ -35,7 +35,6 @@ export const PatientProfile = () => {
     // eslint-disable-next-line array-callback-return
     BloodType.map((blood) => {
       if (blood.id === bloodType) {
-        console.log(blood.id);
         setBloodType(blood.value);
       }
     });
@@ -43,9 +42,10 @@ export const PatientProfile = () => {
 
   const getParticularPatient = async () => {
     const patient = await getParticularUser(id);
-    setPatientData(patient.data);
-    getDocumentType(patient.data.document_type);
-    getBloodType(patient.data.patient.blood_type);
+    const patientData = patient.data as IPatient;
+    setPatientData(patientData);
+    getDocumentType(patientData.document_type);
+    getBloodType(patientData.patient.blood_type);
   };
 
   const handleEditClick = () => {

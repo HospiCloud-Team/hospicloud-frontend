@@ -32,13 +32,7 @@ const HospitalItem = ({ hospital }: HospitalItemProps) => {
       <div className="card-body">
         <h5 className="card-title">{hospital.name}</h5>
         <OverflowText className="card-text mb-2">
-          {/* {hospital.description} */}
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est facilis
-          esse expedita, quibusdam architecto dolorem officia ex ipsum similique
-          dolorum dolores voluptatum totam rerum quod facere ullam alias nam
-          repellendus cumque explicabo iusto consequuntur itaque? Temporibus
-          omnis cum neque et doloremque praesentium eum consequatur commodi?
-          Facere consequatur fugiat porro quae.
+          {hospital.description}
         </OverflowText>
         <div className="d-flex justify-content-end">
           <button

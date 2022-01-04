@@ -3,9 +3,9 @@ import {
   LoginTitle,
   BackIcon,
 } from "../../styles/AddPersonnel.style";
-import { registerDoctor } from "../../../../api/users/index";
+import { addPersonnel } from "../../../../api/users";
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import DocumentType from "../../../../constants/document-type.json";
 import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
@@ -13,6 +13,7 @@ import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { getSpecialtyByHospital } from "../../../../api/utilities";
 import { INewDoctor } from "../../../../models/IDoctor";
+import Select from "react-select";
 
 type SelectSpecialty = {
   label: string;
@@ -25,7 +26,7 @@ const AddDoctorPersonnel = () => {
     { label: "", value: 0 },
   ]);
   const history = useHistory();
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit, reset, control } = useForm({
     defaultValues: {
       document_type: "",
       name: "",
@@ -40,6 +41,9 @@ const AddDoctorPersonnel = () => {
       },
     },
   });
+  const [selectedSpecialties, setSelectedSpecialties] = useState<
+    SelectSpecialty[]
+  >([]);
 
   const showModal = () => {
     setIsShowModal(true);
@@ -91,7 +95,7 @@ const AddDoctorPersonnel = () => {
       };
 
       if (doctorData) {
-        registerDoctor(doctorData)
+        addPersonnel(doctorData)
           .catch((err) => {
             console.log(err);
           })
@@ -187,17 +191,26 @@ const AddDoctorPersonnel = () => {
                       {...register("doctor.schedule", { required: true })}
                     />
                   </div>
-                  <select
-                    className="form-select"
-                    multiple
-                    {...register("doctor.specialties", { required: true })}
-                  >
-                    {specialties.map((option) => {
-                      return (
-                        <option value={option.value}>{option.label}</option>
-                      );
-                    })}
-                  </select>
+                  <Controller
+                    control={control}
+                    name="doctor.specialties"
+                    render={({ field: { onChange, ref } }) => (
+                      <Select
+                        ref={ref}
+                        value={selectedSpecialties}
+                        onChange={(val) => {
+                          onChange(val.map((c) => c.value));
+                          setSelectedSpecialties(
+                            val.map((c) => {
+                              return { label: c.label, value: c.value };
+                            })
+                          );
+                        }}
+                        options={specialties}
+                        isMulti
+                      />
+                    )}
+                  />
                   <div className="form-group d-flex justify-content-end mb-3 mt-4">
                     <Button variant="primary" onClick={showModal}>
                       Registrar

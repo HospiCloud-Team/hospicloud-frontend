@@ -1,13 +1,16 @@
-import { INewAdmin, IUpdateAdmin } from "../../models/IAdmin";
-import { INewDoctor, IUpdateDoctor } from "../../models/IDoctor";
-import { INewPatient, IUpdatePatient } from "../../models/IPatient";
+import { AxiosResponse } from "axios";
+import { IAdmin, INewAdmin, IUpdateAdmin } from "../../models/IAdmin";
+import { IDoctor, INewDoctor, IUpdateDoctor } from "../../models/IDoctor";
+import { INewPatient, IPatient, IUpdatePatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 
 const login = (email: string, password: string) => {
   return UsersAPI.post("/login", { email, password });
 };
 
-const getParticularUser = (userId: string) => {
+const getParticularUser = (
+  userId: string
+): Promise<AxiosResponse<IDoctor | IPatient | IAdmin>> => {
   return UsersAPI.get(`/users/${userId}`);
 };
 
@@ -27,22 +30,22 @@ const updateParticularPatient = (
 };
 
 const registerPatient = (patientData: INewPatient) => {
-  return UsersAPI.post("/users", patientData);
+  return UsersAPI.post("/register", patientData);
 };
 
 const registerAdmin = (adminData: INewAdmin) => {
-  return UsersAPI.post("/users", adminData);
+  return UsersAPI.post("/register", adminData);
 };
 
-const registerDoctor = (doctorData: INewDoctor) => {
-  return UsersAPI.post("/users", doctorData);
+const addPersonnel = (adminData: INewAdmin | INewDoctor) => {
+  return UsersAPI.post("/users", adminData);
 };
 
 export {
   login,
   registerPatient,
   registerAdmin,
-  registerDoctor,
+  addPersonnel,
   getParticularUser,
   updateParticularDoctor,
   updateParticularAdmin,

@@ -3,8 +3,10 @@ import CheckupItem from "../../../components/CheckupItem";
 import { ICheckup } from "../../../models/ICheckup";
 import routes from "../../../router/constantRoutes.json";
 import { getCheckupsPatient } from "../../../api/checkups";
+import { useHistory } from "react-router";
 const CheckupsList = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
+  let history = useHistory();
 
   useEffect(() => {
     const patientId = Number(localStorage.getItem("patientId") as string);
@@ -20,8 +22,10 @@ const CheckupsList = () => {
         <CheckupItem
           key={checkup.id}
           checkup={checkup}
-          name={`${checkup.doctor.user.name} ${checkup.doctor.user.last_name}`}
-          route={`${routes.PATIENT_CHECKUPS}/${checkup.id}`}
+          patientName={`${checkup.doctor.user.name} ${checkup.doctor.user.last_name}`}
+          onClick={() => {
+            history.push(`${routes.PATIENT_CHECKUPS}/${checkup.id}`, checkup);
+          }}
         />
       ))}
     </div>
