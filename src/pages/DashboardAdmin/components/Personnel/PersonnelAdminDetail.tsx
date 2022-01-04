@@ -101,6 +101,7 @@ export const PersonnelAdminDetail = () => {
 
   useEffect(() => {
     getParticularAdmin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div>
