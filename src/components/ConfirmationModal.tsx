@@ -4,24 +4,31 @@ import { Modal, Button } from "react-bootstrap";
 type ConfirmationModalProps = {
   state: boolean;
   title: string;
-  content: string;
+  children: any;
   button1Text: string;
   button2Text: string;
-  handleShow: (state: boolean) => void;
-  formId: string;
+  handleShow?: (state: boolean) => void;
+  formId?: string;
+  additionalCloseMethod?: () => void;
 };
 
 export const ConfirmationModal: FC<ConfirmationModalProps> = ({
   state,
   title,
-  content,
+  children,
   button1Text,
   button2Text,
   handleShow,
   formId,
+  additionalCloseMethod,
 }) => {
   const handleCloseClick = () => {
-    handleShow(false);
+    if (additionalCloseMethod) {
+      additionalCloseMethod();
+    }
+    if (handleShow) {
+      handleShow(false);
+    }
   };
 
   return (
@@ -30,7 +37,7 @@ export const ConfirmationModal: FC<ConfirmationModalProps> = ({
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>{content}</Modal.Body>
+        <Modal.Body>{children}</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleCloseClick}>
             {button1Text}

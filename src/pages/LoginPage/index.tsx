@@ -63,13 +63,15 @@ const LoginPage = () => {
                   />
                 </div>
                 <div className="form-group d-flex justify-content-between mb-3">
-                  <Link to="/ForgetPassword">Olvidaste tu contraseña</Link>
+                  <Link to="/contraseña/reestablecer">
+                    Olvidaste tu contraseña
+                  </Link>
                   <button type="submit" className="btn btn-primary">
                     Iniciar Sesión
                   </button>
                 </div>
                 <div className="form-group d-flex justify-content-end">
-                  <Link to="/Register">Register</Link>
+                  <Link to="/registrar">Registrar</Link>
                 </div>
               </form>
             </div>

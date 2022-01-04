@@ -273,7 +273,7 @@ export const HospitalDetailByAdmin = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar los cambios del hospital?"
+            children="Deseas guardar los cambios del hospital?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}

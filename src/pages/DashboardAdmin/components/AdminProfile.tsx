@@ -252,7 +252,7 @@ export const AdminProfile = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar las nuevas informaciones del administrador?"
+            children="Deseas guardar las nuevas informaciones del administrador?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}

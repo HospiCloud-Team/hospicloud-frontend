@@ -1,6 +1,7 @@
 {
   "HOME": "/",
   "LOGIN": "/login",
+  "COTNRASEÑA_REESTABLECER": "/contraseña/reestablecer",
   "HOSPITALS": "/hospitales",
   "DOCTOR": "/doctor",
   "PATIENT": "/paciente",
