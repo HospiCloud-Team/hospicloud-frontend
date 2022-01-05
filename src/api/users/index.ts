@@ -14,6 +14,12 @@ const getParticularUser = (
   return UsersAPI.get(`/users/${userId}`);
 };
 
+const getPatientByDocumentNumber = (
+  documentNumber: string
+): Promise<AxiosResponse<IPatient>> => {
+  return UsersAPI.get(`/users/document-number/${documentNumber}`);
+};
+
 const updateParticularDoctor = (userId: string, doctorData: IUpdateDoctor) => {
   return UsersAPI.put(`/users/${userId}`, doctorData);
 };
@@ -47,6 +53,7 @@ export {
   registerAdmin,
   addPersonnel,
   getParticularUser,
+  getPatientByDocumentNumber,
   updateParticularDoctor,
   updateParticularAdmin,
   updateParticularPatient,
