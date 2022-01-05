@@ -1,6 +1,7 @@
 export interface IAuthUser {
   email: string;
   password: string;
+  loginError: string;
 }
 
 export interface IUser {
