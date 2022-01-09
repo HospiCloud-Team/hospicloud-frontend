@@ -15,6 +15,7 @@ const CheckupsListForDoctor = () => {
     getCheckupsPatient(patientId, Number(doctorId)).then((retrievedCheckups) =>
       setCheckups(retrievedCheckups.data.reverse())
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
