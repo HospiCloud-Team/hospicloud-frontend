@@ -5,6 +5,8 @@
   "DOCTOR": "/doctor",
   "PATIENT": "/paciente",
   "PATIENT_CHECKUPS": "/paciente/consultas",
+  "PATIENT_DOCTORS_LIST": "/paciente/doctores/",
+  "PATIENT_DOCTOR_RECORD": "/paciente/doctores/:id",
   "DOCTOR_CHECKUPS": "/doctor/consultas",
   "DOCTOR_NEW_CHECKUP": "/doctor/nueva-consulta",
   "DOCTOR_PATIENTS_LIST": "/doctor/pacientes/",

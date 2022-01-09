@@ -21,7 +21,7 @@ const getPatientByDocumentNumber = (
 };
 
 const getPatientHistory = (
-  userId: Number
+  userId: string
 ): Promise<AxiosResponse<IDoctor[]>> => {
   return UsersAPI.get(`/users/${userId}/history`);
 };

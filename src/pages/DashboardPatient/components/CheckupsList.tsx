@@ -17,7 +17,15 @@ const CheckupsList = () => {
 
   return (
     <div>
-      <h4>Consultas</h4>
+      <div className="d-flex align-items-center justify-content-between">
+        <h4 className="m-0">Consultas</h4>
+        <button
+          className="btn btn-secondary btn-sm me-2"
+          onClick={() => history.push(routes.PATIENT_DOCTORS_LIST)}
+        >
+          Ver lista de doctores
+        </button>
+      </div>
       {checkups.map((checkup) => (
         <CheckupItem
           key={checkup.id}

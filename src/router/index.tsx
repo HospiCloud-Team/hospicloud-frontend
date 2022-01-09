@@ -44,6 +44,12 @@ const Routes = () => {
         <PrivateRoute path={routes.PATIENT_PROFILE} exact>
           <DashboardPatient content="PatientProfile" />
         </PrivateRoute>
+        <PrivateRoute path={routes.PATIENT_DOCTORS_LIST} exact>
+          <DashboardPatient content="DoctorsList" />
+        </PrivateRoute>
+        <PrivateRoute path={routes.PATIENT_DOCTOR_RECORD} exact>
+          <DashboardPatient content="DoctorRecord" />
+        </PrivateRoute>
 
         <PrivateRoute path={routes.DOCTOR} exact>
           <DashboardDoctor content="CheckupsList" />

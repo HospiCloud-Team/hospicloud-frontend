@@ -46,7 +46,7 @@ const GeneralCheckupsList = () => {
             className="btn btn-secondary btn-sm me-2"
             onClick={() => history.push(routes.DOCTOR_PATIENTS_LIST)}
           >
-            Ver lista de Pacientes
+            Ver lista de pacientes
           </button>
           <button
             className="btn btn-primary btn-sm"
