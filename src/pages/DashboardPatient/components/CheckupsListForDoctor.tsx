@@ -3,28 +3,30 @@ import CheckupItem from "../../../components/CheckupItem";
 import { ICheckup } from "../../../models/ICheckup";
 import routes from "../../../router/constantRoutes.json";
 import { getCheckupsPatient } from "../../../api/checkups";
-import { useHistory } from "react-router";
-const CheckupsList = () => {
+import { useHistory, useParams } from "react-router";
+
+const CheckupsListForDoctor = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
+  const { id: doctorId } = useParams<{ id: string }>();
   let history = useHistory();
 
   useEffect(() => {
     const patientId = Number(localStorage.getItem("patientId") as string);
-    getCheckupsPatient(patientId).then((retrievedCheckups) =>
+    getCheckupsPatient(patientId, Number(doctorId)).then((retrievedCheckups) =>
       setCheckups(retrievedCheckups.data.reverse())
     );
   }, []);
 
   return (
     <div>
-      <div className="d-flex align-items-center justify-content-between">
-        <h4 className="m-0">Consultas</h4>
+      <div className="d-flex align-items-center">
         <button
-          className="btn btn-secondary btn-sm"
-          onClick={() => history.push(routes.PATIENT_DOCTORS_LIST)}
+          className="btn btn-secondary btn-sm me-2"
+          onClick={history.goBack}
         >
-          Ver lista de doctores
+          <i className="bi bi-arrow-left"></i>
         </button>
+        <h4 className="m-0">Consultas</h4>
       </div>
       {checkups.map((checkup) => (
         <CheckupItem
@@ -40,4 +42,4 @@ const CheckupsList = () => {
   );
 };
 
-export default CheckupsList;
+export default CheckupsListForDoctor;

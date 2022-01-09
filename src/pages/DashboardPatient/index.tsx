@@ -4,6 +4,7 @@ import CheckupsList from "./components/CheckupsList";
 import CheckupsDetail from "./components/CheckupsDetail";
 import { PatientProfile } from "./components/PatientProfile";
 import PatientDoctorsList from "./components/PatientDoctorsList";
+import CheckupsListForDoctor from "./components/CheckupsListForDoctor";
 
 interface DashboardPatientProps {
   content:
@@ -25,7 +26,7 @@ const renderContent = (content: string) => {
     case "DoctorsList":
       return <PatientDoctorsList />;
     case "DoctorRecord":
-      return <PatientProfile />;
+      return <CheckupsListForDoctor />;
     default:
       break;
   }

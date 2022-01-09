@@ -2,8 +2,15 @@ import { AxiosResponse } from "axios";
 import { ICheckup, INewCheckup } from "../../models/ICheckup";
 import { CheckupsAPI } from "../hospicloudAPI";
 
-const getCheckupsPatient = (id: number): Promise<AxiosResponse<ICheckup[]>> => {
-  return CheckupsAPI.get(`/checkups/patient/${id}`);
+const getCheckupsPatient = (
+  id: number,
+  doctorId?: number
+): Promise<AxiosResponse<ICheckup[]>> => {
+  return CheckupsAPI.get(
+    doctorId
+      ? `/checkups/patient/${id}?doctor_id=${doctorId}`
+      : `/checkups/patient/${id}`
+  );
 };
 
 const getCheckupsDoctor = (
