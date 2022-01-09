@@ -20,7 +20,7 @@ const CheckupItem = ({
           className="btn btn-primary btn-sm stretched-link"
           onClick={onClick}
         >
-          <i className="bi bi-journal-text"></i>
+          <i className="bi bi-journal-medical"></i>
         </button>
       </div>
       <div className="col-11 d-flex justify-content-between">

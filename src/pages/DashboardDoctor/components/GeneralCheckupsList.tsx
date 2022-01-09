@@ -8,7 +8,7 @@ import { ITemplate } from "../../../models/ITemplate";
 import routes from "../../../router/constantRoutes.json";
 import SelectTemplateModal from "./SelectTemplateModal";
 
-const GeneralCheckupList = () => {
+const GeneralCheckupsList = () => {
   const [checkups, setCheckups] = useState<ICheckup[]>([]);
   const [templates, setTemplates] = useState<ITemplate[]>([]);
   const [showSelectTemplateModal, setShowSelectTemplateModal] = useState(false);
@@ -42,7 +42,10 @@ const GeneralCheckupList = () => {
       <div className="d-flex align-items-center justify-content-between">
         <h4 className="m-0">Consultas</h4>
         <div>
-          <button className="btn btn-secondary btn-sm me-2">
+          <button
+            className="btn btn-secondary btn-sm me-2"
+            onClick={() => history.push(routes.DOCTOR_PATIENTS_LIST)}
+          >
             Ver lista de Pacientes
           </button>
           <button
@@ -73,4 +76,4 @@ const GeneralCheckupList = () => {
   );
 };
 
-export default GeneralCheckupList;
+export default GeneralCheckupsList;

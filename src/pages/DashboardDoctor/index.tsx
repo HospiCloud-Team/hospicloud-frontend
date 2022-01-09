@@ -12,7 +12,8 @@ interface DashboardDoctorProps {
     | "CheckupDetail"
     | "AddCheckup"
     | "DoctorProfile"
-    | "PatientRecord";
+    | "PatientRecord"
+    | "PatientsList";
 }
 
 const renderContent = (content: string) => {
@@ -27,6 +28,8 @@ const renderContent = (content: string) => {
       return <DoctorProfile />;
     case "PatientRecord":
       return <PatientRecord />;
+    case "PatientsList":
+      return <div>Hi</div>;
     default:
       break;
   }
