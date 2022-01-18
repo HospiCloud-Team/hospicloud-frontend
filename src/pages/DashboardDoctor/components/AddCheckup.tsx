@@ -52,14 +52,17 @@ const AddCheckup = () => {
 
   return (
     <div>
-      <div className="d-flex align-items-center">
-        <button
-          className="btn btn-secondary btn-sm me-2"
-          onClick={history.goBack}
-        >
-          <i className="bi bi-arrow-left"></i>
-        </button>
-        <h4 className="m-0">Nueva consulta</h4>
+      <div className="d-flex justify-content-between align-items-center w-100">
+        <div className="d-flex align-items-center">
+          <button
+            className="btn btn-secondary btn-sm me-2"
+            onClick={history.goBack}
+          >
+            <i className="bi bi-arrow-left"></i>
+          </button>
+          <h4 className="m-0">Nueva consulta</h4>
+        </div>
+        <p className="m-0">{template.title}</p>
       </div>
       <div className="my-3">
         {patient && (

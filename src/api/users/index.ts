@@ -20,6 +20,18 @@ const getPatientByDocumentNumber = (
   return UsersAPI.get(`/users/document-number/${documentNumber}`);
 };
 
+const getPatientHistory = (
+  userId: string
+): Promise<AxiosResponse<IDoctor[]>> => {
+  return UsersAPI.get(`/users/${userId}/history`);
+};
+
+const getDoctorHistory = (
+  userId: string
+): Promise<AxiosResponse<IPatient[]>> => {
+  return UsersAPI.get(`/users/${userId}/history`);
+};
+
 const updateParticularDoctor = (userId: string, doctorData: IUpdateDoctor) => {
   return UsersAPI.put(`/users/${userId}`, doctorData);
 };
@@ -54,6 +66,8 @@ export {
   addPersonnel,
   getParticularUser,
   getPatientByDocumentNumber,
+  getDoctorHistory,
+  getPatientHistory,
   updateParticularDoctor,
   updateParticularAdmin,
   updateParticularPatient,
