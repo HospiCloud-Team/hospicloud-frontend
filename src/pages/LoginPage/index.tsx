@@ -16,6 +16,7 @@ import { IAuthUser } from "../../models/IUser";
 import { ErrorMessage } from "../../components";
 import { getParticularUser } from "../../api/users";
 import { storeUserData } from "../../utils/storeUserData";
+import router from "../../router/constantRoutes.json";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -89,7 +90,7 @@ const LoginPage = () => {
                   </div>
                 )}
                 <div className="form-group d-flex justify-content-between mb-3">
-                  <Link to="/contraseña/reestablecer">
+                  <Link to={Router.RESET_PASSWORD}>
                     Olvidaste tu contraseña
                   </Link>
                   <button type="submit" className="btn btn-primary">

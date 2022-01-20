@@ -19,7 +19,7 @@ const Routes = () => {
         <Route exact path="/">
           <LandingPage />
         </Route>
-        <Route path={routes.COTNRASEÑA_REESTABLECER}>
+        <Route path={routes.RESET_PASSWORD}>
           <ResetPasswordPage />
         </Route>
         <Route path={routes.LOGIN}>

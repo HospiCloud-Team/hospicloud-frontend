@@ -265,7 +265,7 @@ export const PersonnelAdminDetail = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            children="Deseas guardar las nuevas informaciones del administrador?"
+            children="¿Deseas guardar las nuevas informaciones del administrador?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}

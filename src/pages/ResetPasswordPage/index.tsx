@@ -38,7 +38,7 @@ const ResetPasswordPage = () => {
               <div className="d-flex flex-column justify-content-center align-items-center h-50 border-bottom">
                 <p>
                   Digite su correo eléctronico y le enviaremos un enlace para
-                  reestablecer la contraseña de su cuenta.
+                  restablecer la contraseña de su cuenta.
                 </p>
                 <div className="d-flex flex-row justify-content-center w-75">
                   <div className="form-group input-group mb-2">
