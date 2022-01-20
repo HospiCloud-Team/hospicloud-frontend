@@ -4,13 +4,14 @@ import { INewPatient, IUpdatePatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
 import auth from "../../firebase";
 import { sendPasswordResetEmail } from "firebase/auth";
+import routes from "../../router/constantRoutes.json";
 
 const login = (email: string, password: string) => {
   return UsersAPI.post("/login", { email, password });
 };
 
-const resetPassowrd = async (email: string) => {
-  await sendPasswordResetEmail(auth, email)
+const resetPassword = async (email: string) => {
+  await sendPasswordResetEmail(auth, email, { url: routes.LOGIN })
     .then(() => {
       alert("Su correo de restablecimiento de contraseña ha sido enviado");
     })
@@ -51,6 +52,7 @@ const registerDoctor = (doctorData: INewDoctor) => {
 };
 
 export {
+  resetPassword,
   login,
   registerPatient,
   registerAdmin,

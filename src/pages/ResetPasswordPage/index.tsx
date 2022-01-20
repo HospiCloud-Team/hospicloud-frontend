@@ -1,16 +1,24 @@
 import { Link, useHistory } from "react-router-dom";
 import routes from "../../router/constantRoutes.json";
 import { ReactComponent as LongLogo } from "../../resources/longLogo.svg";
-import styled from "@emotion/styled";
-import { ConfirmationModal } from "../../components/ConfirmationModal";
-
-const Header = styled.nav`
-  background-color: #e1e6f0;
-  padding-bottom: 0.5rem;
-`;
+import { FixedBox, MultiBg } from "../../layout/RegisterAndLoginLayout";
+import { useForm } from "react-hook-form";
+import { ButtonsContainer, CardTitle, Header } from "./style";
+import { resetPassword } from "../../api/users/index";
 
 const ResetPasswordPage = () => {
   let history = useHistory();
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      email: "",
+    },
+  });
+
+  const onSubmit = (data: any) => {
+    resetPassword(data.email);
+  };
+
   return (
     <div>
       <Header>
@@ -20,17 +28,49 @@ const ResetPasswordPage = () => {
           </Link>
         </div>
       </Header>
-      <ConfirmationModal
-        title="Olvidaste tu contraseña?"
-        state={true}
-        additionalCloseMethod={() => {
-          history.push(`/login`);
-        }}
-        button1Text="Cancelar"
-        button2Text="Enviar"
-      >
-        <input></input>
-      </ConfirmationModal>
+      <div className="container-fluid container-md my-4">
+        <MultiBg>
+          <FixedBox width="30" height="20" style={{ textAlign: "center" }}>
+            <form className="w-100" onSubmit={handleSubmit(onSubmit)}>
+              <div className="d-flex border-bottom align-items-center h-25">
+                <CardTitle>Olvidaste tu contraseña?</CardTitle>
+              </div>
+              <div className="d-flex flex-column justify-content-center align-items-center h-50 border-bottom">
+                <p>
+                  Digite su correo eléctronico y le enviaremos un enlace para
+                  reestablecer la contraseña de su cuenta.
+                </p>
+                <div className="d-flex flex-row justify-content-center w-75">
+                  <div className="form-group input-group mb-2">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Email"
+                      {...register("email")}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="d-flex h-25 align-items-center">
+                <ButtonsContainer>
+                  <button
+                    type="button"
+                    className="btn btn-secondary me-2"
+                    onClick={() => {
+                      history.push(routes.LOGIN);
+                    }}
+                  >
+                    Cancelar
+                  </button>
+                  <button type="submit" className="btn btn-primary me-3">
+                    Enviar
+                  </button>
+                </ButtonsContainer>
+              </div>
+            </form>
+          </FixedBox>
+        </MultiBg>
+      </div>
     </div>
   );
 };
