@@ -3,7 +3,7 @@ import {
   LoginTitle,
   BackIcon,
 } from "../../styles/AddPersonnel.style";
-import { registerAdmin } from "../../../../api/users/index";
+import { addPersonnel } from "../../../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "../../../../constants/document-type.json";
@@ -63,7 +63,7 @@ const AddAdminPersonnel = () => {
       };
 
       if (adminData) {
-        registerAdmin(adminData)
+        addPersonnel(adminData)
           .catch((err) => {
             console.log(err);
           })

@@ -32,6 +32,7 @@ export const PatientGeneralInfo = ({ patientRecord }: PatientInfoProps) => {
   useEffect(() => {
     getDocumentType(patientRecord.patient.user.document_type);
     getBloodType(patientRecord.patient.blood_type);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

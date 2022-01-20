@@ -1,15 +1,10 @@
-import { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { ICheckup } from "../../../models/ICheckup";
+import routes from "../../../router/constantRoutes.json";
 
 const CheckupsDetail = () => {
   const history = useHistory();
-  const { state } = useLocation<ICheckup>();
-  const [checkup, setCheckup] = useState<ICheckup | undefined>(state);
-
-  if (!checkup) {
-    // Get checkup from API
-  }
+  const { state: checkup } = useLocation<ICheckup>();
 
   return (
     <div>
@@ -27,7 +22,9 @@ const CheckupsDetail = () => {
           type="button"
           className="btn btn-primary btn-sm flex-end"
           onClick={() => {
-            history.push(`/doctor/patient-record/${checkup?.patient_id}`);
+            history.push(
+              `${routes.DOCTOR_PATIENTS_LIST}${checkup?.patient_id}`
+            );
           }}
         >
           Historial del paciente

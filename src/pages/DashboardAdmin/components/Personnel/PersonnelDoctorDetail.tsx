@@ -47,10 +47,11 @@ export const PersonnelDoctorDetail = () => {
 
   const getParticularDoctor = async () => {
     const doctor = await getParticularUser(id);
-    setDoctorData(doctor.data);
-    getDocumentType(doctor.data.document_type);
+    const doctorData = doctor.data as IDoctor;
+    setDoctorData(doctorData);
+    getDocumentType(doctorData.document_type);
     setSelectedSpecialties(
-      doctor.data.doctor.specialties.map((specialty: any) => {
+      doctorData.doctor.specialties.map((specialty: any) => {
         return { label: specialty.name, value: specialty.id };
       })
     );
@@ -133,7 +134,9 @@ export const PersonnelDoctorDetail = () => {
   useEffect(() => {
     getParticularDoctor();
     getSpecialties();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div>
       <div className="d-flex flex-row justify-content-between w-100 mb-3">

@@ -31,7 +31,7 @@ export const DoctorProfile = () => {
 
   const getParticularDoctor = async () => {
     const doctor = await getParticularUser(id);
-    setDoctorData(doctor.data);
+    setDoctorData(doctor.data as IDoctor);
     getDocumentType(doctor.data.document_type);
   };
 
@@ -93,7 +93,9 @@ export const DoctorProfile = () => {
 
   useEffect(() => {
     getParticularDoctor();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div>
       <div className="d-flex flex-row justify-content-between w-100 mb-3">

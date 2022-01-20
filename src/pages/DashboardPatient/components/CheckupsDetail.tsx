@@ -1,15 +1,9 @@
-import { useState } from "react";
 import { useHistory, useLocation } from "react-router";
 import { ICheckup } from "../../../models/ICheckup";
 
 const CheckupsDetail = () => {
   const history = useHistory();
-  const { state } = useLocation<ICheckup>();
-  const [checkup, setCheckup] = useState<ICheckup | undefined>(state);
-
-  if (!checkup) {
-    // Get checkup from API
-  }
+  const { state: checkup } = useLocation<ICheckup>();
 
   return (
     <div>

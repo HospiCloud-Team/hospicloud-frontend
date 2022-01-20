@@ -20,7 +20,7 @@ export const AdminProfile = () => {
 
   const getParticularAdmin = async () => {
     const admin = await getParticularUser(id);
-    setAdminData(admin.data);
+    setAdminData(admin.data as IAdmin);
   };
 
   const handleEditClick = () => {
@@ -54,7 +54,6 @@ export const AdminProfile = () => {
     defaultValues: {
       name: adminData?.name,
       last_name: adminData?.last_name,
-      // email: adminData?.email,
       document_number: adminData?.document_number,
       date_of_birth: adminData?.date_of_birth,
     },
@@ -65,7 +64,6 @@ export const AdminProfile = () => {
       const updatedAdminData = {
         name: data.name ? data.name : adminData?.name,
         last_name: data.last_name ? data.last_name : adminData?.last_name,
-        // email: data.email? data.email : adminData?.email,
         document_number: data.document_number
           ? data.document_number
           : adminData?.document_number,
@@ -89,7 +87,9 @@ export const AdminProfile = () => {
 
   useEffect(() => {
     getParticularAdmin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <div>
       <div className="d-flex flex-row justify-content-between w-100 mb-3">
