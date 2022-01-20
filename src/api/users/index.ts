@@ -12,7 +12,9 @@ const login = (email: string, password: string) => {
 };
 
 const resetPassword = async (email: string) => {
-  await sendPasswordResetEmail(auth, email, { url: routes.LOGIN })
+  await sendPasswordResetEmail(auth, email, {
+    url: window.location.origin + routes.LOGIN,
+  })
     .then(() => {
       alert("Su correo de restablecimiento de contraseña ha sido enviado");
     })
