@@ -16,7 +16,7 @@ import { IAuthUser } from "../../models/IUser";
 import { ErrorMessage } from "../../components";
 import { getParticularUser } from "../../api/users";
 import { storeUserData } from "../../utils/storeUserData";
-import router from "../../router/constantRoutes.json";
+import routes from "../../router/constantRoutes.json";
 
 const LoginPage = () => {
   const history = useHistory();
