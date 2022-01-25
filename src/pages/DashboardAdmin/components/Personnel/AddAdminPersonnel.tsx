@@ -3,7 +3,7 @@ import {
   LoginTitle,
   BackIcon,
 } from "../../styles/AddPersonnel.style";
-import { addPersonnel } from "../../../../api/users/index";
+import { addPersonnel, resetPassword } from "../../../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "../../../../constants/document-type.json";
@@ -12,6 +12,7 @@ import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { ConfirmationModal } from "../../../../components/ConfirmationModal";
 import ArrowLeft from "../../../../resources/ArrowLeft.svg";
+import routes from "../../../../router/constantRoutes.json";
 
 const AddAdminPersonnel = () => {
   const [isShowModal, setIsShowModal] = useState(false);
@@ -69,6 +70,7 @@ const AddAdminPersonnel = () => {
           })
           .then(() => {
             setIsShowModal(false);
+            resetPassword(adminData.email, window.location.origin + routes.PERSONNEL_LIST, "Se ha enviado un correo para configurar contraseña a la dirección de este nuevo miembro del personal");
           });
       }
     } catch (error) {

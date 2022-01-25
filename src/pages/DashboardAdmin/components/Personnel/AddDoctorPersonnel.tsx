@@ -3,7 +3,7 @@ import {
   LoginTitle,
   BackIcon,
 } from "../../styles/AddPersonnel.style";
-import { addPersonnel } from "../../../../api/users";
+import { addPersonnel, resetPassword } from "../../../../api/users";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import DocumentType from "../../../../constants/document-type.json";
@@ -14,6 +14,7 @@ import ArrowLeft from "../../../../resources/ArrowLeft.svg";
 import { getSpecialtyByHospital } from "../../../../api/utilities";
 import { INewDoctor } from "../../../../models/IDoctor";
 import Select from "react-select";
+import routes from "../../../../router/constantRoutes.json";
 
 type SelectSpecialty = {
   label: string;
@@ -101,6 +102,7 @@ const AddDoctorPersonnel = () => {
           })
           .then(() => {
             setIsShowModal(false);
+            resetPassword(doctorData.email, window.location.origin + routes.PERSONNEL_LIST, "Se ha enviado un correo para configurar contraseña a la dirección de este nuevo miembro del personal");
           });
       }
     } catch (error) {

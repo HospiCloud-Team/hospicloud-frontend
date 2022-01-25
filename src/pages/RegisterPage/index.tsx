@@ -6,7 +6,7 @@ import {
   RegisterTitle,
 } from "../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../resources/HospiCloudLogo.svg";
-import { registerPatient } from "../../api/users/index";
+import { registerPatient, resetPassword } from "../../api/users/index";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "../../constants/document-type.json";
@@ -85,7 +85,7 @@ const RegisterPage = () => {
         },
       };
       registerPatient(patientData)
-        .then(() => history.push(routes.LOGIN))
+        .then(() => resetPassword(patientData.email, window.location.origin + routes.LOGIN, "Se ha enviado un correo para configurar su contraseña a su dirección de correo"))
         .catch((error) => {
           if (error.response) {
             console.log(error.response.data);
