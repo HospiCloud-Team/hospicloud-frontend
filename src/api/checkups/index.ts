@@ -25,7 +25,7 @@ const getCheckupsDoctor = (
 };
 
 const addCheckup = (newCheckup: INewCheckup) => {
-  return CheckupsAPI.post("/checkups", newCheckup);
+  return CheckupsAPI.post("/checkups/", newCheckup);
 };
 
 export { getCheckupsPatient, getCheckupsDoctor, addCheckup };
