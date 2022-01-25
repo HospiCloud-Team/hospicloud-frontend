@@ -11,13 +11,16 @@ import DashboardAdmin from "../pages/DashboardAdmin";
 import RegisterAdmin from "../pages/RegisterHospitalAndAdmin/RegisterAdminPage";
 import RegisterHospital from "../pages/RegisterHospitalAndAdmin/RegisterHospitalPage";
 import HospitalProvider from "../pages/RegisterHospitalAndAdmin/context/context";
-
+import ResetPasswordPage from "../pages/ResetPasswordPage";
 const Routes = () => {
   return (
     <HospitalProvider>
       <Switch>
         <Route exact path="/">
           <LandingPage />
+        </Route>
+        <Route path={routes.RESET_PASSWORD}>
+          <ResetPasswordPage />
         </Route>
         <Route path={routes.LOGIN}>
           <LoginPage />

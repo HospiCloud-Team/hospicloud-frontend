@@ -3,12 +3,13 @@ import LandingHeader from "../components/LandingHeader";
 
 interface LandingLayoutProps {
   children: ReactNode;
+  displayHeader?: boolean;
 }
 
-const LandingLayout = ({ children }: LandingLayoutProps) => {
+const LandingLayout = ({ children, displayHeader }: LandingLayoutProps) => {
   return (
     <>
-      <LandingHeader />
+      {displayHeader === false ? <></> : <LandingHeader />}
       <div className="container-fluid container-md my-4">{children}</div>
     </>
   );

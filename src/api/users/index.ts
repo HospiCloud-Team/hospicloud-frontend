@@ -3,9 +3,24 @@ import { IAdmin, INewAdmin, IUpdateAdmin } from "../../models/IAdmin";
 import { IDoctor, INewDoctor, IUpdateDoctor } from "../../models/IDoctor";
 import { INewPatient, IPatient, IUpdatePatient } from "../../models/IPatient";
 import { UsersAPI } from "../hospicloudAPI";
+import auth from "../../firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
+import routes from "../../router/constantRoutes.json";
 
 const login = (email: string, password: string) => {
   return UsersAPI.post("/login", { email, password });
+};
+
+const resetPassword = async (email: string) => {
+  await sendPasswordResetEmail(auth, email, {
+    url: window.location.origin + routes.LOGIN,
+  })
+    .then(() => {
+      alert("Su correo de restablecimiento de contraseña ha sido enviado");
+    })
+    .catch((error) => {
+      return error;
+    });
 };
 
 const getParticularUser = (
@@ -60,6 +75,7 @@ const addPersonnel = (adminData: INewAdmin | INewDoctor) => {
 };
 
 export {
+  resetPassword,
   login,
   registerPatient,
   registerAdmin,

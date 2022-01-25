@@ -89,7 +89,9 @@ const LoginPage = () => {
                   </div>
                 )}
                 <div className="form-group d-flex justify-content-between mb-3">
-                  <Link to="/ForgetPassword">Olvidaste tu contraseña</Link>
+                  <Link to={routes.RESET_PASSWORD}>
+                    Olvidaste tu contraseña
+                  </Link>
                   <button type="submit" className="btn btn-primary">
                     Iniciar Sesión
                   </button>

@@ -361,7 +361,7 @@ export const PersonnelDoctorDetail = () => {
           <ConfirmationModal
             state={isShowModal}
             title="Confirmación"
-            content="Deseas guardar las nuevas informaciones del doctor?"
+            children="Deseas guardar las nuevas informaciones del doctor?"
             button1Text="Cancelar"
             button2Text="Confirmar"
             handleShow={updateModal}
