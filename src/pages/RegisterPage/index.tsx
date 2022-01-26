@@ -12,13 +12,11 @@ import { useForm } from "react-hook-form";
 import DocumentType from "../../constants/document-type.json";
 import BloodyType from "../../constants/blood-type.json";
 import { INewPatient } from "../../models/IPatient";
-import { useHistory } from "react-router";
 import routes from "../../router/constantRoutes.json";
 import { ErrorMessage } from "../../components";
 import { validateSelection, blockInvalidChar } from "../../utils";
 
 const RegisterPage = () => {
-  const history = useHistory();
   const [isNationalId, setIsNationalId] = useState<boolean>(false);
 
   const {
