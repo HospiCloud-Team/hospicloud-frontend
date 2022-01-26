@@ -6,7 +6,7 @@ import {
   Icon,
 } from "../../../layout/RegisterAndLoginLayout";
 import HospiCloudLogo from "../../../resources/HospiCloudLogo.svg";
-import { registerAdmin } from "../../../api/users";
+import { registerAdmin, resetPassword } from "../../../api/users";
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import DocumentType from "./document-type.json";
@@ -83,6 +83,7 @@ const RegisterAdmin = () => {
             registerAdmin(adminData).then(() => {
               setIsShowModal(false);
               history.push(routes.LOGIN);
+              resetPassword(adminData.email, window.location.origin, "Se ha enviado un correo para configurar su contraseña a su dirección de correo");
             });
           });
       }

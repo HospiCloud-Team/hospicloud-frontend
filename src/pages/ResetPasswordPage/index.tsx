@@ -16,7 +16,8 @@ const ResetPasswordPage = () => {
   });
 
   const onSubmit = (data: any) => {
-    resetPassword(data.email);
+    history.push(routes.LOGIN);
+    resetPassword(data.email, window.location.origin, "Su correo de restablecimiento de contraseña ha sido enviado");
   };
 
   return (
