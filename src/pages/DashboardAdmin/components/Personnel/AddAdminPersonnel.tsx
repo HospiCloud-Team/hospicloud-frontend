@@ -70,7 +70,8 @@ const AddAdminPersonnel = () => {
           })
           .then(() => {
             setIsShowModal(false);
-            resetPassword(adminData.email, window.location.origin + routes.PERSONNEL_LIST, "Se ha enviado un correo para configurar contraseña a la dirección de este nuevo miembro del personal");
+            history.push(routes.PERSONNEL_LIST);
+            resetPassword(adminData.email, window.location.origin, "Se ha enviado un correo para configurar contraseña a la dirección de este nuevo miembro del personal");
           });
       }
     } catch (error) {

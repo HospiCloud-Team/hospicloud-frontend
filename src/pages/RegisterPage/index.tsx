@@ -13,11 +13,13 @@ import DocumentType from "../../constants/document-type.json";
 import BloodyType from "../../constants/blood-type.json";
 import { INewPatient } from "../../models/IPatient";
 import routes from "../../router/constantRoutes.json";
+import { useHistory } from "react-router";
 import { ErrorMessage } from "../../components";
 import { validateSelection, blockInvalidChar } from "../../utils";
 
 const RegisterPage = () => {
   const [isNationalId, setIsNationalId] = useState<boolean>(false);
+  const history = useHistory();
 
   const {
     register,
@@ -83,7 +85,10 @@ const RegisterPage = () => {
         },
       };
       registerPatient(patientData)
-        .then(() => resetPassword(patientData.email, window.location.origin + routes.LOGIN, "Se ha enviado un correo para configurar su contraseña a su dirección de correo"))
+        .then(() => {
+          history.push(routes.LOGIN);
+          resetPassword(patientData.email, window.location.origin, "Se ha enviado un correo para configurar su contraseña a su dirección de correo");
+        })
         .catch((error) => {
           if (error.response) {
             console.log(error.response.data);

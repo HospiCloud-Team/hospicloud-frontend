@@ -16,12 +16,14 @@ import { registerHospital } from "../../../api/utilities";
 import { AxiosError } from "axios";
 import { Button } from "react-bootstrap";
 import { ConfirmationModal } from "../../../components/ConfirmationModal";
+import { useHistory } from "react-router";
 import routes from "../../../router/constantRoutes.json";
 import { IHospital } from "../../../models/IHospital";
 
 const RegisterAdmin = () => {
   const { hospitalData } = useContext(HospitalContext);
   const [isShowModal, setIsShowModal] = useState(false);
+  const history = useHistory();
   const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       document_type: "",
@@ -80,7 +82,8 @@ const RegisterAdmin = () => {
             };
             registerAdmin(adminData).then(() => {
               setIsShowModal(false);
-              resetPassword(adminData.email, window.location.origin + routes.LOGIN, "Se ha enviado un correo para configurar su contraseña a su dirección de correo")
+              history.push(routes.LOGIN);
+              resetPassword(adminData.email, window.location.origin, "Se ha enviado un correo para configurar su contraseña a su dirección de correo");
             });
           });
       }
